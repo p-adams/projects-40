@@ -1,14 +1,14 @@
 <script lang="ts">
   import { keys, type Key } from "./CalculatorKeys";
-  let screenInput = "0";
+  let screenOutput = "0";
   function processKey(key: Key) {
     // TODO: process key
   }
 </script>
 
 <div class="Calculator">
-  <div class="Input-container">
-    <div class="Input-screen">{screenInput}</div>
+  <div class="Output-container">
+    <div class="Output-screen">{screenOutput}</div>
   </div>
   <div class="Button-container">
     {#each keys as key}
@@ -27,12 +27,12 @@
     padding: 20px;
     background-color: #36454f;
   }
-  .Input-container {
+  .Output-container {
     height: 80px;
     text-align: right;
     background-color: white;
   }
-  .Input-screen {
+  .Output-screen {
     height: 100%;
     display: flex;
     justify-content: end;
