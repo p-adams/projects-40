@@ -1,6 +1,9 @@
 <script lang="ts">
-  import { keys } from "./CalculatorKeys";
+  import { keys, type Key } from "./CalculatorKeys";
   let screenInput = "0";
+  function processKey(key: Key) {
+    // TODO: process key
+  }
 </script>
 
 <div class="Calculator">
@@ -9,7 +12,7 @@
   </div>
   <div class="Button-container">
     {#each keys as key}
-      <button>{key.label}</button>
+      <button on:click={() => processKey(key)}>{key.label}</button>
     {/each}
   </div>
 </div>
