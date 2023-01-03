@@ -1,11 +1,55 @@
 <script lang="ts">
-  import { keys, type Key } from "./CalculatorKeys";
-  let screenOutput = "0";
+  import { keys, operations, type Key } from "./CalculatorUtils";
+  let screenOutput = 0;
+  let operationToPerform = "";
+  let prevOperand = "";
+  let currOperand = "";
+
   function processKey(key: Key) {
     // TODO: process key
+    const operatorPattern = /[+*\/-]/g;
+    // check for numeric value or operator / compute / clear string value
+    if (typeof key.value === "string") {
+      // check if value is an operator
+      if (operatorPattern.test(key.value)) {
+        if (prevOperand !== "") {
+          compute();
+          operationToPerform = key.value;
+          prevOperand = currOperand;
+          currOperand = "";
+        }
+      } else {
+        if (key.value === "=") {
+        } else if (key.value === "C") {
+          clear();
+        }
+      }
+    } else {
+      // must be numeric value, so append value
+      currOperand = currOperand.toString() + key.value.toString();
+    }
+  }
+  function compute() {
+    if (isNaN(Number(prevOperand)) || isNaN(Number(currOperand))) {
+      return;
+    }
+    const operation = operations[operationToPerform](
+      Number(prevOperand),
+      Number(currOperand)
+    );
+    currOperand = operation;
+    operationToPerform = "";
+    prevOperand = "";
+  }
+  function clear() {
+    operationToPerform = "";
+    screenOutput = 0;
+    currOperand = "";
+    prevOperand = "";
   }
 </script>
 
+{prevOperand} - {currOperand}
 <div class="Calculator">
   <div class="Output-container">
     <div class="Output-screen">{screenOutput}</div>

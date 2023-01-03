@@ -21,3 +21,27 @@ export const keys: Array<Key> = [
   { label: "=", value: "=" },
   { label: "-", value: "-" },
 ];
+
+export const operations = {
+  "+": (l: number, r: number) => add(l, r),
+  "-": (l: number, r: number) => subtract(l, r),
+  "*": (l: number, r: number) => multiply(l, r),
+  "/": (l: number, r: number) => divide(l, r),
+};
+
+function add(loperand: number, roperand: number) {
+  console.log("foo: ", loperand, roperand);
+  return loperand + roperand;
+}
+
+function subtract(loperand: number, roperand: number) {
+  return loperand - roperand;
+}
+
+function multiply(loperand: number, roperand: number) {
+  return loperand * roperand;
+}
+
+function divide(loperand: number, roperand: number) {
+  return loperand / roperand;
+}
