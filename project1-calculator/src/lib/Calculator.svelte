@@ -12,7 +12,13 @@
   </div>
   <div class="Button-container">
     {#each keys as key}
-      <button on:click={() => processKey(key)}>{key.label}</button>
+      {#if key}
+        <button class="Calculator-button" on:click={() => processKey(key)}
+          >{key.label}</button
+        >
+      {:else}
+        <div />
+      {/if}
     {/each}
   </div>
 </div>

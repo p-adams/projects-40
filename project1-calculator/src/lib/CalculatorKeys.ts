@@ -1,5 +1,9 @@
 export type Key = { label: string; value: string | number };
 export const keys: Array<Key> = [
+  null,
+  null,
+  null,
+  { label: "C", value: "C" },
   { label: "7", value: 7 },
   { label: "8", value: 8 },
   { label: "9", value: 9 },
