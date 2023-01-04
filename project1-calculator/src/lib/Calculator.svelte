@@ -12,14 +12,16 @@
     if (typeof key.value === "string") {
       // check if value is an operator
       if (operatorPattern.test(key.value)) {
+        if (currOperand === "") return;
         if (prevOperand !== "") {
           compute();
-          operationToPerform = key.value;
-          prevOperand = currOperand;
-          currOperand = "";
         }
+        operationToPerform = key.value;
+        prevOperand = currOperand;
+        currOperand = "";
       } else {
         if (key.value === "=") {
+          compute();
         } else if (key.value === "C") {
           clear();
         }
@@ -38,7 +40,7 @@
       Number(currOperand)
     );
     currOperand = operation;
-    operationToPerform = "";
+    operationToPerform = undefined;
     prevOperand = "";
   }
   function clear() {
@@ -52,7 +54,7 @@
 {prevOperand} - {currOperand}
 <div class="Calculator">
   <div class="Output-container">
-    <div class="Output-screen">{screenOutput}</div>
+    <div class="Output-screen">{currOperand}</div>
   </div>
   <div class="Button-container">
     {#each keys as key}
