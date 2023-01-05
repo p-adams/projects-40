@@ -1,6 +1,6 @@
 <script lang="ts">
   import { keys, operations, type Key } from "./CalculatorUtils";
-  let screenOutput = 0;
+
   let operationToPerform = "";
   let prevOperand = "";
   let currOperand = "";
@@ -45,16 +45,16 @@
   }
   function clear() {
     operationToPerform = "";
-    screenOutput = 0;
     currOperand = "";
     prevOperand = "";
   }
 </script>
 
-{prevOperand} - {currOperand}
 <div class="Calculator">
   <div class="Output-container">
-    <div class="Output-screen">{currOperand}</div>
+    <div class="Output-screen">
+      {currOperand}
+    </div>
   </div>
   <div class="Button-container">
     {#each keys as key}
