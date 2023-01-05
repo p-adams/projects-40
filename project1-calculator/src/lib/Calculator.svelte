@@ -6,7 +6,6 @@
   let currOperand = "";
 
   function processKey(key: Key) {
-    // TODO: process key
     const operatorPattern = /[+*\/-]/g;
     // check for numeric value or operator / compute / clear string value
     if (typeof key.value === "string") {
