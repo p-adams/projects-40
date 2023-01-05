@@ -29,19 +29,13 @@ export const operations = {
   "/": (l: number, r: number) => divide(l, r),
 };
 
-function add(loperand: number, roperand: number) {
-  console.log("foo: ", loperand, roperand);
-  return loperand + roperand;
-}
+const add = (loperand: number, roperand: number): number => loperand + roperand;
 
-function subtract(loperand: number, roperand: number) {
-  return loperand - roperand;
-}
+const subtract = (loperand: number, roperand: number): number =>
+  loperand - roperand;
 
-function multiply(loperand: number, roperand: number) {
-  return loperand * roperand;
-}
+const multiply = (loperand: number, roperand: number): number =>
+  loperand * roperand;
 
-function divide(loperand: number, roperand: number) {
-  return loperand / roperand;
-}
+const divide = (loperand: number, roperand: number): number =>
+  loperand / roperand;
