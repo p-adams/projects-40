@@ -14,11 +14,16 @@ export const quizQuestions: App.Question[] = [
   },
 ];
 
-export const quizScore = (questions: App.Question[]): number =>
-  (questions.reduce(
-    (score, question) =>
-      question.selected === question.answer ? ++score : score,
-    0
-  ) /
-    questions.length) *
+export function quizScore(questions: App.Question[]) {
+  const score =
+    questions.reduce(
+      (score, question) =>
+        question.selected === question.answer ? ++score : score,
+      0
+    ) / questions.length;
   100;
+  return () => ({
+    score,
+    percentage: score * 100,
+  });
+}
