@@ -15,8 +15,10 @@ export const quizQuestions: App.Question[] = [
 ];
 
 export const quizScore = (questions: App.Question[]): number =>
-  questions.reduce(
+  (questions.reduce(
     (score, question) =>
       question.selected === question.answer ? ++score : score,
     0
-  ) / questions.length;
+  ) /
+    questions.length) *
+  100;
