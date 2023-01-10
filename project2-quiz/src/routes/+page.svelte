@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { quizQuestions } from "../data/questions";
+  import { quizQuestions } from "../quiz";
 </script>
 
 <svelte:head>

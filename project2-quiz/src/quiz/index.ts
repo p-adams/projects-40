@@ -1,4 +1,4 @@
-export const quizQuestions = [
+export const quizQuestions: App.Question[] = [
   {
     id: 0,
     question: "Which of the following is not a position value",
@@ -13,3 +13,10 @@ export const quizQuestions = [
     ],
   },
 ];
+
+export const quizScore = (questions: App.Question[]): number =>
+  questions.reduce(
+    (score, question) =>
+      question.selected === question.answer ? ++score : score,
+    0
+  ) / questions.length;
