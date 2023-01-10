@@ -6,6 +6,11 @@ declare namespace App {
   // interface Locals {}
   // interface PageData {}
   // interface Platform {}
+  interface Quiz {
+    name: string;
+    questions: Array<Question>;
+    keywords?: string[];
+  }
   interface Question {
     id: number | string;
     question: string;
