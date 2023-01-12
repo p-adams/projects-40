@@ -1,4 +1,4 @@
-export const quizQuestions: App.Question[] = [
+const quizQuestions: App.Question[] = [
   {
     id: 0,
     question: "Which of the following is not a position value",
@@ -14,9 +14,16 @@ export const quizQuestions: App.Question[] = [
   },
 ];
 
+export const quiz: App.Quiz = {
+  name: "Web Development Quiz Demo",
+  questions: quizQuestions,
+  keywords: ["Web Development", "CSS", "JavaScript", "HTML"],
+};
+
 export function quizScore(questions: App.Question[]): {
   score: number;
   percentage: number;
+  formattedPercentage: string;
 } {
   const score =
     questions.reduce(
@@ -28,5 +35,6 @@ export function quizScore(questions: App.Question[]): {
   return {
     score,
     percentage: score * 100,
+    formattedPercentage: `${score * 100}%`,
   };
 }

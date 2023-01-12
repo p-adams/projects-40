@@ -20,5 +20,6 @@ describe("quiz score test", () => {
     ];
     expect(quizScore(quizQuestions).score).toBe(1);
     expect(quizScore(quizQuestions).percentage).toBe(100);
+    expect(quizScore(quizQuestions).formattedPercentage).toBe("100%");
   });
 });

@@ -1,16 +1,28 @@
 <script lang="ts">
-  import { quizQuestions } from "../quiz";
+  import { quiz } from "../quiz";
   let submitted = false;
 </script>
 
 <svelte:head>
   <title>Quiz</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </svelte:head>
 <main>
   <article>
-    <h1>Web Development Quiz Demo</h1>
+    <h1>{quiz.name}</h1>
     <article class="Quiz--questions">
-      {#each quizQuestions as question}
+      {#each quiz.questions as question}
         <section
           class={`Quiz-question ${
             submitted
@@ -36,14 +48,30 @@
           </ul>
         </section>
       {/each}
-      <button on:click={() => (submitted = true)}
+      <button class="Submit--button" on:click={() => (submitted = true)}
         >{!submitted ? "submit" : "view results"}</button
       >
     </article>
+    {#if quiz.keywords}
+      <p>keywords:</p>
+      <div class="Keyword-container">
+        {#each quiz.keywords as keyword}
+          <div class="Keyword">{keyword}</div>
+        {/each}
+      </div>
+      <div />{/if}
   </article>
 </main>
 
 <style>
+  main {
+    height: 100vh;
+  }
+  article {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
   h2 {
     margin: 0;
     padding: 0;
@@ -56,5 +84,20 @@
   }
   .incorrect {
     border: 1px solid lightcoral;
+  }
+  .Quiz--questions {
+    flex: 1;
+  }
+  .Submit--button {
+    width: fit-content;
+  }
+  .Keyword-container {
+    display: flex;
+  }
+  .Keyword {
+    border: 1px solid lightgray;
+    width: fit-content;
+    padding: 2px;
+    border-radius: 14px;
   }
 </style>
