@@ -12,6 +12,19 @@ const quizQuestions: App.Question[] = [
       { label: "block", value: "D" },
     ],
   },
+  {
+    id: 1,
+    question: "Which of the following is not a valid function declaration",
+    answer: "C",
+    hint: null,
+    selected: "A",
+    choices: [
+      { label: "function myFunction(){};", value: "A" },
+      { label: "const myFunction = () => {};", value: "B" },
+      { label: "const function = myFunction(){};", value: "C" },
+      { label: "const myFunction = function(){};", value: "D" },
+    ],
+  },
 ];
 
 export const quiz: App.Quiz = {

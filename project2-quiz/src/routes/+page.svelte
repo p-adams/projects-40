@@ -32,7 +32,7 @@
               : ""
           }`}
         >
-          <h2>Which of the following is not a position value</h2>
+          <h2>{question.question}</h2>
           <ul>
             {#each question.choices as choice}
               <li>
@@ -85,8 +85,12 @@
   .incorrect {
     border: 1px solid lightcoral;
   }
+
   .Quiz--questions {
     flex: 1;
+  }
+  .Quiz-question {
+    padding: 8px;
   }
   .Submit--button {
     width: fit-content;
