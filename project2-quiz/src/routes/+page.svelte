@@ -32,7 +32,7 @@
               : ""
           }`}
         >
-          <h2>{question.question}</h2>
+          <h2>{question.title}</h2>
           <ul>
             {#each question.choices as choice}
               <li>

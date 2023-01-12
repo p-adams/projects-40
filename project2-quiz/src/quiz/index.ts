@@ -1,7 +1,7 @@
 const quizQuestions: App.Question[] = [
   {
     id: 0,
-    question: "Which of the following is not a position value",
+    title: "Which of the following is not a position value",
     answer: "D",
     hint: null,
     selected: "A",
@@ -14,7 +14,7 @@ const quizQuestions: App.Question[] = [
   },
   {
     id: 1,
-    question: "Which of the following is not a valid function declaration",
+    title: "Which of the following is not a valid function declaration",
     answer: "C",
     hint: null,
     selected: "A",

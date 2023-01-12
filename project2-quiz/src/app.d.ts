@@ -13,7 +13,7 @@ declare namespace App {
   }
   interface Question {
     id: number | string;
-    question: string;
+    title: string;
     answer: string;
     hint: string | null;
     selected: string;
