@@ -1,7 +1,7 @@
 const quizQuestions: App.Question[] = [
   {
     id: 0,
-    title: "Which of the following is not a position value",
+    title: "Which of the following is not a position value?",
     answer: "D",
     hint: null,
     selected: "A",
@@ -14,15 +14,28 @@ const quizQuestions: App.Question[] = [
   },
   {
     id: 1,
-    title: "Which of the following is not a valid function declaration",
+    title: "Which of the following is not a valid function declaration?",
     answer: "C",
     hint: null,
     selected: "A",
     choices: [
       { label: "function myFunction(){};", value: "A" },
       { label: "const myFunction = () => {};", value: "B" },
-      { label: "const function = myFunction(){};", value: "C" },
+      { label: "function = () => {};", value: "C" },
       { label: "const myFunction = function(){};", value: "D" },
+    ],
+  },
+  {
+    id: 2,
+    title: "What does the setInterval method return?",
+    answer: "A",
+    hint: null,
+    selected: "A",
+    choices: [
+      { label: "interval ID", value: "A" },
+      { label: "0", value: "B" },
+      { label: "-1", value: "C" },
+      { label: "setInterval is a void method", value: "D" },
     ],
   },
 ];
@@ -38,13 +51,14 @@ export function quizScore(questions: App.Question[]): {
   percentage: number;
   formattedPercentage: string;
 } {
-  const score =
+  const rawScore =
     questions.reduce(
       (score, question) =>
         question.selected === question.answer ? ++score : score,
       0
     ) / questions.length;
   100;
+  const score = Math.round((rawScore + Number.EPSILON) * 100) / 100;
   return {
     score,
     percentage: score * 100,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { quiz } from "../quiz";
+  import { quiz, quizScore } from "../quiz";
   let submitted = false;
 </script>
 
@@ -49,7 +49,9 @@
         </section>
       {/each}
       <button class="Submit--button" on:click={() => (submitted = true)}
-        >{!submitted ? "submit" : "view results"}</button
+        >{!submitted
+          ? "submit"
+          : quizScore(quiz.questions).formattedPercentage}</button
       >
     </article>
     {#if quiz.keywords}
@@ -91,6 +93,7 @@
   }
   .Quiz-question {
     padding: 8px;
+    margin-top: 10px;
   }
   .Submit--button {
     width: fit-content;
