@@ -4,3 +4,4 @@ Sandbox containing 40 web app projects
 
 1. Calculator
 2. Quiz
+3. Rock paper scissors (WIP)
