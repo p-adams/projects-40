@@ -3,4 +3,4 @@
 Sandbox containing 40 web app projects
 
 1. Calculator
-2. Quiz (in progress)
+2. Quiz
