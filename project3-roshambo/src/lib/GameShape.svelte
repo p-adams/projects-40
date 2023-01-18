@@ -1,6 +1,4 @@
 <script lang="ts">
-  import App from "../App.svelte";
-
   import { createEventDispatcher } from "svelte";
   export let shape: App.Shape | null;
   const dispatch = createEventDispatcher();
