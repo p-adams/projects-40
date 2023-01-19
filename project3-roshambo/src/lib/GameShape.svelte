@@ -1,7 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   export let shape: App.Shape | null;
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher<{
+    selectShape: { shape: App.Shape };
+  }>();
 </script>
 
 <div

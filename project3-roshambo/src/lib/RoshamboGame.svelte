@@ -22,14 +22,14 @@
         on:selectShape={(event) => (p1SelectedShape = event.detail.shape)}
       />
     </div>
-    <div class="Selected-wrapper">
+    <div class="Selected-Shape-wrapper">
       <GameShape
         shape={paper}
         on:selectShape={(event) => (p1SelectedShape = event.detail.shape)}
       />
 
       <div class="Selected-container">
-        {p1SelectedShape ? p1SelectedShape.abbr : "—"}
+        {p1SelectedShape?.name ?? "—"}
       </div>
     </div>
     <div class="Shape-wrapper">
@@ -47,13 +47,13 @@
         on:selectShape={(event) => (p2SelectedShape = event.detail.shape)}
       />
     </div>
-    <div class="Selected-wrapper">
+    <div class="Selected-Shape-wrapper">
       <GameShape
         shape={paper}
         on:selectShape={(event) => (p2SelectedShape = event.detail.shape)}
       />
       <div class="Selected-container">
-        {p2SelectedShape ? p2SelectedShape.abbr : "—"}
+        {p2SelectedShape?.name ?? "—"}
       </div>
     </div>
     <div class="Shape-wrapper">
@@ -89,7 +89,7 @@
     justify-content: end;
     align-items: center;
   }
-  .Selected-wrapper {
+  .Selected-Shape-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,7 +97,6 @@
     height: 100%;
   }
   .Selected-container {
-    outline: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: flex-end;
