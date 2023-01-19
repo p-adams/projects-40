@@ -15,8 +15,14 @@ export const shapes: { [key: string]: Shape } = {
   },
 };
 
-export function beats(player: Shape, other: Shape) {
+export function beats(
+  player: Shape,
+  other: Shape
+): boolean | "tie" | "not found" {
   const shape = shapes[player?.name];
+  if (shape.name === other.name) {
+    return "tie";
+  }
   switch (shape?.name) {
     case "rock":
       return other.name === "scissors";

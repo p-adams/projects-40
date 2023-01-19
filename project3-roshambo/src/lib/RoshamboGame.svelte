@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, onMount } from "svelte";
+  import { afterUpdate } from "svelte";
   import { beats, shapes } from "./Game";
   import GameShape from "./GameShape.svelte";
 
@@ -13,10 +13,9 @@
   $: scissors = shapes["scissors"];
   $: winnerStr = winner?.name
     ? winner?.name === "tie"
-      ? `${winner.name}`
+      ? `${winner.name}: ${winner?.shape} = ${winner.other}`
       : `${winner.name} wins, ${winner.shape} beats ${winner.other}`
     : "";
-
   afterUpdate(() => {
     if (p1SelectedShape && p2SelectedShape) {
       const p1BeatsP2 = beats(p1SelectedShape, p2SelectedShape);
@@ -24,16 +23,14 @@
         return;
       }
 
-      if (p1SelectedShape.name === p2SelectedShape.name) {
+      if (p1BeatsP2 === "tie") {
         winner = {
           name: "tie",
           shape: p1SelectedShape.name,
           other: p2SelectedShape.name,
         };
         return;
-      }
-
-      if (p1BeatsP2) {
+      } else if (p1BeatsP2) {
         winner = {
           name: "player 1",
           shape: p1SelectedShape.name,
@@ -76,7 +73,7 @@
     </div>
   </div>
   <div class="Result-display">
-    {winnerStr ?? ""}
+    {winnerStr}
   </div>
   <div class="game-grid Right-side">
     <div class="Shape-wrapper">
@@ -146,6 +143,10 @@
   .Result-display {
     flex: 2;
     height: var(--height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     outline: 1px solid lightgray;
     margin: 0px 12px 0px 12px;
     padding: var(--card-padding);
