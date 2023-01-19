@@ -1,17 +1,53 @@
 <script lang="ts">
+  import { afterUpdate, onMount } from "svelte";
+  import { beats, shapes } from "./Game";
   import GameShape from "./GameShape.svelte";
 
   // TODO: implement roshambo
-  export let shapes: Array<App.Shape> = [
-    { name: "rock", abbr: "R" },
-    { name: "paper", abbr: "P" },
-    { name: "scissors", abbr: "S" },
-  ];
-  let p1SelectedShape: App.Shape | null = null;
-  let p2SelectedShape: App.Shape | null = null;
-  $: rock = shapes[0];
-  $: paper = shapes[1];
-  $: scissors = shapes[2];
+
+  $: p1SelectedShape = null;
+  $: p2SelectedShape = null;
+  $: winner = null;
+  $: rock = shapes["rock"];
+  $: paper = shapes["paper"];
+  $: scissors = shapes["scissors"];
+  $: winnerStr = winner?.name
+    ? winner?.name === "tie"
+      ? `${winner.name}`
+      : `${winner.name} wins, ${winner.shape} beats ${winner.other}`
+    : "";
+
+  afterUpdate(() => {
+    if (p1SelectedShape && p2SelectedShape) {
+      const p1BeatsP2 = beats(p1SelectedShape, p2SelectedShape);
+      if (p1BeatsP2 === "not found") {
+        return;
+      }
+
+      if (p1SelectedShape.name === p2SelectedShape.name) {
+        winner = {
+          name: "tie",
+          shape: p1SelectedShape.name,
+          other: p2SelectedShape.name,
+        };
+        return;
+      }
+
+      if (p1BeatsP2) {
+        winner = {
+          name: "player 1",
+          shape: p1SelectedShape.name,
+          other: p2SelectedShape.name,
+        };
+      } else {
+        winner = {
+          name: "player 2",
+          shape: p2SelectedShape.name,
+          other: p1SelectedShape.name,
+        };
+      }
+    }
+  });
 </script>
 
 <div class="Roshambo-game">
@@ -39,7 +75,9 @@
       />
     </div>
   </div>
-  <div class="Result-display">b</div>
+  <div class="Result-display">
+    {winnerStr ?? ""}
+  </div>
   <div class="game-grid Right-side">
     <div class="Shape-wrapper">
       <GameShape
