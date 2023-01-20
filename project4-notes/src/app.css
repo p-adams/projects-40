@@ -38,6 +38,7 @@ h1 {
 }
 
 .card {
+  display: flex;
   padding: 2em;
 }
 
