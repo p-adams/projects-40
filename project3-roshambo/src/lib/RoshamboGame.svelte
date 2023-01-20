@@ -3,8 +3,6 @@
   import { beats, shapes } from "./Game";
   import GameShape from "./GameShape.svelte";
 
-  // TODO: implement roshambo
-
   $: p1SelectedShape = null;
   $: p2SelectedShape = null;
   $: winner = null;
@@ -16,6 +14,12 @@
       ? `${winner.name}: ${winner?.shape} = ${winner.other}`
       : `${winner.name} wins, ${winner.shape} beats ${winner.other}`
     : "";
+
+  function restartGame() {
+    p1SelectedShape = null;
+    p2SelectedShape = null;
+    winner = null;
+  }
   afterUpdate(() => {
     if (p1SelectedShape && p2SelectedShape) {
       const p1BeatsP2 = beats(p1SelectedShape, p2SelectedShape);
@@ -47,6 +51,7 @@
   });
 </script>
 
+<button class="Restart-button" on:click={() => restartGame()}>restart</button>
 <div class="Roshambo-game">
   <div class="game-grid Left-side">
     <div class="Shape-wrapper">
@@ -104,6 +109,9 @@
   :root {
     --height: 250px;
     --card-padding: 6px;
+  }
+  .Restart-button {
+    margin-bottom: 10px;
   }
   .Roshambo-game {
     display: flex;

@@ -8,12 +8,4 @@
   <div class="card">
     <RoshamboGame />
   </div>
-
-  <p class="how-to-play">how to play</p>
 </main>
-
-<style>
-  .how-to-play {
-    color: #888;
-  }
-</style>
