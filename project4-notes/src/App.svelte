@@ -18,6 +18,7 @@
       body: "",
     },
   ];
+  $: selectedNote = notes[0];
 </script>
 
 <main>
@@ -25,7 +26,8 @@
   <div class="card">
     <NotesList
       {notes}
-      on:selectNote={(event) => console.log(event.detail.note)}
+      {selectedNote}
+      on:selectNote={(event) => (selectedNote = event.detail.note)}
     />
     <NotesArea />
   </div>
