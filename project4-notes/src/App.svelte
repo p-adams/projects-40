@@ -1,6 +1,7 @@
 <script lang="ts">
   import NotesArea from "./lib/NotesArea.svelte";
   import NotesList from "./lib/NotesList.svelte";
+  import NotesMenuBar from "./lib/NotesMenuBar.svelte";
   $: notes = [
     {
       id: 0,
@@ -23,6 +24,7 @@
 
 <main>
   <h2>Notes Project</h2>
+  <NotesMenuBar />
   <div class="card">
     <NotesList
       {notes}

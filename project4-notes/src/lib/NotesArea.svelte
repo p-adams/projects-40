@@ -24,6 +24,7 @@
   .Notes-area {
     display: flex;
     flex-direction: column;
+    flex: 3;
   }
   .Area-pane {
     display: flex;

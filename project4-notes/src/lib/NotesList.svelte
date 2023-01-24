@@ -18,6 +18,13 @@
 </div>
 
 <style>
+  .Notes-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-right: 1px solid lightgray;
+    margin-right: 8px;
+  }
   .note {
     cursor: pointer;
   }
