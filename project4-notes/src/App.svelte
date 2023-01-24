@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { afterUpdate } from "svelte";
+  import { MenuModes } from "./lib/datatypes";
   import NotesArea from "./lib/NotesArea.svelte";
   import NotesList from "./lib/NotesList.svelte";
   import NotesMenuBar from "./lib/NotesMenuBar.svelte";
@@ -17,11 +19,14 @@
     },
   ];
   $: selectedNote = notes[0];
+  $: menuMode = MenuModes.read;
 </script>
 
 <main>
   <h2>Notes Project</h2>
-  <NotesMenuBar />
+  <NotesMenuBar
+    on:menuItemSelected={(event) => (menuMode = event.detail.menuMode)}
+  />
   <div class="card">
     <NotesList
       {notes}
