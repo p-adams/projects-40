@@ -12,7 +12,7 @@
       on:click={() => dispatch("selectNote", { note })}
       aria-hidden="true"
     >
-      {note.title}
+      <div class="Note-title">{note.body}</div>
     </div>
   {/each}
 </div>
@@ -27,6 +27,13 @@
   }
   .note {
     cursor: pointer;
+    padding: 8px;
+  }
+  .Note-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
   }
   .selected {
     outline: 1px solid lightblue;

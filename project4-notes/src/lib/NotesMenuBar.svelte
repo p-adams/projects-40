@@ -1,4 +1,11 @@
-<script lang="ts"></script>
+<script lang="ts">
+  enum MenuModes {
+    create = "create",
+    read = "read",
+    update = "update",
+    delete = "delete",
+  }
+</script>
 
 <div class="Notes-menu-bar">
   <div>create</div>
