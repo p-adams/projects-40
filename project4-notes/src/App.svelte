@@ -33,7 +33,7 @@
       {selectedNote}
       on:selectNote={(event) => (selectedNote = event.detail.note)}
     />
-    <NotesArea />
+    <NotesArea {menuMode} {selectedNote} />
   </div>
 </main>
 

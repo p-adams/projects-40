@@ -1,23 +1,30 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
+  import type { MenuModes } from "./datatypes";
+  export let menuMode: MenuModes = null;
+  export let selectedNote = null;
   // TODO: implement notes app
   // using local storage to store notes data
   let area: HTMLTextAreaElement;
   $: note = "";
   onMount(() => {
-    area.focus();
+    if (area) {
+      area.focus();
+    }
   });
 </script>
 
 <div class="Notes-area">
-  <div class="Area-pane">
-    <label for="notes">Create, edit, or view notes</label>
-    <textarea id="notes" bind:this={area} bind:value={note} />
-  </div>
-  <div class="Preview-pane">
-    <pre>{note}</pre>
-  </div>
+  {#if menuMode !== "read"}
+    <div class="Area-pane">
+      <label for="notes">Create, edit, or view notes</label>
+      <textarea id="notes" bind:this={area} bind:value={note} />
+    </div>
+  {:else}
+    <div class="Preview-pane">
+      <pre>{selectedNote.body}</pre>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -31,6 +38,7 @@
     flex-direction: column;
   }
   .Preview-pane {
+    width: 500px;
     margin-top: 10px;
   }
 </style>
