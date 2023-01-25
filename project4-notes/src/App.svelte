@@ -1,9 +1,12 @@
 <script lang="ts">
   import { afterUpdate } from "svelte";
-  import { MenuModes } from "./lib/datatypes";
+  import { MenuModes, type Note } from "./lib/datatypes";
   import NotesArea from "./lib/NotesArea.svelte";
   import NotesList from "./lib/NotesList.svelte";
   import NotesMenuBar from "./lib/NotesMenuBar.svelte";
+  let notes: Array<Note>;
+  let selectedNote: Note;
+  let menuMode: MenuModes;
   $: notes = [
     {
       id: 0,
