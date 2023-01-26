@@ -6,6 +6,6 @@ export enum MenuModes {
 }
 
 export interface Note {
-  id: string | number;
+  id: number;
   body: string;
 }

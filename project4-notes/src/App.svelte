@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import { MenuModes, type Note } from "./lib/datatypes";
   import NotesArea from "./lib/NotesArea.svelte";
   import NotesList from "./lib/NotesList.svelte";
@@ -10,19 +10,53 @@
   $: notes = [
     {
       id: 0,
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      body: "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.",
     },
     {
       id: 1,
-      body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      body: "Ut enim ad minim veniam, \nquis nostrud exercitation ullamco laboris \nnisi ut aliquip ex ea commodo consequat. ",
     },
     {
       id: 2,
-      body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      body: "Duis aute irure dolor in reprehenderit\nin voluptate velit esse cillum \ndolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,\nsunt in culpa qui officia deserunt \nmollit anim id est laborum.",
     },
   ];
-  $: selectedNote = notes[0];
+  $: selectedNote = null;
   $: menuMode = MenuModes.read;
+  $: noteInput = "";
+  onMount(() => {
+    selectedNote = notes[0];
+  });
+
+  afterUpdate(() => {
+    switch (menuMode) {
+      case "create":
+        const note = { id: notes.at(-1).id + 1, body: "TEST" };
+        selectedNote = note;
+        notes = [...notes, selectedNote];
+        noteInput = selectedNote.body;
+        menuMode = MenuModes.update;
+      case "read":
+        break;
+      case "update":
+        noteInput = !!noteInput ? noteInput : selectedNote.body;
+        break;
+      case "delete":
+        break;
+      default:
+        console.error("not found");
+    }
+  });
+  function handleSelectNote(note) {
+    selectedNote = note;
+    menuMode = MenuModes.read;
+    noteInput = "";
+  }
+  function handleNoteInput(input) {
+    noteInput = input;
+    const idx = notes.findIndex((note) => note.id === selectedNote.id);
+    notes[idx].body = noteInput;
+  }
 </script>
 
 <main>
@@ -34,9 +68,14 @@
     <NotesList
       {notes}
       {selectedNote}
-      on:selectNote={(event) => (selectedNote = event.detail.note)}
+      on:selectNote={(event) => handleSelectNote(event.detail.note)}
     />
-    <NotesArea {menuMode} {selectedNote} />
+    <NotesArea
+      {menuMode}
+      {selectedNote}
+      {noteInput}
+      on:notesAreaInput={(e) => handleNoteInput(e.detail.value)}
+    />
   </div>
 </main>
 
