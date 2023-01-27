@@ -35,7 +35,7 @@
     </div>
   {:else}
     <div class="Preview-pane">
-      <pre>{selectedNote?.body}</pre>
+      <pre>{selectedNote?.body ?? ""}</pre>
     </div>
   {/if}
 </div>

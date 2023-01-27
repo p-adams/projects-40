@@ -31,7 +31,10 @@
   afterUpdate(() => {
     switch (menuMode) {
       case "create":
-        const note = { id: notes.at(-1).id + 1, body: "TEST" };
+        const note = {
+          id: notes.at(-1) ? notes.at(-1)?.id + 1 : 0,
+          body: "TEST",
+        };
         selectedNote = note;
         notes = [...notes, selectedNote];
         noteInput = selectedNote.body;
@@ -42,6 +45,9 @@
         noteInput = !!noteInput ? noteInput : selectedNote.body;
         break;
       case "delete":
+        notes = notes.filter((note) => note.id !== selectedNote.id);
+        menuMode = MenuModes.read;
+        selectedNote = notes.at(0);
         break;
       default:
         console.error("not found");
