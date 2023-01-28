@@ -11,7 +11,13 @@ export class MyElement extends LitElement {
   file = 0;
 
   render() {
-    return html` <qr-code-reader-element></qr-code-reader-element> `;
+    return html`
+      <form class="File-upload-form">
+        <label for="file-upload">QR Code Image Upload</label>
+        <input id="file-upload" type="file" />
+      </form>
+      <qr-code-reader-element></qr-code-reader-element>
+    `;
   }
 
   static styles = css`
@@ -20,6 +26,10 @@ export class MyElement extends LitElement {
       margin: 0 auto;
       padding: 2rem;
       text-align: center;
+    }
+    .File-upload-form {
+      display: flex;
+      flex-direction: column;
     }
 
     .logo {
