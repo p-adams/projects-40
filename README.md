@@ -7,4 +7,4 @@ Sandbox containing 40 web app projects
 3. Rock paper scissors
 4. Notes
 5. Stopwatch
-6. QR Code Reader (WIP)
+6. QR Code Reader
