@@ -8,3 +8,4 @@ Sandbox containing 40 web app projects
 4. Notes
 5. Stopwatch
 6. QR Code Reader
+7. Weather (WIP)
