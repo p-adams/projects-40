@@ -16,10 +16,20 @@
     timezone: string;
     timezone_abbreviation: string;
     utc_offset_seconds: number;
+    temperature_unit: string;
   }
 
+  type HourlyParameter = {
+    hourly: string;
+  };
+
+  type BaseUrlParams = Pick<
+    ApiResponse,
+    "latitude" | "longitude" | "temperature_unit"
+  > &
+    HourlyParameter;
   const API_BASE_URL = (
-    params = {
+    params: BaseUrlParams = {
       latitude: 37.55,
       longitude: -121.99,
       hourly: "temperature_2m",
