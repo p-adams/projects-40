@@ -39,6 +39,7 @@ h1 {
 
 .card {
   padding: 2em;
+  outline: 1px solid gray;
 }
 
 #app {

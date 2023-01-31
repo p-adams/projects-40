@@ -16,11 +16,15 @@
     timezone: string;
     timezone_abbreviation: string;
     utc_offset_seconds: number;
-    temperature_unit: string;
+    temperature_unit?: string;
+  }
+
+  enum Hourly {
+    temperature_2m = "temperature_2m",
   }
 
   type HourlyParameter = {
-    hourly: string;
+    hourly?: Hourly;
   };
 
   type BaseUrlParams = Pick<
@@ -28,24 +32,29 @@
     "latitude" | "longitude" | "temperature_unit"
   > &
     HourlyParameter;
-  const API_BASE_URL = (
-    params: BaseUrlParams = {
-      latitude: 37.55,
-      longitude: -121.99,
-      hourly: "temperature_2m",
-      temperature_unit: "fahrenheit",
-    }
-  ) =>
+  const API_BASE_URL = (params: BaseUrlParams) =>
     `https://api.open-meteo.com/v1/forecast?latitude=${params.latitude}&longitude=${params.longitude}&hourly=${params.hourly}&current_weather=true&temperature_unit=${params.temperature_unit}`;
 
   $: weatherData = null as ApiResponse;
   onMount(async () => {
     try {
-      const response: ApiResponse = await fetch(API_BASE_URL()).then((res) =>
-        res.json()
-      );
+      const query = "Addis Ababa, Ethiopia";
+      const geo = await fetch(
+        `https://geocode.search.hereapi.com/v1/geocode?q=${query}&apiKey=${
+          import.meta.env.VITE_API_KEY
+        }`
+      ).then((res) => res.json());
+      const { position } = geo.items[0];
+      const response: ApiResponse = await fetch(
+        API_BASE_URL({
+          latitude: position.lat,
+          longitude: position.lng,
+          hourly: Hourly.temperature_2m,
+          temperature_unit: "fahrenheit",
+        })
+      ).then((res) => res.json());
+
       weatherData = response;
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -57,9 +66,13 @@
 
   <div class="card">
     <h3>Current Weather</h3>
-    <div>
-      <div>{weatherData?.current_weather?.temperature}</div>
-    </div>
+    {#if !weatherData}
+      Loading weather data
+    {:else}
+      <div>
+        <div>{weatherData?.current_weather?.temperature} °F</div>
+      </div>
+    {/if}
   </div>
 </main>
 
