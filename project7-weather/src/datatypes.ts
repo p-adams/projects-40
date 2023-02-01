@@ -68,3 +68,10 @@ export type BaseUrlParams = Pick<
   "latitude" | "longitude" | "temperature_unit"
 > &
   HourlyParameter;
+
+export type ForecastItem = {
+  data: { time: string; temperature: number };
+  temperatures: Array<{ time: string; temperature: number }>;
+  lo: number;
+  high: number;
+};

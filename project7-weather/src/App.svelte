@@ -2,6 +2,7 @@
   import { afterUpdate, onMount } from "svelte";
   import type {
     BaseUrlParams,
+    ForecastItem,
     GeocodeApiResponse,
     WeatherApiResponse,
   } from "./datatypes";
@@ -12,6 +13,7 @@
 
   $: weatherData = null as WeatherApiResponse;
   $: geoData = null as GeocodeApiResponse;
+  $: forecast = null as Array<ForecastItem>;
 
   async function fetchJsonData(path: string): Promise<any> {
     return fetch(path).then((res) => res.json());
@@ -36,25 +38,30 @@
           temperature_unit: "fahrenheit",
         })
       );
+      const hourlyData = weatherData?.hourly?.time.map((time, index) => ({
+        time,
+        temperature: weatherData?.hourly?.temperature_2m[index],
+      }));
+      forecast = getForecast(hourlyData);
     } catch (error) {
       console.log(error);
     }
   });
   $: temperatureScale = weatherData?.hourly_units?.temperature_2m;
-  $: hourlyData = weatherData?.hourly?.time.map((time, index) => ({
-    time,
-    temperature: weatherData?.hourly?.temperature_2m[index],
-  }));
-  afterUpdate(() => {
-    console.log(forecast());
-  });
-  function forecast() {
-    let daysForecast = [];
 
+  function getForecast(hourlyData): Array<ForecastItem> {
+    const daysForecast: Array<ForecastItem> = [];
     for (let i = 0; i < hourlyData?.length; i += 24) {
-      daysForecast.push(hourlyData[i]);
+      const hourlyTemperatures = hourlyData.slice(i, i + 24);
+      const min = Math.min(...hourlyTemperatures.map((t) => t.temperature));
+      const max = Math.max(...hourlyTemperatures.map((t) => t.temperature));
+      daysForecast.push({
+        data: hourlyData[i],
+        temperatures: hourlyData.slice(i, i + 24),
+        lo: min,
+        high: max,
+      });
     }
-
     return daysForecast;
   }
 </script>
