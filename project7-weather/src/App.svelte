@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import type {
     BaseUrlParams,
     GeocodeApiResponse,
@@ -36,11 +36,27 @@
           temperature_unit: "fahrenheit",
         })
       );
-      console.log(weatherData);
     } catch (error) {
       console.log(error);
     }
   });
+  $: temperatureScale = weatherData?.hourly_units?.temperature_2m;
+  $: hourlyData = weatherData?.hourly?.time.map((time, index) => ({
+    time,
+    temperature: weatherData?.hourly?.temperature_2m[index],
+  }));
+  afterUpdate(() => {
+    console.log(forecast());
+  });
+  function forecast() {
+    let daysForecast = [];
+
+    for (let i = 0; i < hourlyData?.length; i += 24) {
+      daysForecast.push(hourlyData[i]);
+    }
+
+    return daysForecast;
+  }
 </script>
 
 <main>
@@ -55,7 +71,7 @@
         <h3>{geoData.items[0].address.label}</h3>
         <div>
           {weatherData?.current_weather?.temperature}
-          {weatherData?.hourly_units?.temperature_2m}
+          {temperatureScale}
         </div>
       </section>
     {/if}
