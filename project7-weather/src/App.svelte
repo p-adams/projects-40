@@ -36,6 +36,7 @@
           temperature_unit: "fahrenheit",
         })
       );
+      console.log(weatherData);
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +53,10 @@
     {:else}
       <section>
         <h3>{geoData.items[0].address.label}</h3>
-        <div>{weatherData?.current_weather?.temperature} °F</div>
+        <div>
+          {weatherData?.current_weather?.temperature}
+          {weatherData?.hourly_units?.temperature_2m}
+        </div>
       </section>
     {/if}
   </div>
