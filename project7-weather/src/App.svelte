@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, onMount } from "svelte";
+  import { onMount } from "svelte";
   import type {
     BaseUrlParams,
     ForecastItem,
@@ -7,6 +7,7 @@
     WeatherApiResponse,
   } from "./datatypes";
   import { Hourly } from "./datatypes";
+  import { fetchJsonData, getForecast } from "./utils";
 
   const WEATHER_API_BASE_URL = (params: BaseUrlParams) =>
     `https://api.open-meteo.com/v1/forecast?latitude=${params.latitude}&longitude=${params.longitude}&hourly=${params.hourly}&current_weather=true&temperature_unit=${params.temperature_unit}`;
@@ -14,10 +15,6 @@
   $: weatherData = null as WeatherApiResponse;
   $: geoData = null as GeocodeApiResponse;
   $: forecast = null as Array<ForecastItem>;
-
-  async function fetchJsonData(path: string): Promise<any> {
-    return fetch(path).then((res) => res.json());
-  }
 
   onMount(async () => {
     try {
@@ -42,43 +39,42 @@
         time,
         temperature: weatherData?.hourly?.temperature_2m[index],
       }));
+
       forecast = getForecast(hourlyData);
     } catch (error) {
       console.log(error);
     }
   });
   $: temperatureScale = weatherData?.hourly_units?.temperature_2m;
-
-  function getForecast(hourlyData): Array<ForecastItem> {
-    const daysForecast: Array<ForecastItem> = [];
-    for (let i = 0; i < hourlyData?.length; i += 24) {
-      const hourlyTemperatures = hourlyData.slice(i, i + 24);
-      const min = Math.min(...hourlyTemperatures.map((t) => t.temperature));
-      const max = Math.max(...hourlyTemperatures.map((t) => t.temperature));
-      daysForecast.push({
-        data: hourlyData[i],
-        temperatures: hourlyData.slice(i, i + 24),
-        lo: min,
-        high: max,
-      });
-    }
-    return daysForecast;
-  }
 </script>
 
 <main>
   <h1>Weather</h1>
 
-  <div class="card">
-    <h3>Current Weather</h3>
+  <div class="Weather-card">
     {#if !weatherData}
       Loading weather data
     {:else}
-      <section>
-        <h3>{geoData.items[0].address.label}</h3>
-        <div>
-          {weatherData?.current_weather?.temperature}
-          {temperatureScale}
+      <section class="Section-content">
+        <h2>Weather in {geoData.items[0].address.label}</h2>
+        <div class="Card">
+          <h3>Today {new Date().toDateString()}</h3>
+
+          <div>
+            {weatherData?.current_weather?.temperature}
+            {temperatureScale}
+          </div>
+        </div>
+
+        <div class="Forecast">
+          {#each forecast as forecastItem}
+            <div class="Card">
+              <h3>{new Date(forecastItem.data.time).toDateString()}</h3>
+              <div>
+                {forecastItem.high}/{forecastItem.lo}
+              </div>
+            </div>
+          {/each}
         </div>
       </section>
     {/if}
@@ -86,4 +82,26 @@
 </main>
 
 <style>
+  .Section-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .Forecast {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .Card {
+    outline: 1px solid lightgray;
+    height: 180px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    padding: 4px;
+  }
 </style>

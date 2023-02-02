@@ -37,7 +37,8 @@ h1 {
   line-height: 1.1;
 }
 
-.card {
+.Weather-card {
+  height: 500px;
   padding: 2em;
   outline: 1px solid gray;
 }
