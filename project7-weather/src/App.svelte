@@ -7,6 +7,7 @@
     WeatherApiResponse,
   } from "./datatypes";
   import { Hourly } from "./datatypes";
+  import ForecastCard from "./lib/ForecastCard.svelte";
   import { fetchJsonData, getForecast } from "./utils";
 
   const WEATHER_API_BASE_URL = (params: BaseUrlParams) =>
@@ -58,23 +59,24 @@
     {:else}
       <section class="Section-content">
         <h2>Weather in {geoData.items[0].address.label}</h2>
-        <div class="Card">
-          <h3>Today {today}</h3>
-
-          <div>
+        <ForecastCard>
+          <h3 slot="date-header">Today {today}</h3>
+          <div slot="weather-content">
             {weatherData?.current_weather?.temperature}
             {temperatureScale}
           </div>
-        </div>
+        </ForecastCard>
 
         <div class="Forecast">
           {#each forecast as forecastItem}
-            <div class="Card">
-              <h3>{new Date(forecastItem.data.time).toDateString()}</h3>
-              <div>
+            <ForecastCard>
+              <h3 slot="date-header">
+                {new Date(forecastItem.data.time).toDateString()}
+              </h3>
+              <div slot="weather-content">
                 {forecastItem.high}/{forecastItem.lo}
               </div>
-            </div>
+            </ForecastCard>
           {/each}
         </div>
       </section>
@@ -94,15 +96,5 @@
     display: flex;
     gap: 10px;
     margin-top: 10px;
-  }
-  .Card {
-    outline: 1px solid lightgray;
-    height: 180px;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    padding: 4px;
   }
 </style>
