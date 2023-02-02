@@ -46,6 +46,7 @@
     }
   });
   $: temperatureScale = weatherData?.hourly_units?.temperature_2m;
+  $: today = new Date().toDateString();
 </script>
 
 <main>
@@ -58,7 +59,7 @@
       <section class="Section-content">
         <h2>Weather in {geoData.items[0].address.label}</h2>
         <div class="Card">
-          <h3>Today {new Date().toDateString()}</h3>
+          <h3>Today {today}</h3>
 
           <div>
             {weatherData?.current_weather?.temperature}
