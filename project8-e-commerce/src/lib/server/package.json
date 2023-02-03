@@ -10,7 +10,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@hapi/hapi": "^21.2.1"
+		"@hapi/hapi": "^21.2.1",
+		"sqlite3": "^5.1.4"
 	},
 	"devDependencies": {
 		"ts-node-dev": "^2.0.0"
