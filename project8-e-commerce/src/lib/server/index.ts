@@ -5,13 +5,22 @@ async function run() {
 		port: 3000,
 		host: 'localhost'
 	});
-	server.route({
-		method: 'GET',
-		path: '/',
-		handler: (request, h) => {
-			return 'Hello World!';
+	server.route([
+		{
+			method: 'GET',
+			path: '/',
+			handler: (request, h) => {
+				return 'Hello World!';
+			}
+		},
+		{
+			method: 'GET',
+			path: '/cart',
+			handler: (request, h) => {
+				return 'Hello Cart!';
+			}
 		}
-	});
+	]);
 	await server.start();
 	console.log(`Server running on ${server.info.host}`);
 }
