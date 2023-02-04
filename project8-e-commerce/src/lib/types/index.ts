@@ -2,7 +2,8 @@ export interface ShoppingCart {
 	products: Array<Product>[];
 }
 
-interface ProductVariant {
+export interface ProductVariant {
+	id: number;
 	barcode: string;
 	productId: number;
 	// id used to associate an inventory item
@@ -12,7 +13,7 @@ interface ProductVariant {
 	sku: string;
 }
 
-interface ProductOptions {
+export interface ProductOptions {
 	// id used to associate a variant
 	productId: number;
 	name: string; // size, color, etc
@@ -23,10 +24,10 @@ interface ProductOptions {
 export interface Product {
 	productId: number;
 	name: string;
-	description: string;
 	options: Array<ProductOptions>;
 	variants: Array<ProductVariant>;
-	vendor: string;
+	description?: string;
+	vendor?: string;
 }
 
 export interface Inventory {
