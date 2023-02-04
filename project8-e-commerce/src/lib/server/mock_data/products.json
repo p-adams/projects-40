@@ -1,0 +1,39 @@
+{
+	"intentory_toys": {
+		"products": [
+			{
+				"description": "Red Toy Car",
+				"cost": 2.99,
+				"variants": [
+					{
+						"color": "red"
+					}
+				]
+			},
+			{
+				"description": "Green Toy Car (Limited Edition)",
+				"cost": 3.99,
+				"variants": [
+					{
+						"color": "green"
+					}
+				]
+			},
+			{
+				"description": "Cool T-Shirt",
+				"cost": 12.5,
+				"variants": [
+					{
+						"color": "white",
+						"size": "xl"
+					}
+				]
+			},
+			{
+				"description": "Shampoo",
+				"cost": 22.99,
+				"variants": []
+			}
+		]
+	}
+}

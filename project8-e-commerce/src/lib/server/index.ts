@@ -17,7 +17,7 @@ async function run() {
 			method: 'GET',
 			path: '/cart',
 			handler: (request, h) => {
-				return 'Hello Cart!';
+				return h.response({ test: 'meow' });
 			}
 		}
 	]);
