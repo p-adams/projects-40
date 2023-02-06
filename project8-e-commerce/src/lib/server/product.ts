@@ -11,6 +11,23 @@ class ProductItem implements Product {
 	constructor(productDetails: Pick<Product, 'name'>) {
 		this.name = productDetails.name;
 		this.productId = nanoid();
+		const defaultOption: ProductOptions = {
+			id: nanoid(),
+			productId: this.productId,
+			name: 'Default',
+			values: ['Default']
+		};
+
+		this.options = [defaultOption];
+		this.variants = [
+			{
+				id: nanoid(),
+				productId: this.productId,
+				option0: defaultOption,
+				cost: 0.0,
+				quantity: 0
+			}
+		];
 	}
 
 	public setDescription(description: string) {
@@ -22,11 +39,11 @@ class ProductItem implements Product {
 	public addVariant(variant: ProductVariant) {
 		this.variants = [...this.variants, variant];
 	}
-	public removeVariant(id: number) {
+	public removeVariant(id: string) {
 		this.variants = this.variants.filter((variant) => variant.id !== id);
 	}
 	public addOptions(option: ProductOptions) {}
-	public removeOptions(id: number) {}
+	public removeOptions(id: string) {}
 }
 
 export default ProductItem;

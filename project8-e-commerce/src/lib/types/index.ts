@@ -18,14 +18,16 @@ export interface Product {
 }
 
 export interface ProductVariant {
-	id: number;
-	barcode: string;
+	id: string;
+	barcode?: string;
 	productId: ProductId;
 	// id used to associate an inventory item
-	inventoryId: number;
-	name: string;
+	inventoryId?: number;
+	// supports as 2 options
+	option0: ProductOptions;
+	option1?: ProductOptions | null;
 	cost: number;
-	sku: string;
+	sku?: string;
 	quantity: number;
 }
 
