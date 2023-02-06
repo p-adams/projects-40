@@ -1,28 +1,15 @@
 export interface ShoppingCart {
 	products: Array<Product>[];
 }
-
-export interface ProductVariant {
-	id: number;
-	barcode: string;
-	productId: number;
-	// id used to associate an inventory item
-	inventoryId: number;
-	name: string;
-	cost: number;
-	sku: string;
-}
-
-export interface ProductOptions {
-	// id used to associate a variant
-	productId: number;
-	name: string; // size, color, etc
-	values: Array<string>;
-	quantity: number;
-}
+// product UUID
+type ProductId = string;
+// inventory UUID
+type InventoryId = string;
+// location UUID
+type LocationId = string;
 
 export interface Product {
-	productId: number;
+	productId: ProductId;
 	name: string;
 	options: Array<ProductOptions>;
 	variants: Array<ProductVariant>;
@@ -30,16 +17,37 @@ export interface Product {
 	vendor?: string;
 }
 
+export interface ProductVariant {
+	id: number;
+	barcode: string;
+	productId: ProductId;
+	// id used to associate an inventory item
+	inventoryId: number;
+	name: string;
+	cost: number;
+	sku: string;
+	quantity: number;
+}
+
+export interface ProductOptions {
+	id: string;
+	// id used to associate a variant
+	productId: ProductId;
+	name: string; // size, color, etc
+	values: Array<string>;
+}
+
 export interface Inventory {
 	unitCost: number;
 	origin: string; // where item was made
-	inventoryId: number;
+	inventoryId: InventoryId;
+	locationId: LocationId;
 	sku: string;
-	location: Location;
 }
 
 export interface Location {
-	inventoryId: number;
+	inventoryId: InventoryId;
+	locationId: LocationId;
 	quantity: number;
 	address: any;
 }
