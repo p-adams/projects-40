@@ -40,7 +40,7 @@ export interface ProductOptions {
 	values: Array<string>;
 }
 
-export interface Inventory {
+export interface InventoryCoordinator {
 	unitCost: number;
 	origin: string; // where item was made
 	inventoryId: InventoryId;
