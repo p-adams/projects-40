@@ -8,9 +8,11 @@ class ProductItem implements Product {
 	options: Array<ProductOptions> = [];
 	variants: Array<ProductVariant> = [];
 	vendor: string = '';
+	createdAt: Date;
 	constructor(productDetails: Pick<Product, 'name'>) {
 		this.name = productDetails.name;
 		this.productId = nanoid();
+		this.createdAt = new Date();
 		const defaultOption: ProductOptions = {
 			id: nanoid(),
 			productId: this.productId,
@@ -30,6 +32,27 @@ class ProductItem implements Product {
 		];
 	}
 
+	public getProductId() {
+		return this.productId;
+	}
+	public getName() {
+		return this.name;
+	}
+	public getDescription() {
+		return this.description;
+	}
+	public getOptions() {
+		return this.options;
+	}
+	public getVariants() {
+		return this.variants;
+	}
+	public getVendor() {
+		return this.vendor;
+	}
+	public getCreatedDate() {
+		return this.createdAt;
+	}
 	public setDescription(description: string) {
 		this.description = description;
 	}
@@ -42,8 +65,12 @@ class ProductItem implements Product {
 	public removeVariant(id: string) {
 		this.variants = this.variants.filter((variant) => variant.id !== id);
 	}
-	public addOptions(option: ProductOptions) {}
-	public removeOptions(id: string) {}
+	public addOptions(option: ProductOptions) {
+		this.options = [...this.options, option];
+	}
+	public removeOptions(id: string) {
+		this.options = this.options.filter((option) => option.id !== id);
+	}
 }
 
 export default ProductItem;

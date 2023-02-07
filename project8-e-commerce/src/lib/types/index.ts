@@ -15,6 +15,7 @@ export interface Product {
 	variants: Array<ProductVariant>;
 	description?: string;
 	vendor?: string;
+	createdAt: Date;
 }
 
 export interface ProductVariant {
