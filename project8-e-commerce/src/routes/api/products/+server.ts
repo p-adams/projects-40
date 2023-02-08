@@ -1,5 +1,7 @@
+import { getProducts } from '$lib/db';
 import { json } from '@sveltejs/kit';
-// TODO refactor away hapi API server
-export function GET() {
-	return json({ test: 'meow' });
+
+export async function GET() {
+	const response = await getProducts();
+	return json({ data: response.products });
 }

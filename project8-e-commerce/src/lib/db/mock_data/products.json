@@ -12,29 +12,30 @@
 				}
 			],
 
-			"variants": [{ "productId": "aa", "cost": 2.99, "option0": "Default" }]
+			"variants": [{ "productId": "aa", "price": 2.99, "option0": "Default" }]
 		},
 		{
+			"productId": "aaa",
 			"name": "Green Toy Car (Limited Edition)",
 			"options": [
 				{
 					"id": "0",
-					"productId": "0",
+					"productId": "aaa",
 					"name": "Default",
 					"values": ["Default"]
 				}
 			],
 			"variants": [
 				{
-					"productId": "0",
-					"cost": "1.99",
+					"productId": "aaa",
+					"price": "1.99",
 					"option0": "Default"
 				}
 			]
 		},
 		{
-			"name": "Cool T-Shirt",
 			"productId": "00",
+			"name": "Cool T-Shirt",
 			"options": [
 				{
 					"id": "00",
@@ -44,19 +45,21 @@
 				},
 				{
 					"id": "11A",
-					"productId": "11A",
+					"productId": "00",
 					"name": "Size",
 					"values": ["S", "M", "L", "XL"]
 				}
 			],
 			"variants": [
 				{
+					"productId": "00",
 					"option0": "White",
-					"cost": 12.5
+					"price": 12.5
 				},
 				{
+					"productId": "00",
 					"option1": "XL",
-					"cost": 15.99
+					"price": 15.99
 				}
 			]
 		}

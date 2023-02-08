@@ -5,7 +5,7 @@
 	import { afterUpdate } from 'svelte';
 	afterUpdate(async () => {
 		const data = await fetch('/api/products/').then((res) => res.json());
-		console.log(data);
+		console.log('test: ', data);
 	});
 </script>
 

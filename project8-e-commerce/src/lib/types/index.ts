@@ -15,11 +15,11 @@ export interface Product {
 	variants: Array<ProductVariant>;
 	description?: string;
 	vendor?: string;
-	createdAt: Date;
+	createdAt?: Date;
 }
 
 export interface ProductVariant {
-	id: string;
+	id?: string;
 	barcode?: string;
 	productId: ProductId;
 	// id used to associate an inventory item
@@ -29,7 +29,7 @@ export interface ProductVariant {
 	option1?: ProductOptions | null;
 	price: number;
 	sku?: string;
-	quantity: number;
+	quantity?: number;
 }
 
 export interface ProductOptions {
