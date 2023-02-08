@@ -10,7 +10,6 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@hapi/hapi": "^21.2.1",
 		"nanoid": "^4.0.1",
 		"sqlite3": "^5.1.4"
 	},
