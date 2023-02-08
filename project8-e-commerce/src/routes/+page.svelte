@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { afterUpdate } from 'svelte';
+	afterUpdate(async () => {
+		const data = await fetch('/api/products/').then((res) => res.json());
+		console.log(data);
+	});
 </script>
 
 <svelte:head>

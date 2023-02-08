@@ -9,8 +9,10 @@ async function run() {
 		{
 			method: 'GET',
 			path: '/',
-			handler: (request, h) => {
-				return 'Hello World!';
+			handler: async (request, h) => {
+				// send mock products to facilitate UI rendering
+				const products = await (await import('.//mock_data/products.json')).default;
+				return h.response(products);
 			}
 		},
 		{

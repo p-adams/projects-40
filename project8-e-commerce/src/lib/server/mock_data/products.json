@@ -12,31 +12,53 @@
 				}
 			],
 
-			"variants": [{ "productId": "aa", "cost": 2.99, "option1": "Default" }]
+			"variants": [{ "productId": "aa", "cost": 2.99, "option0": "Default" }]
 		},
 		{
-			"description": "Green Toy Car (Limited Edition)",
-			"cost": 3.99,
+			"name": "Green Toy Car (Limited Edition)",
+			"options": [
+				{
+					"id": "0",
+					"productId": "0",
+					"name": "Default",
+					"values": ["Default"]
+				}
+			],
 			"variants": [
 				{
-					"color": "green"
+					"productId": "0",
+					"cost": "1.99",
+					"option0": "Default"
 				}
 			]
 		},
 		{
-			"description": "Cool T-Shirt",
-			"cost": 12.5,
+			"name": "Cool T-Shirt",
+			"productId": "00",
+			"options": [
+				{
+					"id": "00",
+					"productId": "00",
+					"name": "Color",
+					"values": ["Red", "Black", "White", "Green"]
+				},
+				{
+					"id": "11A",
+					"productId": "11A",
+					"name": "Size",
+					"values": ["S", "M", "L", "XL"]
+				}
+			],
 			"variants": [
 				{
-					"color": "white",
-					"size": "xl"
+					"option0": "White",
+					"cost": 12.5
+				},
+				{
+					"option1": "XL",
+					"cost": 15.99
 				}
 			]
-		},
-		{
-			"description": "Shampoo",
-			"cost": 22.99,
-			"variants": []
 		}
 	]
 }

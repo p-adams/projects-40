@@ -27,7 +27,7 @@ export interface ProductVariant {
 	// supports as 2 options
 	option0: ProductOptions;
 	option1?: ProductOptions | null;
-	cost: number;
+	price: number;
 	sku?: string;
 	quantity: number;
 }
@@ -40,7 +40,7 @@ export interface ProductOptions {
 	values: Array<string>;
 }
 
-export interface InventoryCoordinator {
+export interface Inventory {
 	unitCost: number;
 	origin: string; // where item was made
 	inventoryId: InventoryId;
