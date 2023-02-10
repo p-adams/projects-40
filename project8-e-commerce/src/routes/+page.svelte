@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import { afterUpdate } from 'svelte';
-	afterUpdate(async () => {
-		const data = await fetch('/api/products/').then((res) => res.json());
-		console.log('test: ', data);
+	// import Counter from './Counter.svelte';
+	import { onMount } from 'svelte';
+	import type { Product } from '../lib/types';
+	$: featuredProducts = [] as Product[];
+	onMount(async () => {
+		const { data: products } = await fetch('/api/products/').then((res) => res.json());
+		featuredProducts = products;
 	});
 </script>
 
@@ -15,22 +15,14 @@
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+	<h1>YouTajir</h1>
 
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+	<h2>Friendly Commerce Simplified</h2>
+	<div>
+		{#each featuredProducts as product}
+			<div>{product.name}</div>
+		{/each}
+	</div>
 </section>
 
 <style>
