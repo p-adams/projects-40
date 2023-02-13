@@ -18,9 +18,13 @@
 	<h1>YouTajir</h1>
 
 	<h2>Friendly Commerce Simplified</h2>
-	<div>
+	<div class="product-grid">
 		{#each featuredProducts as product}
-			<div>{product.name}</div>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div class="product-card" on:click={() => console.log('TODO: route to product details page')}>
+				<h3>{product.name}</h3>
+				<div>product content</div>
+			</div>
 		{/each}
 	</div>
 </section>
@@ -37,6 +41,26 @@
 	h1 {
 		width: 100%;
 	}
+
+	.product-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.product-card {
+		outline: 1px solid gray;
+		display: flex;
+		flex-direction: column;
+		height: 220px;
+		padding: 8px;
+	}
+	.product-card h3 {
+		padding: 0;
+		margin: 0;
+
+		text-align: center;
+	}
+
+	/* TODO: use following CSS for e commerce SVG logo */
 
 	.welcome {
 		display: block;
