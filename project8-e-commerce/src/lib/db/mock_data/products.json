@@ -1,63 +1,63 @@
 {
 	"products": [
 		{
-			"productId": "aa",
+			"productId": "FwbJCWYkQMjTUMjzh-KXE",
 			"name": "Red Toy Car",
 			"options": [
 				{
-					"id": "aa",
-					"productId": "aa",
+					"id": "Yr3V4tu3MVqRZQC_0_9bH",
+					"productId": "FwbJCWYkQMjTUMjzh-KXE",
 					"name": "Default",
 					"values": ["Default"]
 				}
 			],
 
-			"variants": [{ "productId": "aa", "price": 2.99, "option0": "Default" }]
+			"variants": [{ "productId": "FwbJCWYkQMjTUMjzh-KXE", "price": 2.99, "option0": "Default" }]
 		},
 		{
-			"productId": "aaa",
+			"productId": "06B6u_KxHgwOEUIwW2iQ8",
 			"name": "Green Toy Car (Limited Edition)",
 			"options": [
 				{
-					"id": "0",
-					"productId": "aaa",
+					"id": "aMaiArkFQHvYkCZFXJbaa",
+					"productId": "06B6u_KxHgwOEUIwW2iQ8",
 					"name": "Default",
 					"values": ["Default"]
 				}
 			],
 			"variants": [
 				{
-					"productId": "aaa",
+					"productId": "06B6u_KxHgwOEUIwW2iQ8",
 					"price": "1.99",
 					"option0": "Default"
 				}
 			]
 		},
 		{
-			"productId": "00",
+			"productId": "tpgNx2foEzfFl__yFu4mK",
 			"name": "Cool T-Shirt",
 			"options": [
 				{
-					"id": "00",
-					"productId": "00",
+					"id": "fcH2PAukvM6fxsEBnsAWD",
+					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"name": "Color",
 					"values": ["Red", "Black", "White", "Green"]
 				},
 				{
-					"id": "11A",
-					"productId": "00",
+					"id": "z_aB0QSxCSIcbQrXuc214",
+					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"name": "Size",
 					"values": ["S", "M", "L", "XL"]
 				}
 			],
 			"variants": [
 				{
-					"productId": "00",
+					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "White",
 					"price": 12.5
 				},
 				{
-					"productId": "00",
+					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option1": "XL",
 					"price": 15.99
 				}

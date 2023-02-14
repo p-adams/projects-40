@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	// import Counter from './Counter.svelte';
 	import { onMount } from 'svelte';
 	import type { Product } from '../lib/types';
@@ -21,7 +23,7 @@
 	<div class="product-grid">
 		{#each featuredProducts as product}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="product-card" on:click={() => console.log('TODO: route to product details page')}>
+			<div class="product-card" on:click={() => goto(`/product/${product.productId}`)}>
 				<h3>{product.name}</h3>
 				<div>product content</div>
 			</div>
