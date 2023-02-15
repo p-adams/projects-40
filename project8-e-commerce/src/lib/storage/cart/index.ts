@@ -4,10 +4,10 @@ import { writable, type Writable } from 'svelte/store';
 
 export class CartStorage {
 	#cart: Writable<Product[]>;
-	#defaultCart;
+	#storage;
 	constructor() {
-		this.#defaultCart = browser ? JSON.parse(window.localStorage.getItem('cart') || '[]') : [];
-		this.#cart = writable<Product[]>(this.#defaultCart);
+		this.#storage = browser ? window.localStorage.getItem('cart') ?? '[]' : '[]';
+		this.#cart = writable<Product[]>(JSON.parse(this.#storage));
 	}
 	public subscribe() {
 		return this.#cart.subscribe;
