@@ -1,4 +1,5 @@
 import { getProduct } from '$lib/db';
-export async function load({ params }: { params: any }) {
-	return await getProduct(params.slug);
-}
+import type { PageServerLoad } from './$types';
+export const load = (({ params }) => {
+	return getProduct(params.slug);
+}) satisfies PageServerLoad;

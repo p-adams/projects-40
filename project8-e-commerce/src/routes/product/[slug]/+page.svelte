@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	export let data: any;
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
 <section>
