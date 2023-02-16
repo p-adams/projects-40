@@ -1,38 +1,47 @@
 import { browser } from '$app/environment';
 import type { Product } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
+import type { PageData } from '../../../routes/$types';
 type Products = Product[];
-export class CartStorage {
+
+const toObj = JSON.parse;
+const toString = (value: any) => JSON.stringify(value);
+
+class CartStorage {
 	#cart: Writable<Products>;
 	constructor(products: Products) {
-		console.log('foo: ', this.storageItems);
-		if (!!this.storageItems) {
-			this.storageItems = JSON.stringify(products);
+		const cart = toObj(this.storageItems);
+		if (cart.length === 0) {
+			this.storageItems = toString(products);
 		}
 
-		this.#cart = writable<Products>(JSON.parse(this.storageItems));
+		this.#cart = writable<Products>(toObj(this.storageItems));
 	}
+
 	public get storageItems() {
 		return browser ? window.localStorage.getItem('cart') ?? '[]' : '[]';
 	}
 	public set storageItems(items: string) {
-		console.log('items: ', JSON.parse(items));
-		window.localStorage.setItem('cart', items);
+		browser && window.localStorage.setItem('cart', items);
 	}
-	private updateStorageItems(product: Product) {
+	private updateStorageItems(product: PageData) {
 		if (browser) {
-			const cart = JSON.parse(this.storageItems);
+			const cart = toObj(this.storageItems);
 			const newCart = [...cart, product];
-			this.storageItems = JSON.stringify(newCart);
+			this.storageItems = toString(newCart);
 		}
 	}
-
-	public storeCartItem(product: Product) {
+	public removeCartItem(productId: string) {
+		// TODO: handle remove from local storage and cart
+	}
+	public storeCartItem(product: PageData) {
 		this.updateStorageItems(product);
-		return this.#cart.set(JSON.parse(this.storageItems));
+		return this.#cart.set(toObj(this.storageItems));
 	}
 
-	public subscribe(sb: (val: Products) => void) {
-		this.#cart.subscribe((val) => sb(val));
+	public subscribe(sub: (val: Products) => void) {
+		this.#cart.subscribe((value) => sub(value));
 	}
 }
+
+export const cart = new CartStorage([]);

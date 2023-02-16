@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { cart } from '$lib/storage/cart';
+
 	export let data: PageData;
 	function addToCart(product: PageData) {
-		console.log(product);
+		cart?.storeCartItem(product);
 	}
 </script>
 

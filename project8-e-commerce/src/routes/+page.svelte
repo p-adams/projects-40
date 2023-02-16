@@ -1,22 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { cart } from '$lib/storage/cart';
 
-	// import Counter from './Counter.svelte';
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import type { Product } from '../lib/types';
-	import { CartStorage } from '$lib/storage/cart';
-	import { afterUpdate } from 'svelte';
-	// TODO move cart initialization to product details page
-	$: cart = null as null | CartStorage;
 	$: featuredProducts = [] as Product[];
+
 	onMount(async () => {
 		const { data: products } = await fetch('/api/products/').then((res) => res.json());
 		featuredProducts = products;
-		cart = new CartStorage(products);
 	});
-	afterUpdate(() => {
-		cart?.subscribe((val) => {});
-	});
+	afterUpdate(() =>
+		cart.subscribe((cart) => {
+			console.log('cart: ', cart);
+		})
+	);
 </script>
 
 <svelte:head>
