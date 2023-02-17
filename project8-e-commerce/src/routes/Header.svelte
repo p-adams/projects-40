@@ -1,7 +1,18 @@
-<script>
+<script lang="ts">
+	import { afterUpdate } from 'svelte';
 	import { page } from '$app/stores';
+	import { cart } from '$lib/storage/cart';
 	import logo from '$lib/images/svelte-logo.svg';
+
+	// replace with cart icon
 	import github from '$lib/images/github.svg';
+	import type { Product } from '$lib/types';
+	$: cartItems = null as Product[] | null;
+	afterUpdate(() =>
+		cart.subscribe((cart) => {
+			cartItems = cart;
+		})
+	);
 </script>
 
 <header>
@@ -31,11 +42,7 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
+	<div class="corner">Cart {cartItems?.length}</div>
 </header>
 
 <style>
