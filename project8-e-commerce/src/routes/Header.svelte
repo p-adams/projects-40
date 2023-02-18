@@ -4,6 +4,7 @@
 	import { cart } from '$lib/storage/cart';
 	import logo from '$lib/images/svelte-logo.svg';
 	import type { Product } from '$lib/types';
+	import { goto } from '$app/navigation';
 	$: cartItems = null as Product[] | null;
 	afterUpdate(() =>
 		cart.subscribe((cart) => {
@@ -41,9 +42,14 @@
 	</nav>
 
 	<div class="corner">
-		<div class="cart">
-			<i class="fa-solid fa-cart-shopping" />
-			{#if cartItems?.length}{cartItems?.length}{/if}
+		<div class="cart" title="Cart">
+			{#if cartItems?.length}<div class="count-wrapper">
+					<div class="count">{cartItems?.length}</div>
+				</div>{/if}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div on:click={() => goto('/cart')}>
+				<i class="fa-solid fa-cart-shopping fa-xl" />
+			</div>
 		</div>
 	</div>
 </header>
@@ -57,6 +63,31 @@
 	.corner {
 		width: 3em;
 		height: 3em;
+	}
+
+	.corner .cart {
+		position: relative;
+		display: flex;
+		padding: 8px;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cart .count-wrapper {
+		display: flex;
+		position: absolute;
+		right: 36px;
+		bottom: 18px;
+		background-color: white;
+		border-radius: 50%;
+		width: 18px;
+	}
+
+	.count-wrapper .count {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		font-size: 14px;
 	}
 
 	.corner a {
