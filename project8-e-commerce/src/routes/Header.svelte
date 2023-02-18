@@ -3,9 +3,6 @@
 	import { page } from '$app/stores';
 	import { cart } from '$lib/storage/cart';
 	import logo from '$lib/images/svelte-logo.svg';
-
-	// replace with cart icon
-	import github from '$lib/images/github.svg';
 	import type { Product } from '$lib/types';
 	$: cartItems = null as Product[] | null;
 	afterUpdate(() =>
@@ -15,6 +12,7 @@
 	);
 </script>
 
+<svelte:head />
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
@@ -42,7 +40,12 @@
 		</svg>
 	</nav>
 
-	<div class="corner">Cart {cartItems?.length}</div>
+	<div class="corner">
+		<div class="cart">
+			<i class="fa-solid fa-cart-shopping" />
+			{#if cartItems?.length}{cartItems?.length}{/if}
+		</div>
+	</div>
 </header>
 
 <style>
