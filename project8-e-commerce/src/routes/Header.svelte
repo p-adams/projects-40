@@ -13,7 +13,6 @@
 	);
 </script>
 
-<svelte:head />
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
