@@ -60,7 +60,6 @@
 		grid-template-columns: repeat(3, 1fr);
 	}
 	.product-card {
-		outline: 1px solid gray;
 		display: flex;
 		flex-direction: column;
 		height: 220px;
