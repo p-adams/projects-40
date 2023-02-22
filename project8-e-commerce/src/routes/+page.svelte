@@ -1,25 +1,21 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { cart } from '$lib/storage/cart';
-
-	import { afterUpdate, onMount } from 'svelte';
-	import type { Product } from '../lib/types';
-	$: featuredProducts = [] as Product[];
+	import { onMount } from 'svelte';
+	import type { Product, ProductVariant } from '../lib/types';
 
 	onMount(async () => {
 		const { data: products } = await fetch('/api/products/').then((res) => res.json());
 		featuredProducts = products;
 	});
-	afterUpdate(() =>
-		cart.subscribe((cart) => {
-			console.log('cart: ', cart);
-		})
-	);
+
+	$: featuredProducts = [] as Product[];
+	$: productPrice = (variants: ProductVariant[]) =>
+		`$${Math.min(...variants.map((variant) => variant.price))}${variants.length > 1 ? '+' : ''}`;
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="YouTajir featured products" />
 </svelte:head>
 
 <section>
@@ -29,9 +25,18 @@
 	<div class="product-grid">
 		{#each featuredProducts as product}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="product-card" on:click={() => goto(`/product/${product.productId}`)}>
-				<h3>{product.name}</h3>
-				<div>product content</div>
+			<div class="product-card">
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<img
+					src={'https://via.placeholder.com/120'}
+					on:click={() => goto(`/product/${product.productId}`)}
+				/>
+				<div class="content">
+					<a href={`/product/${product.productId}`}>{product.name}</a>
+					<div class="price">
+						{productPrice(product.variants)}
+					</div>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -59,13 +64,27 @@
 		display: flex;
 		flex-direction: column;
 		height: 220px;
+		text-align: center;
 		padding: 8px;
 	}
-	.product-card h3 {
+	.product-card a {
 		padding: 0;
 		margin: 0;
-
+		font-size: 13px;
 		text-align: center;
+	}
+	.product-card img {
+		cursor: pointer;
+		object-fit: contain;
+	}
+
+	.product-card .content {
+		margin-top: 4px;
+	}
+
+	.product-card .price {
+		margin-top: 4px;
+		font-weight: bold;
 	}
 
 	/* TODO: use following CSS for e commerce SVG logo */
