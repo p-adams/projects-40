@@ -12,7 +12,14 @@
 				}
 			],
 
-			"variants": [{ "productId": "FwbJCWYkQMjTUMjzh-KXE", "price": 2.99, "option0": "Default" }]
+			"variants": [
+				{
+					"productId": "FwbJCWYkQMjTUMjzh-KXE",
+					"price": 2.99,
+					"option0": "Default",
+					"option1": null
+				}
+			]
 		},
 		{
 			"productId": "06B6u_KxHgwOEUIwW2iQ8",
@@ -29,7 +36,8 @@
 				{
 					"productId": "06B6u_KxHgwOEUIwW2iQ8",
 					"price": "1.99",
-					"option0": "Default"
+					"option0": "Default",
+					"option1": null
 				}
 			]
 		},
@@ -54,10 +62,12 @@
 				{
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "White",
-					"price": 12.5
+					"option1": "L",
+					"price": 12.55
 				},
 				{
 					"productId": "tpgNx2foEzfFl__yFu4mK",
+					"option0": "White",
 					"option1": "XL",
 					"price": 15.99
 				}

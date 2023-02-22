@@ -25,8 +25,8 @@ class ProductItem implements Product {
 			{
 				id: nanoid(),
 				productId: this.productId,
-				option0: defaultOption,
-				cost: 0.0,
+				option0: this.options[0],
+				price: 0.0,
 				quantity: 0
 			}
 		];
