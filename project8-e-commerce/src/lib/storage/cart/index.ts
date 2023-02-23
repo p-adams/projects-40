@@ -4,8 +4,8 @@ import { writable, type Writable } from 'svelte/store';
 import type { PageData } from '../../../routes/$types';
 type Products = Product[];
 
-const toObj = JSON.parse;
-const toString = (value: any) => JSON.stringify(value);
+export const toObj = JSON.parse;
+export const toString = (value: any) => JSON.stringify(value);
 
 class CartStorage {
 	#cart: Writable<Products>;

@@ -28,7 +28,7 @@
 			<div class="product-card">
 				<!-- svelte-ignore a11y-missing-attribute -->
 				<img
-					src={'https://via.placeholder.com/120'}
+					src="https://via.placeholder.com/120"
 					on:click={() => goto(`/product/${product.productId}`)}
 				/>
 				<div class="content">
