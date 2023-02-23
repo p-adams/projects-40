@@ -1,5 +1,6 @@
 {
 	"name": "project8-e-commerce",
+	"description": "e-commerce t-shirt demo app",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",

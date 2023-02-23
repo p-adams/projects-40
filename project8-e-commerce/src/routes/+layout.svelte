@@ -12,7 +12,7 @@
 
 	<footer>
 		<p>
-			visit <a href="https://kit.svelte.dev">YouTajir</a> to learn more
+			visit <a href="https://kit.svelte.dev">TeeTajir</a> to learn more
 		</p>
 	</footer>
 </div>

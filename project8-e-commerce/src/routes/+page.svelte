@@ -15,11 +15,11 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="YouTajir featured products" />
+	<meta name="description" content="TeeTajir featured products" />
 </svelte:head>
 
 <section>
-	<h1>YouTajir</h1>
+	<h1>TeeTajir</h1>
 
 	<h2>Friendly Commerce Simplified</h2>
 	<div class="product-grid">

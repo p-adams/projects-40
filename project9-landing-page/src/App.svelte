@@ -1,19 +1,16 @@
 <script lang="ts">
   import svelteLogo from "./assets/svelte.svg";
-  import Counter from "./lib/Counter.svelte";
 </script>
 
 <main>
   <div>
     <a href="#/" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo youtajir" alt="YouTajir Logo" />
+      <img src={svelteLogo} class="logo TeeTajir" alt="TeeTajir Logo" />
     </a>
   </div>
-  <h1>YouTajir</h1>
+  <h1>TeeTajir</h1>
 
-  <div class="card">
-    <Counter />
-  </div>
+  <div class="card" />
 </main>
 
 <style>
@@ -26,7 +23,7 @@
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
-  .logo.youtajir:hover {
+  .logo.TeeTajir:hover {
     filter: drop-shadow(0 0 2em #ff3e00aa);
   }
 </style>
