@@ -62,13 +62,25 @@
 				{
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "White",
+					"option1": "XL",
+					"price": 12.55
+				},
+				{
+					"productId": "tpgNx2foEzfFl__yFu4mK",
+					"option0": "White",
 					"option1": "L",
 					"price": 12.55
 				},
 				{
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "White",
-					"option1": "XL",
+					"option1": "M",
+					"price": 12.55
+				},
+				{
+					"productId": "tpgNx2foEzfFl__yFu4mK",
+					"option0": "White",
+					"option1": "S",
 					"price": 15.99
 				}
 			]
