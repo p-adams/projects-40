@@ -2,15 +2,13 @@
 	import type { PageData } from './$types';
 	import { cart } from '$lib/storage/cart';
 	import type { ProductVariant } from '$lib/types';
+	import { productPriceDisplay } from '$lib/helpers';
 
 	export let data: PageData;
 	function addToCart(product: PageData) {
 		cart?.storeCartItem(product);
 	}
-	$: productPrice = (variants: any) =>
-		`$${Math.min(...variants.map((variant: ProductVariant) => variant.price))}${
-			variants.length > 1 ? '+' : ''
-		}`;
+	$: productPrice = (variants: any) => productPriceDisplay(variants);
 </script>
 
 <section>

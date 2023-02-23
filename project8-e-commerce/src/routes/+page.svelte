@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { productPriceDisplay } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import type { Product, ProductVariant } from '../lib/types';
 
@@ -9,8 +10,7 @@
 	});
 
 	$: featuredProducts = [] as Product[];
-	$: productPrice = (variants: ProductVariant[]) =>
-		`$${Math.min(...variants.map((variant) => variant.price))}${variants.length > 1 ? '+' : ''}`;
+	$: productPrice = (variants: any) => productPriceDisplay(variants);
 </script>
 
 <svelte:head>
