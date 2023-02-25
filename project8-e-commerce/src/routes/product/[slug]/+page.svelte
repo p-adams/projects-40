@@ -3,7 +3,6 @@
 	import { cart } from '$lib/storage/cart';
 	import type { ProductVariant } from '$lib/types';
 	import { productPriceDisplay } from '$lib/helpers';
-	import { afterUpdate } from 'svelte';
 
 	export let data: PageData;
 
