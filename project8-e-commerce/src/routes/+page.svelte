@@ -10,7 +10,7 @@
 	});
 
 	$: featuredProducts = [] as Product[];
-	$: productPrice = (variants: any) => productPriceDisplay(variants);
+	$: productPrice = (variants: any) => productPriceDisplay(variants as ProductVariant[]);
 </script>
 
 <svelte:head>
@@ -24,12 +24,12 @@
 	<h2>Friendly Commerce Simplified</h2>
 	<div class="product-grid">
 		{#each featuredProducts as product}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="product-card">
-				<!-- svelte-ignore a11y-missing-attribute -->
 				<img
 					src="https://via.placeholder.com/120"
 					on:click={() => goto(`/product/${product.productId}`)}
+					on:keypress={() => goto(`/product/${product.productId}`)}
+					alt="Product"
 				/>
 				<div class="content">
 					<a href={`/product/${product.productId}`}>{product.name}</a>

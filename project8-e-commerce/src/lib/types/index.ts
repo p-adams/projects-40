@@ -48,9 +48,13 @@ export interface Inventory {
 	sku: string;
 }
 
-export interface Location {
-	inventoryId: InventoryId;
-	locationId: LocationId;
+interface InventoryItems {
+	id: InventoryId;
 	quantity: number;
+}
+
+export interface Location {
+	locationId: LocationId;
+	inventoryItems: InventoryItems[];
 	address: any;
 }
