@@ -7,7 +7,7 @@
 	export let data: PageData;
 
 	function addToCart(product: PageData) {
-		cart?.storeCartItem(product);
+		cart?.storeCartItem({ ...product, selectedVariant });
 	}
 	$: productPrice = (variants: any) => productPriceDisplay(variants as ProductVariant[]);
 	$: variants = data.variants as unknown as ProductVariant[];
