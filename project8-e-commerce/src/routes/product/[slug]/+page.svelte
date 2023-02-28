@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { cart } from '$lib/storage/cart';
 	import type { ProductVariant } from '$lib/types';
+	import { usCurrencyFormat } from '$lib/helpers';
 
 	export let data: PageData;
 
@@ -20,7 +21,7 @@
 			<img src="https://via.placeholder.com/500" alt="Product" />
 		</div>
 		<div class="product-selection-container">
-			<h1>${selectedVariant?.price}</h1>
+			<h1>{usCurrencyFormat(selectedVariant?.price)}</h1>
 			<h3>{data.name}</h3>
 			<div class="product-variants">
 				<label for="production selection">
@@ -31,7 +32,7 @@
 								>{#if variant?.option0 === 'Default'}
 									${variant.price}
 								{:else}
-									{variant.option0} {variant.option1}: ${variant.price}
+									{variant.option0} {variant.option1}: {usCurrencyFormat(variant.price)}
 								{/if}</option
 							>
 						{/each}

@@ -1,6 +1,14 @@
 import type { ProductVariant } from './types';
 
-export const productPriceDisplay = (variants: ProductVariant[]) =>
-	`$${Math.min(...variants.map((variant: ProductVariant) => variant.price))}${
-		variants.length > 1 ? '+' : ''
-	}`;
+export function productPriceDisplay(variants: ProductVariant[]) {
+	const lowestPrice = Math.min(...variants.map((variant: ProductVariant) => variant.price));
+	return `${usCurrencyFormat(lowestPrice)}${variants.length > 1 ? '+' : ''}`;
+}
+
+export function usCurrencyFormat(value: number) {
+	const nFormat = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	});
+	return nFormat.format(value);
+}

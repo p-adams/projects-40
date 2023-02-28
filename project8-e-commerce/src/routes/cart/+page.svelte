@@ -1,10 +1,12 @@
 <script lang="ts">
-	import type { Product } from '$lib/types';
+	import type { CartItem, Product } from '$lib/types';
 	import { cart } from '$lib/storage/cart';
 	import { afterUpdate } from 'svelte';
-	$: cartItems = [] as Product[];
+	import { usCurrencyFormat } from '$lib/helpers';
+	$: cartItems = [] as CartItem[];
 	afterUpdate(() =>
 		cart.subscribe((cart) => {
+			console.log(cart);
 			cartItems = cart;
 		})
 	);
@@ -30,8 +32,11 @@
 					<div class="cart-line-item">
 						<div>{index}</div>
 						<div>{cartItem.name}</div>
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<div on:click={() => cart.removeCartItem(cartItem.productId)}>
+						<div>{usCurrencyFormat(cartItem.selectedVariant.price)}</div>
+						<div
+							on:click={() => cart.removeCartItem(cartItem.productId)}
+							on:keypress={() => cart.removeCartItem(cartItem.productId)}
+						>
 							<i class="fa-solid fa-trash fa-l" />
 						</div>
 					</div>
@@ -55,7 +60,7 @@
 	}
 	.cart-line-item {
 		display: grid;
-		grid-template-columns: minmax(0, 200px) 1fr 1fr;
+		grid-template-columns: minmax(0, 200px) 1fr 1fr 1fr;
 	}
 	.cart-line-item:not(:last-child) {
 		border-bottom: 1px solid gray;

@@ -1,21 +1,21 @@
 import { browser } from '$app/environment';
-import type { Product } from '$lib/types';
+import type { CartItem, Product } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
 import type { PageData } from '../../../routes/$types';
-type Products = Product[];
+type CartItems = CartItem[];
 
 export const toObj = JSON.parse;
 export const toString = (value: any) => JSON.stringify(value);
 
 class CartStorage {
-	#cart: Writable<Products>;
-	constructor(products: Products) {
+	#cart: Writable<CartItems>;
+	constructor(CartItems: CartItems) {
 		const cart = toObj(this.storageItems);
 		if (cart.length === 0) {
-			this.storageItems = toString(products);
+			this.storageItems = toString(CartItems);
 		}
 
-		this.#cart = writable<Products>(toObj(this.storageItems));
+		this.#cart = writable<CartItems>(toObj(this.storageItems));
 	}
 
 	public get storageItems() {
@@ -44,7 +44,7 @@ class CartStorage {
 		return this.#cart.set(toObj(this.storageItems));
 	}
 
-	public subscribe(sub: (val: Products) => void) {
+	public subscribe(sub: (val: CartItems) => void) {
 		this.#cart.subscribe((value) => sub(value));
 	}
 }

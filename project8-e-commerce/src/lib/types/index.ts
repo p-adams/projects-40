@@ -1,6 +1,3 @@
-export interface ShoppingCart {
-	products: Array<Product>[];
-}
 // product UUID
 type ProductId = string;
 // inventory UUID
@@ -17,6 +14,10 @@ export interface Product {
 	vendor?: string;
 	createdAt?: Date;
 }
+
+export type CartItem = Product & {
+	selectedVariant: ProductVariant;
+};
 
 export interface ProductVariant {
 	id?: string;
