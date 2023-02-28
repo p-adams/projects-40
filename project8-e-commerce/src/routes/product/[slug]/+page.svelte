@@ -2,14 +2,13 @@
 	import type { PageData } from './$types';
 	import { cart } from '$lib/storage/cart';
 	import type { ProductVariant } from '$lib/types';
-	import { productPriceDisplay } from '$lib/helpers';
 
 	export let data: PageData;
 
 	function addToCart(product: PageData) {
 		cart?.storeCartItem({ ...product, selectedVariant });
 	}
-	$: productPrice = (variants: any) => productPriceDisplay(variants as ProductVariant[]);
+
 	$: variants = data.variants as unknown as ProductVariant[];
 	let selectedVariant: ProductVariant = variants?.[0];
 </script>
@@ -21,14 +20,20 @@
 			<img src="https://via.placeholder.com/500" alt="Product" />
 		</div>
 		<div class="product-selection-container">
-			<h1>{productPrice(data.variants)}</h1>
+			<h1>${selectedVariant?.price}</h1>
 			<h3>{data.name}</h3>
 			<div class="product-variants">
 				<label for="production selection">
 					Select
 					<select bind:value={selectedVariant}>
 						{#each variants as variant}
-							<option value={variant}>{variant.option0} {variant.option1}: ${variant.price}</option>
+							<option value={variant}
+								>{#if variant?.option0 === 'Default'}
+									${variant.price}
+								{:else}
+									{variant.option0} {variant.option1}: ${variant.price}
+								{/if}</option
+							>
 						{/each}
 					</select>
 				</label>

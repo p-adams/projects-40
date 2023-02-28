@@ -25,8 +25,8 @@ export interface ProductVariant {
 	// id used to associate an inventory item
 	inventoryId?: number;
 	// supports as 2 options
-	option0: ProductOptions;
-	option1?: ProductOptions | null;
+	option0: string;
+	option1?: string | null;
 	price: number;
 	sku?: string;
 	quantity?: number;
