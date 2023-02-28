@@ -32,7 +32,6 @@ class CartStorage {
 		}
 	}
 	public removeCartItem(productId: string) {
-		// TODO: handle remove from local storage and cart
 		const newCart = toObj(this.storageItems).filter(
 			(cartItem: Product) => cartItem.productId !== productId
 		);

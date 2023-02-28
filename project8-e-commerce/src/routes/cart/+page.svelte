@@ -6,7 +6,6 @@
 	$: cartItems = [] as CartItem[];
 	afterUpdate(() =>
 		cart.subscribe((cart) => {
-			console.log(cart);
 			cartItems = cart;
 		})
 	);
@@ -32,8 +31,10 @@
 					<div class="cart-line-item">
 						<div>{index}</div>
 						<div>{cartItem.name}</div>
-						<div>{usCurrencyFormat(cartItem.selectedVariant.price)}</div>
+						<div class="align-center">{cartItem.selectedQuantity}</div>
+						<div class="align-center">{usCurrencyFormat(cartItem.selectedVariant.price)}</div>
 						<div
+							class="align-right"
 							on:click={() => cart.removeCartItem(cartItem.productId)}
 							on:keypress={() => cart.removeCartItem(cartItem.productId)}
 						>
@@ -60,7 +61,8 @@
 	}
 	.cart-line-item {
 		display: grid;
-		grid-template-columns: minmax(0, 200px) 1fr 1fr 1fr;
+		grid-template-columns: minmax(0, 200px) repeat(4, 1fr);
+		line-height: 4em;
 	}
 	.cart-line-item:not(:last-child) {
 		border-bottom: 1px solid gray;

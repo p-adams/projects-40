@@ -17,6 +17,7 @@ export interface Product {
 
 export type CartItem = Product & {
 	selectedVariant: ProductVariant;
+	selectedQuantity: number;
 };
 
 export interface ProductVariant {

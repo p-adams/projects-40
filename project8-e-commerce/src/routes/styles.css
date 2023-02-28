@@ -105,3 +105,10 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+
+.align-center {
+	text-align: center;
+}
+.align-right {
+	text-align: right;
+}

@@ -3,15 +3,17 @@
 	import { cart } from '$lib/storage/cart';
 	import type { ProductVariant } from '$lib/types';
 	import { usCurrencyFormat } from '$lib/helpers';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
 	function addToCart(product: PageData) {
-		cart?.storeCartItem({ ...product, selectedVariant });
+		cart?.storeCartItem({ ...product, selectedVariant, selectedQuantity });
+		goto('/cart');
 	}
-
 	$: variants = data.variants as unknown as ProductVariant[];
 	let selectedVariant: ProductVariant = variants?.[0];
+	let selectedQuantity = 1;
 </script>
 
 <section>
@@ -24,7 +26,7 @@
 			<h1>{usCurrencyFormat(selectedVariant?.price)}</h1>
 			<h3>{data.name}</h3>
 			<div class="product-variants">
-				<label for="production selection">
+				<label for="product-selection">
 					Select
 					<select bind:value={selectedVariant}>
 						{#each variants as variant}
@@ -35,6 +37,16 @@
 									{variant.option0} {variant.option1}: {usCurrencyFormat(variant.price)}
 								{/if}</option
 							>
+						{/each}
+					</select>
+				</label>
+			</div>
+			<div class="product-quantity">
+				<label for="product-quantity">
+					Quantity
+					<select bind:value={selectedQuantity}>
+						{#each Array(10) as _, i}
+							<option value={i + 1}>{i + 1}</option>
 						{/each}
 					</select>
 				</label>
