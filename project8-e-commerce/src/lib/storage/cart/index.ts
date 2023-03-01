@@ -1,9 +1,6 @@
 import { browser } from '$app/environment';
-import type ProductItem from '$lib/db/product';
-import type { CartItem, Product } from '$lib/types';
+import type { CartItem, CartItems, Product } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
-import type { PageData } from '../../../routes/$types';
-type CartItems = CartItem[];
 
 export const toObj = JSON.parse;
 export const toString = (value: any) => JSON.stringify(value);
@@ -11,7 +8,7 @@ export const toString = (value: any) => JSON.stringify(value);
 class CartStorage {
 	#cart: Writable<CartItems>;
 	constructor(CartItems: CartItems) {
-		const cart = toObj(this.storageItems);
+		const cart: CartItems = toObj(this.storageItems);
 		if (cart.length === 0) {
 			this.storageItems = toString(CartItems);
 		}
@@ -44,7 +41,7 @@ class CartStorage {
 		const matchingCartItem = storageItems.find(($i) => $i.productId === cartItem.productId);
 		if (matchingCartItem) {
 			const updatedStorageItems = storageItems.map(($i) =>
-				$i.productId === cartItem.productId
+				$i.productId === matchingCartItem.productId
 					? {
 							...$i,
 							selectedQuantity: $i.selectedQuantity + 1

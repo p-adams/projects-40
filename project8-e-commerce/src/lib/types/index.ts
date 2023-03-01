@@ -20,6 +20,8 @@ export type CartItem = Product & {
 	selectedQuantity: number;
 };
 
+export type CartItems = CartItem[];
+
 export interface ProductVariant {
 	id?: string;
 	barcode?: string;
