@@ -32,7 +32,16 @@
 						<div>{index}</div>
 						<div>{cartItem.name}</div>
 						<div class="align-center">{cartItem.selectedQuantity}</div>
-						<div class="align-center">{usCurrencyFormat(cartItem.selectedVariant.price)}</div>
+						<div class="align-center price">
+							<p class="total-price">
+								{usCurrencyFormat(cartItem.selectedVariant.price * cartItem.selectedQuantity)}
+							</p>
+							{#if cartItem.selectedQuantity > 1}
+								<p class="breakdown-price">
+									({usCurrencyFormat(cartItem.selectedVariant.price)} each)
+								</p>
+							{/if}
+						</div>
 						<div
 							class="align-right"
 							on:click={() => cart.removeCartItem(cartItem.productId)}
@@ -61,10 +70,19 @@
 	}
 	.cart-line-item {
 		display: grid;
-		grid-template-columns: minmax(0, 200px) repeat(4, 1fr);
+		grid-template-columns: minmax(0, 200px) minmax(50px, 300px) repeat(3, 1fr);
 		line-height: 4em;
 	}
 	.cart-line-item:not(:last-child) {
 		border-bottom: 1px solid gray;
+	}
+	.price p {
+		margin-bottom: 0;
+	}
+	.total-price {
+		font-weight: bold;
+	}
+	.breakdown-price {
+		font-size: small;
 	}
 </style>
