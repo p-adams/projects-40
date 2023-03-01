@@ -1,4 +1,5 @@
 import { browser } from '$app/environment';
+import type ProductItem from '$lib/db/product';
 import type { CartItem, Product } from '$lib/types';
 import { writable, type Writable } from 'svelte/store';
 import type { PageData } from '../../../routes/$types';
@@ -24,10 +25,10 @@ class CartStorage {
 	public set storageItems(items: string) {
 		browser && window.localStorage.setItem('cart', items);
 	}
-	private updateStorageItems(product: PageData) {
+	private addNewStorageItem(cartItem: CartItem) {
 		if (browser) {
 			const cart = toObj(this.storageItems);
-			const newCart = [...cart, product];
+			const newCart = [...cart, cartItem];
 			this.storageItems = toString(newCart);
 		}
 	}
@@ -38,8 +39,22 @@ class CartStorage {
 		this.storageItems = toString(newCart);
 		this.#cart.set(toObj(this.storageItems));
 	}
-	public storeCartItem(product: PageData) {
-		this.updateStorageItems(product);
+	public storeCartItem(cartItem: CartItem) {
+		const storageItems: CartItems = toObj(this.storageItems);
+		const matchingCartItem = storageItems.find(($i) => $i.productId === cartItem.productId);
+		if (matchingCartItem) {
+			const updatedStorageItems = storageItems.map(($i) =>
+				$i.productId === cartItem.productId
+					? {
+							...$i,
+							selectedQuantity: $i.selectedQuantity + 1
+					  }
+					: $i
+			);
+			this.storageItems = toString(updatedStorageItems);
+		} else {
+			this.addNewStorageItem(cartItem);
+		}
 		return this.#cart.set(toObj(this.storageItems));
 	}
 

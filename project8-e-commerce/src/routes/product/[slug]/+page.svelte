@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { cart } from '$lib/storage/cart';
-	import type { ProductVariant } from '$lib/types';
+	import type { CartItem, Product, ProductVariant } from '$lib/types';
 	import { usCurrencyFormat } from '$lib/helpers';
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
 	function addToCart(product: PageData) {
-		cart?.storeCartItem({ ...product, selectedVariant, selectedQuantity });
+		cart?.storeCartItem({ ...(product as unknown as Product), selectedVariant, selectedQuantity });
 		goto('/cart');
 	}
 	$: variants = data.variants as unknown as ProductVariant[];
