@@ -9,9 +9,12 @@
 			cartItems = cart;
 		})
 	);
-	$: itemsInCartCount = cartItems?.length;
+	$: itemsInCartCount = cartItems.reduce(($p, $c) => ($p += $c.selectedQuantity), 0);
 	$: itemsInCartStr =
 		itemsInCartCount !== 1 ? `${itemsInCartCount} items in your cart` : '1 item in your cart';
+	$: subtotal = usCurrencyFormat(
+		cartItems.reduce(($p, $c) => $p + $c.selectedVariant.price * $c.selectedQuantity, 0)
+	);
 </script>
 
 <svelte:head>
@@ -51,6 +54,10 @@
 						</div>
 					</div>
 				{/each}
+				<div class="subtotal">
+					<div>Subtotal</div>
+					<div>({itemsInCartCount === 1 ? '1 item' : `${itemsInCartCount} items`} ) {subtotal}</div>
+				</div>
 			</div>
 			<div class="payment">payment</div>
 		</div>
@@ -67,6 +74,8 @@
 	}
 	.cart-items {
 		flex: 1;
+		display: flex;
+		flex-direction: column;
 	}
 	.cart-line-item {
 		display: grid;
@@ -84,5 +93,9 @@
 	}
 	.breakdown-price {
 		font-size: small;
+	}
+	.subtotal {
+		display: flex;
+		justify-content: space-between;
 	}
 </style>

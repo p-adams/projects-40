@@ -43,8 +43,8 @@ class CartStorage {
 			const updatedStorageItems = storageItems.map(($i) =>
 				$i.productId === matchingCartItem.productId
 					? {
-							...$i,
-							selectedQuantity: $i.selectedQuantity + 1
+							...matchingCartItem,
+							selectedQuantity: $i.selectedQuantity + cartItem.selectedQuantity
 					  }
 					: $i
 			);
