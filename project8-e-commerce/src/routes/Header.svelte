@@ -31,8 +31,19 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li
+				class="cart"
+				title="Cart"
+				aria-current={$page.url.pathname === '/cart' ? 'page' : undefined}
+			>
+				<a href="/cart">
+					Cart
+					{#if cartItems?.length}<div class="count-wrapper">
+							<div class="count">{cartItems?.length}</div>
+						</div>{/if}
+
+					<i class="fa-solid fa-cart-shopping fa-l" />
+				</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -40,17 +51,7 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
-		<div class="cart" title="Cart">
-			{#if cartItems?.length}<div class="count-wrapper">
-					<div class="count">{cartItems?.length}</div>
-				</div>{/if}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div on:click={() => goto('/cart')}>
-				<i class="fa-solid fa-cart-shopping fa-xl" />
-			</div>
-		</div>
-	</div>
+	<div class="corner" />
 </header>
 
 <style>
@@ -64,12 +65,15 @@
 		height: 3em;
 	}
 
-	.corner .cart {
+	.cart {
 		position: relative;
 		display: flex;
 		padding: 8px;
 		align-items: center;
 		justify-content: center;
+	}
+	.cart i {
+		margin-left: 4px;
 	}
 
 	.cart .count-wrapper {
