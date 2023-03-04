@@ -45,7 +45,7 @@
 				<label for="product-quantity">
 					Quantity
 					<select bind:value={selectedQuantity}>
-						{#each Array(10) as _, i}
+						{#each Array(selectedVariant?.quantity) as _, i}
 							<option value={i + 1}>{i + 1}</option>
 						{/each}
 					</select>

@@ -19,7 +19,8 @@
 					"inventoryId": "cb7yjopEuXE-n6ohDsEBN",
 					"price": 2.99,
 					"option0": "Default",
-					"option1": null
+					"option1": null,
+					"quantity": 5
 				}
 			]
 		},
@@ -41,7 +42,8 @@
 					"productId": "06B6u_KxHgwOEUIwW2iQ8",
 					"price": "1.99",
 					"option0": "Default",
-					"option1": null
+					"option1": null,
+					"quantity": 3
 				}
 			]
 		},
@@ -69,7 +71,8 @@
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "White",
 					"option1": "XL",
-					"price": 12.55
+					"price": 12.55,
+					"quantity": 5
 				},
 				{
 					"id": "RGt9VOHZTwz_5HHE7op1u",
@@ -77,7 +80,8 @@
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "Green",
 					"option1": "L",
-					"price": 12.55
+					"price": 12.55,
+					"quantity": 10
 				},
 				{
 					"id": "toLnIlGCXRhwkJpLalqZ8",
@@ -85,7 +89,8 @@
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "Black",
 					"option1": "M",
-					"price": 19.55
+					"price": 19.55,
+					"quantity": 2
 				},
 				{
 					"id": "-MYs0Uu9SERFqwqeVHopR",
@@ -93,7 +98,8 @@
 					"productId": "tpgNx2foEzfFl__yFu4mK",
 					"option0": "Red",
 					"option1": "S",
-					"price": 19.99
+					"price": 19.99,
+					"quantity": 3
 				}
 			]
 		}
