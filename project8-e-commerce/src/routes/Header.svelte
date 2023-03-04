@@ -79,8 +79,8 @@
 	.cart .count-wrapper {
 		display: flex;
 		position: absolute;
-		right: 36px;
-		bottom: 18px;
+		left: 75px;
+		bottom: 32px;
 		background-color: white;
 		border-radius: 50%;
 		width: 18px;
