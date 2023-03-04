@@ -9,5 +9,5 @@ Sandbox containing 40 web app projects
 5. Stopwatch
 6. QR Code Reader
 7. Weather
-8. E-commerce site (WIP)
+8. E-commerce site
 9. Landing page (WIP)
