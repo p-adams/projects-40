@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { productPriceDisplay } from '$lib/helpers';
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import type { Product, ProductVariant } from '../lib/types';
 	import Search from './Search.svelte';
 
@@ -13,6 +13,9 @@
 	$: featuredProducts = [] as Product[];
 	$: productPrice = (variants: any) => productPriceDisplay(variants as ProductVariant[]);
 	let searchVal = '';
+	$: filteredFeaturedProducts = featuredProducts.filter((product) =>
+		product.name.includes(searchVal)
+	);
 </script>
 
 <svelte:head>
@@ -23,7 +26,7 @@
 <section>
 	<Search on:search={(e) => (searchVal = e.detail.value)} />
 	<div class="product-grid">
-		{#each featuredProducts as product}
+		{#each filteredFeaturedProducts as product}
 			<div class="product-card">
 				<img
 					src="https://via.placeholder.com/120"
