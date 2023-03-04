@@ -15,9 +15,7 @@
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
+		<a href="/"> Tee Tajir </a>
 	</div>
 
 	<nav>
@@ -61,8 +59,10 @@
 	}
 
 	.corner {
-		width: 3em;
-		height: 3em;
+		width: 5em;
+	}
+	.corner a {
+		font-size: large;
 	}
 
 	.cart {

@@ -32,7 +32,7 @@
 			<div class="cart-items">
 				{#each cartItems as cartItem, index}
 					<div class="cart-line-item">
-						<div>{index}</div>
+						<div><img src="https://via.placeholder.com/120" alt="Product" /></div>
 						<div>{cartItem.name}</div>
 						<div class="align-center">{cartItem.selectedQuantity}</div>
 						<div class="align-center price">

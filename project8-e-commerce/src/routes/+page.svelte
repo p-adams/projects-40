@@ -19,9 +19,6 @@
 </svelte:head>
 
 <section>
-	<h1>TeeTajir</h1>
-
-	<h2>Friendly Commerce Simplified</h2>
 	<div class="product-grid">
 		{#each featuredProducts as product}
 			<div class="product-card">
