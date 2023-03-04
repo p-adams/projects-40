@@ -10,11 +10,10 @@
 		})
 	);
 	$: itemsInCartCount = cartItems.reduce(($p, $c) => ($p += $c.selectedQuantity), 0);
-	$: itemsInCartStr =
-		itemsInCartCount !== 1 ? `${itemsInCartCount} items in your cart` : '1 item in your cart';
-	$: subtotal = usCurrencyFormat(
-		cartItems.reduce(($p, $c) => $p + $c.selectedVariant.price * $c.selectedQuantity, 0)
-	);
+	$: itemStr = itemsInCartCount === 1 ? '1 item' : `${itemsInCartCount} items`;
+	$: itemsInCartStr = `${itemStr} in your cart`;
+	$: quantity = (cartItem: CartItem) => cartItem.selectedVariant.price * cartItem.selectedQuantity;
+	$: subtotal = usCurrencyFormat(cartItems.reduce(($p, $c) => $p + quantity($c), 0));
 </script>
 
 <svelte:head>
@@ -30,14 +29,14 @@
 		<h2 class="cart-count-header">{itemsInCartStr}</h2>
 		<div class="cart-items-and-payment">
 			<div class="cart-items">
-				{#each cartItems as cartItem, index}
+				{#each cartItems as cartItem}
 					<div class="cart-line-item">
 						<div><img src="https://via.placeholder.com/120" alt="Product" /></div>
 						<div>{cartItem.name}</div>
 						<div class="align-center">{cartItem.selectedQuantity}</div>
 						<div class="align-center price">
 							<p class="total-price">
-								{usCurrencyFormat(cartItem.selectedVariant.price * cartItem.selectedQuantity)}
+								{usCurrencyFormat(quantity(cartItem))}
 							</p>
 							{#if cartItem.selectedQuantity > 1}
 								<p class="breakdown-price">
@@ -56,10 +55,16 @@
 				{/each}
 				<div class="subtotal">
 					<div>Subtotal</div>
-					<div>({itemsInCartCount === 1 ? '1 item' : `${itemsInCartCount} items`} ) {subtotal}</div>
+					<div>({itemStr}) {subtotal}</div>
 				</div>
 			</div>
-			<div class="payment">payment</div>
+			<div class="payment">
+				<div class="subtotal">
+					<div>Subtotal</div>
+					<div>({itemStr}) {subtotal}</div>
+				</div>
+				<button> Proceed to checkout </button>
+			</div>
 		</div>
 	{/if}
 </section>
@@ -82,9 +87,6 @@
 		grid-template-columns: minmax(0, 200px) minmax(50px, 300px) repeat(3, 1fr);
 		line-height: 4em;
 	}
-	.cart-line-item:not(:last-child) {
-		border-bottom: 1px solid gray;
-	}
 	.price p {
 		margin-bottom: 0;
 	}
@@ -93,6 +95,11 @@
 	}
 	.breakdown-price {
 		font-size: small;
+	}
+	.payment {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 	.subtotal {
 		display: flex;
