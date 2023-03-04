@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CartItem, Product } from '$lib/types';
+	import type { CartItem } from '$lib/types';
 	import { cart } from '$lib/storage/cart';
 	import { afterUpdate } from 'svelte';
 	import { usCurrencyFormat } from '$lib/helpers';

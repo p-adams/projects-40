@@ -11,6 +11,16 @@
 
 	$: featuredProducts = [] as Product[];
 	$: productPrice = (variants: any) => productPriceDisplay(variants as ProductVariant[]);
+	let timeoutId: any;
+	let searchVal = '';
+	function search(e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }) {
+		const $input = e?.currentTarget?.value;
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => {
+			// TODO: handle search
+			searchVal = $input;
+		}, 500);
+	}
 </script>
 
 <svelte:head>
@@ -19,6 +29,14 @@
 </svelte:head>
 
 <section>
+	<div class="search">
+		<input on:keyup={(e) => search(e)} />
+		<!-- TODO impl dropdown ul>
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+		</ul>-->
+	</div>
 	<div class="product-grid">
 		{#each featuredProducts as product}
 			<div class="product-card">
