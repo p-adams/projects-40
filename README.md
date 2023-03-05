@@ -10,4 +10,4 @@ Sandbox containing 40 web app projects
 6. QR Code Reader
 7. Weather
 8. E-commerce site
-9. Landing page (WIP)
+9. Landing page
