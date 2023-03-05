@@ -6,14 +6,16 @@
   <div class="banner">
     <img src={geo} class="banner-image" alt="Banner" />
   </div>
-  <h1 class="title">Sixty Issues</h1>
+
+  <h1 class="title ar">الستين مسألة</h1>
+  <h2 class="sub-title">Sixty Issues</h2>
 
   <div class="card" />
 </main>
 
 <style>
   .banner {
-    height: 100px;
+    height: 125px;
     position: relative;
   }
   .banner-image {
