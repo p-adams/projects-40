@@ -11,3 +11,4 @@ Sandbox containing 40 web app projects
 7. Weather
 8. E-commerce site
 9. Landing page
+10. Password Generator (WIP)
