@@ -12,6 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  /* color palette */
+  --black: #242424;
+  --blue: #5995ac;
+  --white: #beb3a1;
+  --red: #4f362e;
 }
 
 a {
@@ -26,8 +31,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -41,7 +44,7 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
