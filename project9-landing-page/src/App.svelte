@@ -7,10 +7,13 @@
     <img src={geo} class="banner-image" alt="Banner" />
   </div>
 
-  <h1 class="title ar">الستين مسألة</h1>
-  <h2 class="sub-title">Sixty Issues</h2>
+  <h1>الستين مسألة</h1>
+  <h2>Sixty Issues</h2>
+  <h3>Imam Ahmad bin Muhammad bin Sulaiman al-Zahid al-Misri (d. 819 ah)</h3>
 
-  <div class="card" />
+  <div class="card">
+    <button>Read</button>
+  </div>
 </main>
 
 <style>
