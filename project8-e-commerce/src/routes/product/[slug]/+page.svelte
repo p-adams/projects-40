@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { cart } from '$lib/storage/cart';
-	import type { CartItem, Product, ProductVariant } from '$lib/types';
+	import type { Product, ProductVariant } from '$lib/types';
 	import { usCurrencyFormat } from '$lib/helpers';
 	import { goto } from '$app/navigation';
 
