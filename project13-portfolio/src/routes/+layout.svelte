@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
+  import AppDate from "../lib/AppDate.svelte";
 </script>
 
 <div class="app">
@@ -23,7 +24,15 @@
   </main>
 
   <footer>
-    <p>footer</p>
+    <div>visitors (+1_000_000)</div>
+    <a
+      href="https://github.com/p-adams/projects-40/tree/main/project13-portfolio"
+      target="_blank"
+      rel="noreferrer">view source</a
+    >
+    <div>
+      <AppDate />
+    </div>
   </footer>
 </div>
 
@@ -38,17 +47,16 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 1rem 2.5rem 1rem 2.5rem;
     width: 100%;
-    max-width: 64rem;
+
     margin: 0 auto;
     box-sizing: border-box;
   }
 
   footer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 12px;
   }
