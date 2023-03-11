@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<svelte:head>
+  <title>Home</title>
+  <meta name="description" content="Home" />
+</svelte:head>
+<section>
+  <h1>Nasi Lemak Builder</h1>
+  <div>app goes here</div>
+</section>
