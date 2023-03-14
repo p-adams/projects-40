@@ -1,5 +1,7 @@
 <script lang="ts">
-  type Select = { label: string; value: string; price: number | null };
+  import { currency } from "../lib/utils";
+
+  type Select = { label: string; value: string; price: number };
   let riceOptions: Array<Select> = [
     { label: "Plain Rice", value: "plain_rice", price: 0 },
     { label: "Coconut Rice", value: "coconut_rice", price: 0.5 },
@@ -19,11 +21,10 @@
     (selectedSides = selectedSides.filter(
       (sside) => sside.value !== side.value
     ));
-  const currency = (price: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(price);
+
+  $: subtotal =
+    selectedRice.price +
+    selectedSides.reduce((acc, curr) => acc + curr?.price, 0);
 </script>
 
 <svelte:head>
@@ -34,7 +35,7 @@
   <h1>Nasi Builder</h1>
 
   <div class="Builder">
-    <div class="selected-rice">
+    <div class="selected-rice chip">
       {selectedRice.label}
     </div>
     <div class="selected-sides">
@@ -47,7 +48,10 @@
     </div>
     <select name="rice" bind:value={selectedRice}>
       {#each riceOptions as rice}
-        <option value={rice}>{rice.label}</option>
+        <option value={rice}
+          >{rice.label}
+          {#if rice.price !== null}{currency(rice.price)}{/if}</option
+        >
       {/each}
     </select>
     <select name="sides" bind:value={selectedSides} multiple>
@@ -59,6 +63,7 @@
       {/each}
     </select>
   </div>
+  {currency(subtotal)}
 </section>
 
 <style>
@@ -76,6 +81,8 @@
     padding: 10px;
     border-radius: 30px;
     font-size: small;
+    margin-bottom: 4px;
+    margin-right: 4px;
   }
   .chip button {
     font-size: 10px;
