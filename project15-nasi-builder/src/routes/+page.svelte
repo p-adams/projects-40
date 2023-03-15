@@ -1,35 +1,15 @@
 <script lang="ts">
-  import { currency } from "../lib/utils";
-
-  type SelectItem = { label: string; value: string; price: number };
-  let riceOptions: Array<SelectItem> = [
-    { label: "Plain Rice", value: "plain_rice", price: 0 },
-    { label: "Coconut Rice", value: "coconut_rice", price: 0.5 },
-    { label: "Blue Rice", value: "blue_rice", price: 0.75 },
-  ];
-  let sides: Array<SelectItem> = [
-    { label: "Chili Sauce", value: "chili_sauce", price: 0.5 },
-    { label: "Fried Anchovies", value: "fried_anchovies", price: 0.75 },
-    { label: "Roasted Peanuts", value: "roasted_peanuts", price: 0.75 },
-    { label: "Cucumber", value: "cucumber", price: 0.5 },
-  ];
-  let proteins: Array<SelectItem> = [
-    { label: "Barbecued Chicken", value: "barbecued_chicken", price: 3.0 },
-    { label: "Fried Chicken", value: "fried_chicken", price: 3.5 },
-    { label: "Fried Catfish", value: "fried_catfish", price: 2.5 },
-    { label: "Shrimp", value: "shrimp", price: 3.0 },
-  ];
-  let sauces: Array<SelectItem> = [
-    { label: "Chili Sauce", value: "chili_sauce", price: 0.5 },
-    { label: "Peanut Sauce", value: "peanut_sauce", price: 0.5 },
-    { label: "Curry", value: "curry", price: 0.5 },
-  ];
+  import { currency, riceOptions, sides, sauces, proteins } from "../lib/utils";
+  import type { SelectItem } from "../lib/types";
+  import AppChip from "$lib/AppChip.svelte";
 
   let selectedSides: Array<SelectItem> = [];
   let selectedRice: SelectItem = riceOptions[0];
   let selectedSauces: Array<SelectItem> = [];
   let selectedProteins: Array<SelectItem> = [];
   let tip = 0.0;
+  let orderNumber = 0;
+
   const removeSide = (side: SelectItem) =>
     (selectedSides = selectedSides.filter(
       (sside) => sside.value !== side.value
@@ -43,11 +23,14 @@
       (pprotein) => pprotein.value !== protein.value
     ));
 
+  $: getTotal = (selectedItems: SelectItem[]) =>
+    selectedItems.reduce((acc, curr) => acc + curr?.price, 0);
+
   $: total =
     selectedRice.price +
-    selectedSides.reduce((acc, curr) => acc + curr?.price, 0) +
-    selectedSauces.reduce((acc, curr) => acc + curr.price, 0) +
-    selectedProteins.reduce((acc, curr) => acc + curr.price, 0) +
+    getTotal(selectedSides) +
+    getTotal(selectedSauces) +
+    getTotal(selectedProteins) +
     Number(tip);
 </script>
 
@@ -62,26 +45,20 @@
     <div class="chip">{selectedRice.label}</div>
     <div class="selected-item sides">
       {#each selectedSides as side}
-        <div class="chip">
-          <span>{side.label}</span>
-          <button on:click={() => removeSide(side)}>X</button>
-        </div>
+        <AppChip item={side} on:remove={(e) => removeSide(e.detail.item)} />
       {/each}
     </div>
     <div class="selected-item sauces">
       {#each selectedSauces as sauce}
-        <div class="chip">
-          <span>{sauce.label}</span>
-          <button on:click={() => removeSauce(sauce)}>X</button>
-        </div>
+        <AppChip item={sauce} on:remove={(e) => removeSauce(e.detail.item)} />
       {/each}
     </div>
     <div class="selected-item proteins">
       {#each selectedProteins as protein}
-        <div class="chip">
-          <span>{protein.label}</span>
-          <button on:click={() => removeProtein(protein)}>X</button>
-        </div>
+        <AppChip
+          item={protein}
+          on:remove={(e) => removeProtein(e.detail.item)}
+        />
       {/each}
     </div>
     <select name="rice" bind:value={selectedRice}>
@@ -125,6 +102,13 @@
     <div>
       Total: {currency(total)}
     </div>
+    <div>
+      <button
+        on:click={() =>
+          alert(`Order #${++orderNumber}. Thank you for your order!`)}
+        >Order</button
+      >
+    </div>
   </div>
 </section>
 
@@ -133,22 +117,6 @@
     min-height: 50px;
     display: flex;
     margin-bottom: 10px;
-  }
-  .chip {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    width: fit-content;
-    border: 1px solid lightgray;
-    padding: 10px;
-    border-radius: 30px;
-    font-size: small;
-    margin-bottom: 4px;
-    margin-right: 4px;
-  }
-  .chip button {
-    font-size: 10px;
-    margin-left: 4px;
   }
   .total-wrapper {
     margin-top: 10px;
