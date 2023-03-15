@@ -29,6 +29,7 @@
   let selectedRice: SelectItem = riceOptions[0];
   let selectedSauces: Array<SelectItem> = [];
   let selectedProteins: Array<SelectItem> = [];
+  let tip = 0.0;
   const removeSide = (side: SelectItem) =>
     (selectedSides = selectedSides.filter(
       (sside) => sside.value !== side.value
@@ -42,11 +43,12 @@
       (pprotein) => pprotein.value !== protein.value
     ));
 
-  $: subtotal =
+  $: total =
     selectedRice.price +
     selectedSides.reduce((acc, curr) => acc + curr?.price, 0) +
     selectedSauces.reduce((acc, curr) => acc + curr.price, 0) +
-    selectedProteins.reduce((acc, curr) => acc + curr.price, 0);
+    selectedProteins.reduce((acc, curr) => acc + curr.price, 0) +
+    Number(tip);
 </script>
 
 <svelte:head>
@@ -115,23 +117,14 @@
       {/each}
     </select>
   </div>
-  <div class="subtotal-wrapper">
+  <div class="total-wrapper">
+    <label for="tip">
+      Tip
+      <input bind:value={tip} placeholder="Enter $ amount" />
+    </label>
     <div>
-      Subtotal: {currency(subtotal)}
+      Total: {currency(total)}
     </div>
-    <section class="tip-selection">
-      <h4>Tip</h4>
-      <div class="selection-group">
-        <div>10%</div>
-        <div>15%</div>
-        <div>20%</div>
-        <div>30%</div>
-      </div>
-      <label for="tip">
-        Custom
-        <input placeholder="Enter amount" />
-      </label>
-    </section>
   </div>
 </section>
 
@@ -157,7 +150,10 @@
     font-size: 10px;
     margin-left: 4px;
   }
-  .subtotal-wrapper {
+  .total-wrapper {
+    margin-top: 10px;
+  }
+  .total-wrapper div {
     margin-top: 10px;
   }
 </style>
