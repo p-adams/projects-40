@@ -1,6 +1,8 @@
 <script lang="ts">
-  let topText = "";
-  let bottomText = "";
+  import FontOptions from "$lib/FontOptions.svelte";
+
+  let topText = { text: "", color: "", size: "" };
+  let bottomText = { text: "", color: "", size: "" };
 </script>
 
 <svelte:head>
@@ -12,19 +14,37 @@
 <div class="app-container">
   <div class="image-wrapper">
     <div class="text-wrapper">
-      <div class="top-text">{topText}</div>
-      <div class="bottom-text">{bottomText}</div>
+      <div
+        class="top-text"
+        style={`color: ${topText.color}; font-size: ${topText.size}`}
+      >
+        {topText.text}
+      </div>
+      <div
+        class="bottom-text"
+        style={`color: ${bottomText.color}; font-size: ${bottomText.size}`}
+      >
+        {bottomText.text}
+      </div>
     </div>
     <img src="https://via.placeholder.com/500" alt="Product" />
   </div>
   <div class="actions">
     <label>
       Top Text
-      <input bind:value={topText} placeholder="top text here" />
+      <input bind:value={topText.text} placeholder="top text here" />
+      <FontOptions
+        on:colorSelect={(e) => (topText.color = e.detail.color)}
+        on:sizeSelect={(e) => (topText.size = e.detail.size)}
+      />
     </label>
     <label>
       Bottom Text
-      <input bind:value={bottomText} placeholder="bottom text here" />
+      <input bind:value={bottomText.text} placeholder="bottom text here" />
+      <FontOptions
+        on:colorSelect={(e) => (bottomText.color = e.detail.color)}
+        on:sizeSelect={(e) => (bottomText.size = e.detail.size)}
+      />
     </label>
   </div>
 </div>
@@ -53,12 +73,6 @@
     transform: translate(-50%, -50%);
     font-size: 2em;
     font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px #000;
-  }
-  .top-text {
-  }
-  .bottom-text {
   }
   .actions {
     display: flex;
