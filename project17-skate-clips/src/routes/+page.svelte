@@ -3,7 +3,7 @@
   <meta name="description" content="home" />
 </svelte:head>
 <section>
-  <h1>Movie App</h1>
+  <h1>Skate Clips</h1>
   <div>
     <video
       controls
