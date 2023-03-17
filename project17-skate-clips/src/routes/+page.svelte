@@ -1,16 +1,39 @@
+<script lang="ts">
+  type Clip = { title: string; featured: string; src: string };
+  const clips: Array<Clip> = [
+    {
+      title: "2411-QJ02 HD24",
+      featured: "Bobby de Keyzer",
+      src: "https://i.imgur.com/cQZyxV0.mp4",
+    },
+  ];
+  let selectedClip: Clip | null = clips[0];
+</script>
+
 <svelte:head>
   <title>Home</title>
   <meta name="description" content="home" />
 </svelte:head>
 <section>
   <h1>Skate Clips</h1>
-  <div>
-    <video
-      controls
-      src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
-      width="600"
-    >
+  <div class="Clips-app">
+    <video controls src={selectedClip?.src ?? ""} width="600">
       <track default kind="captions" srclang="en" src="" />
     </video>
+    <div>
+      <ul>
+        {#each clips as clip}
+          <li on:click={() => (selectedClip = clip)} aria-hidden="true">
+            {clip.featured} - {clip.title}
+          </li>
+        {/each}
+      </ul>
+    </div>
   </div>
 </section>
+
+<style>
+  .Clips-app {
+    display: flex;
+  }
+</style>
