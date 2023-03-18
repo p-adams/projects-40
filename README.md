@@ -18,4 +18,4 @@ Sandbox containing 40 web app projects
 14. Drawing
 15. Food App
 16. Meme Generator
-17. Skate Clips (WIP)
+17. Skate Clips

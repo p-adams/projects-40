@@ -8,6 +8,11 @@
       featured: "Bobby de Keyzer",
       src: "https://i.imgur.com/cQZyxV0.mp4",
     },
+    {
+      title: "Sabotage 3",
+      featured: "Ishod Wair",
+      src: "https://i.imgur.com/hWvQodk.mp4",
+    },
   ];
   let selectedClip: Clip | undefined = clips[0];
 </script>
