@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import { browser } from "$app/environment";
+import { toString } from "../helpers/parse";
 const messageStore = writable("");
 let socket: WebSocket | null = null;
 if (browser) {
@@ -14,10 +15,9 @@ socket?.addEventListener("message", (event) => {
   messageStore.set(event.data);
 });
 
-const sendMessage = (message: string) => {
-  console.log(message);
+const sendMessage = (message: any) => {
   if (socket && socket?.readyState <= 1) {
-    socket.send(message);
+    socket.send(toString(message));
   }
 };
 

@@ -17,7 +17,7 @@
 <button
   on:click={() => {
     ++c;
-    store.sendMessage(c.toString());
+    store.sendMessage(c);
   }}>test</button
 >
 <div class="Chat-app">
