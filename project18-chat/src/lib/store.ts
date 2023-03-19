@@ -1,21 +1,22 @@
 import { writable } from "svelte/store";
-
+import { browser } from "$app/environment";
 const messageStore = writable("");
+let socket: WebSocket | null = null;
+if (browser) {
+  socket = new WebSocket("ws://localhost:3000");
+}
 
-const socket = new WebSocket("ws://localhost:3000");
-
-// Connection opened
-socket.addEventListener("open", function (event) {
+socket?.addEventListener("open", (event) => {
   console.log("It's open");
 });
 
-// Listen for messages
-socket.addEventListener("message", function (event) {
+socket?.addEventListener("message", (event) => {
   messageStore.set(event.data);
 });
 
 const sendMessage = (message: string) => {
-  if (socket.readyState <= 1) {
+  console.log(message);
+  if (socket && socket?.readyState <= 1) {
     socket.send(message);
   }
 };
