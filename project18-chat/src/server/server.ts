@@ -1,14 +1,12 @@
 import express from "express";
 import { WebSocketServer } from "ws";
+import { toString } from "../helpers/parse";
 
 interface Message {
   username: string;
   text: string;
   sent: Date;
 }
-
-export const toObj = JSON.parse;
-export const toString = (value: any) => JSON.stringify(value);
 
 function handleWebSocket() {
   const app = express();
