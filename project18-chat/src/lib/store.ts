@@ -1,8 +1,12 @@
 import { writable } from "svelte/store";
 import { browser } from "$app/environment";
-import { toString } from "../helpers/parse";
-const messageStore = writable("");
+import { toObj, toString } from "../helpers/parse";
+import type { Message } from "../datatypes";
+
+const messageStore = writable<Array<Message>>([]);
+
 let socket: WebSocket | null = null;
+
 if (browser) {
   socket = new WebSocket("ws://localhost:3000");
 }
@@ -12,7 +16,7 @@ socket?.addEventListener("open", (event) => {
 });
 
 socket?.addEventListener("message", (event) => {
-  messageStore.set(event.data);
+  messageStore.set(toObj(event.data));
 });
 
 const sendMessage = (message: any) => {

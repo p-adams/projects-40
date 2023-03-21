@@ -1,18 +1,32 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 
+interface Message {
+  username: string;
+  text: string;
+  sent: Date;
+}
+
+export const toObj = JSON.parse;
+export const toString = (value: any) => JSON.stringify(value);
+
 function handleWebSocket() {
   const app = express();
 
   // Create a WebSocket server
   const wss = new WebSocketServer({ noServer: true });
 
+  const messages: Array<Message> = [
+    { username: "foo_bar_baz", text: "Meow meow meow", sent: new Date() },
+    { username: "test_", text: "Woof woof woof", sent: new Date() },
+  ];
+
   // Listen for WebSocket connections
   wss.on("connection", (socket) => {
     console.log("WebSocket client connected");
 
     // Send a welcome message to the client
-    socket.send("Welcome to the WebSocket server!");
+    socket.send(toString(messages));
 
     // Handle incoming messages from the client
     socket.on("message", (message) => {

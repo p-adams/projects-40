@@ -1,16 +1,14 @@
 <script lang="ts">
   import store from "$lib/store";
   import { onMount } from "svelte";
-  const messages = [
-    { username: "foo_bar_baz", text: "Meow meow meow" },
-    { username: "test_", text: "Woof woof woof" },
-  ];
+  import type { Message } from "../datatypes";
+  let messages: Message[] = [];
   let message = "";
   let c = 0;
   onMount(() => {
-    store.subscribe((message) => console.log("message: ", message));
+    store.subscribe((storeMessages) => (messages = storeMessages));
   });
-  $: users = messages.map((message) => message.username);
+  $: users = messages?.map((message) => message.username);
 </script>
 
 <h1>Chat</h1>
