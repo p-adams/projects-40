@@ -4,36 +4,63 @@
   import type { Message } from "../datatypes";
   let messages: Message[] = [];
   let message = "";
-  let c = 0;
+  let currentUser = "";
+
   onMount(() => {
     store.subscribe((storeMessages) => (messages = storeMessages));
   });
-  $: users = messages?.map((message) => message.username);
+  $: loggedIn = false;
+  $: users = Array.from(new Set(messages?.map((message) => message.username)));
+  function login() {
+    if (!!currentUser) {
+      loggedIn = true;
+    }
+    return;
+  }
+  function logout() {
+    loggedIn = false;
+    currentUser = "";
+  }
+  function sendMessage() {
+    store.sendMessage({
+      username: currentUser,
+      text: message,
+      sent: new Date(),
+    });
+    message = "";
+  }
 </script>
 
 <h1>Chat</h1>
-<button
-  on:click={() => {
-    ++c;
-    store.sendMessage(c);
-  }}>test</button
->
-<div class="Chat-app">
-  <div class="Message-window">
-    {#each messages as message}
-      <div><span class="Username">{message.username}</span>{message.text}</div>
-    {/each}
+{#if !loggedIn}
+  <div>
+    <label>
+      Username
+      <input bind:value={currentUser} />
+    </label>
+    <button on:click={() => login()}>Enter</button>
   </div>
-  <div class="User-list">
-    {#each users as user}
-      <div>{user}</div>
-    {/each}
+{:else}
+  <button on:click={() => logout()}>logout</button>
+  <div class="Chat-app">
+    <div class="Message-window">
+      {#each messages as message}
+        <div>
+          <span class="Username">{message.username}</span>{message.text}
+        </div>
+      {/each}
+    </div>
+    <div class="User-list">
+      {#each users as user}
+        <div>{user}</div>
+      {/each}
+    </div>
+    <div class="Message-input">
+      <input bind:value={message} />
+      <button on:click={() => sendMessage()}>Send</button>
+    </div>
   </div>
-  <div class="Message-input">
-    <input bind:value={message} />
-    <button>Send</button>
-  </div>
-</div>
+{/if}
 
 <style>
   .Chat-app {

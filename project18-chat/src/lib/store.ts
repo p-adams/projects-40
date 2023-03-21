@@ -12,14 +12,14 @@ if (browser) {
 }
 
 socket?.addEventListener("open", (event) => {
-  console.log("It's open");
+  console.log("socket open");
 });
 
 socket?.addEventListener("message", (event) => {
   messageStore.set(toObj(event.data));
 });
 
-const sendMessage = (message: any) => {
+const sendMessage = (message: Message) => {
   if (socket && socket?.readyState <= 1) {
     socket.send(toString(message));
   }

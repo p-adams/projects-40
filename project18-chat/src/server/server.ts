@@ -1,11 +1,16 @@
 import express from "express";
-import { WebSocketServer } from "ws";
-import { toString } from "../helpers/parse";
+import { WebSocket, WebSocketServer } from "ws";
+const toObj = JSON.parse;
+const toString = (value: any) => JSON.stringify(value);
 
 interface Message {
   username: string;
   text: string;
   sent: Date;
+}
+
+function socketSend(socket: WebSocket, data: any) {
+  socket.send(toString(data));
 }
 
 function handleWebSocket() {
@@ -24,14 +29,15 @@ function handleWebSocket() {
     console.log("WebSocket client connected");
 
     // Send a welcome message to the client
-    socket.send(toString(messages));
+    socketSend(socket, messages);
 
     // Handle incoming messages from the client
     socket.on("message", (message) => {
       console.log(`Received message: ${message}`);
-
+      const $message = toObj(message.toLocaleString());
+      messages.push($message);
       // Send a response back to the client
-      socket.send(`You sent: ${message}`);
+      socketSend(socket, messages);
     });
 
     // Handle disconnections
