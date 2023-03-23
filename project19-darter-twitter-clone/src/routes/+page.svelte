@@ -1,5 +1,7 @@
-<!-- big blue darter (Cooper's hawk logo here)-->
-<h1>Welcome to SvelteKit</h1>
+<script lang="ts">
+</script>
+
+<h1>Welcome to Darter</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
+  Visit <a href="about">about Darter</a> to read the documentation
 </p>
