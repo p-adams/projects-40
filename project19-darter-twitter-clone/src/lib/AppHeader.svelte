@@ -1,4 +1,14 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+  import { sanitizeQueryString } from "./helpers";
+  let sStr = "";
+  function search(
+    e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
+  ) {
+    if (e.code === "Enter") {
+      goto(`/search?q=${sanitizeQueryString(sStr)}`);
+    }
+  }
 </script>
 
 <header>
@@ -10,7 +20,13 @@
       <li><a href="/discover">Discover</a></li>
     </ul>
     <ul>
-      <li class="search"><input placeholder="Search" /></li>
+      <li class="search">
+        <input
+          placeholder="Search"
+          on:keydown={(e) => search(e)}
+          bind:value={sStr}
+        />
+      </li>
       <li><a href="/account">Account</a></li>
       <li><a href="/compose">Compose Dart</a></li>
     </ul>
