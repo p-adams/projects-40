@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import logo from "$lib/assets/head.png";
   import { sanitizeQueryString } from "./helpers";
   let sStr = "";
   function search(
@@ -12,14 +13,16 @@
 </script>
 
 <header>
-  <div><!-- big blue darter (Cooper's hawk logo here)--></div>
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/connect">Connect</a></li>
       <li><a href="/discover">Discover</a></li>
     </ul>
-    <ul>
+    <div class="logo">
+      <img src={logo} alt="big blue darter logo" />
+    </div>
+    <ul class="right">
       <li class="search">
         <input
           placeholder="Search"
@@ -28,7 +31,7 @@
         />
       </li>
       <li><a href="/account">Account</a></li>
-      <li><a href="/compose">Compose Dart</a></li>
+      <li><a href="/compose">Compose</a></li>
     </ul>
   </nav>
 </header>
@@ -36,13 +39,22 @@
 <style>
   nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    width: 25px;
+    height: 25px;
   }
   ul {
     display: flex;
     gap: 22px;
-  }
-  .search {
     list-style: none;
+  }
+  ul.right {
+    margin-right: 40px;
   }
 </style>
