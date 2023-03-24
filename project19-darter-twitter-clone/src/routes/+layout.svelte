@@ -10,6 +10,6 @@
 <style global>
   @import "../app.css";
   main {
-    margin: 0px 40px 0px 40px;
+    margin: 20px 40px 0px 40px;
   }
 </style>

@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import logo from "$lib/assets/head.png";
-  import { sanitizeQueryString } from "./helpers";
+  import { ariaCurrent, sanitizeQueryString } from "./helpers";
   let sStr = "";
   function search(
     e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
@@ -10,14 +11,21 @@
       goto(`/search?q=${sanitizeQueryString(sStr)}`);
     }
   }
+  $: currentPage = (path: string) => ariaCurrent($page, path);
 </script>
 
 <header>
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/connect">Connect</a></li>
-      <li><a href="/discover">Discover</a></li>
+      <li aria-current={currentPage("/")}>
+        <a href="/">Home</a>
+      </li>
+      <li aria-current={currentPage("/connect")}>
+        <a href="/connect">Connect</a>
+      </li>
+      <li aria-current={currentPage("/discover")}>
+        <a href="/discover">Discover</a>
+      </li>
     </ul>
     <div class="logo">
       <img src={logo} alt="big blue darter logo" />
@@ -31,12 +39,15 @@
         />
       </li>
       <li><a href="/account">Account</a></li>
-      <li><a href="/compose">Compose</a></li>
+      <li><a href="/compose"><button class="compose">Compose</button></a></li>
     </ul>
   </nav>
 </header>
 
 <style>
+  header {
+    background-color: var(--darkNavy);
+  }
   nav {
     display: flex;
     justify-content: space-between;
@@ -46,8 +57,9 @@
     align-items: center;
   }
   .logo img {
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
   }
   ul {
     display: flex;
@@ -56,5 +68,18 @@
   }
   ul.right {
     margin-right: 40px;
+  }
+  li {
+    position: relative;
+  }
+  li a {
+    color: var(--lightGray);
+  }
+  li[aria-current="page"]::before {
+    content: "*";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    color: var(--pureWhite);
   }
 </style>

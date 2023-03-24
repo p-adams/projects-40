@@ -2,9 +2,8 @@
 	import { afterUpdate } from 'svelte';
 	import { page } from '$app/stores';
 	import { cart } from '$lib/storage/cart';
-	import logo from '$lib/images/svelte-logo.svg';
 	import type { Product } from '$lib/types';
-	import { goto } from '$app/navigation';
+
 	$: cartItems = null as Product[] | null;
 	afterUpdate(() =>
 		cart.subscribe((cart) => {

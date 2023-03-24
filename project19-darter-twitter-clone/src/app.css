@@ -6,3 +6,8 @@
   --lightGray: #eaeaea; /* This is a light gray color that can be used for backgrounds or as a secondary color for text. */
   --pureWhite: #ffffff; /* This is a pure white color that can be used for backgrounds and text. */
 }
+
+.compose {
+  background-color: var(--orangeAccent);
+  color: var(--pureWhite);
+}
