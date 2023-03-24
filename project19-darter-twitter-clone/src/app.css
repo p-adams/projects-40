@@ -1,0 +1,8 @@
+:root {
+  /* COLOR PALETTE: */
+  --darkNavy: #003049; /* This is a dark navy blue color that can be used for headings and buttons. */
+  --orangeAccent: #f77f00; /* This is a warm orange color that can be used for accents and calls to action. */
+  --redEmphasis: #d62828; /* This is a deep red color that can be used sparingly for emphasis. */
+  --lightGray: #eaeaea; /* This is a light gray color that can be used for backgrounds or as a secondary color for text. */
+  --pureWhite: #ffffff; /* This is a pure white color that can be used for backgrounds and text. */
+}
