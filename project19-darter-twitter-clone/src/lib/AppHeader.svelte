@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import logo from "$lib/assets/head.png";
+  import composeDialogStore from "$lib/composeDialogStore";
   import { ariaCurrent, sanitizeQueryString } from "./helpers";
   let sStr = "";
   function search(
@@ -39,7 +40,11 @@
         />
       </li>
       <li><a href="/account">Account</a></li>
-      <li><a href="/compose"><button class="compose">Compose</button></a></li>
+      <li>
+        <button class="compose" on:click={() => composeDialogStore.openDialog()}
+          >Compose</button
+        >
+      </li>
     </ul>
   </nav>
 </header>
