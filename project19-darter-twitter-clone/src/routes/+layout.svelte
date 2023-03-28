@@ -15,7 +15,6 @@
   main {
     flex-grow: 1;
     margin: 20px 40px 40px 40px;
-    background-color: var(--lightGray);
   }
   footer {
     height: 40px;
