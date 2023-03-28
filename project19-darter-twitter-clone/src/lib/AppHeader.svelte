@@ -32,7 +32,8 @@
       <img src={logo} alt="big blue darter logo" />
     </div>
     <ul class="right">
-      <li class="search">
+      <li class="search-container">
+        <i class="fas fa-search" />
         <input
           placeholder="Search"
           on:keydown={(e) => search(e)}
@@ -52,6 +53,7 @@
 <style>
   header {
     background-color: var(--darkNavy);
+    height: 60px;
   }
   nav {
     display: flex;
@@ -86,5 +88,17 @@
     top: 100%;
     left: 50%;
     color: var(--pureWhite);
+  }
+  .search-container {
+    position: relative;
+  }
+  .search-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .search-container input {
+    padding-left: 30px;
   }
 </style>

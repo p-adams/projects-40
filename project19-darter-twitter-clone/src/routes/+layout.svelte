@@ -7,12 +7,18 @@
 <main>
   <slot />
 </main>
-
+<footer>footer content here</footer>
 <ComposeDialog />
 
 <style global>
   @import "../app.css";
   main {
-    margin: 20px 40px 0px 40px;
+    flex-grow: 1;
+    margin: 20px 40px 40px 40px;
+    background-color: var(--lightGray);
+  }
+  footer {
+    height: 40px;
+    margin: 0px 40px 0px 40px;
   }
 </style>
