@@ -10,7 +10,7 @@
 </svelte:head>
 <div class="home">
   <section class="side">
-    <div>compose</div>
+    <div>profile/compose card</div>
     <div>follow</div>
     <div>trending</div>
   </section>

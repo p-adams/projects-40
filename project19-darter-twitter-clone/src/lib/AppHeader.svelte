@@ -83,10 +83,13 @@
     color: var(--lightGray);
   }
   li[aria-current="page"]::before {
-    content: "*";
+    border-style: solid;
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent var(--orangeAccent) transparent;
+    content: "";
     position: absolute;
-    top: 100%;
-    left: 50%;
+    top: 120%;
+    left: 35%;
     color: var(--pureWhite);
   }
   .search-container {
