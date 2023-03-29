@@ -42,8 +42,10 @@
       </li>
       <li><a href="/account">Account</a></li>
       <li>
-        <button class="compose" on:click={() => composeDialogStore.openDialog()}
-          >Compose</button
+        <button
+          class="compose"
+          on:click={() => composeDialogStore.openDialog()}
+          title="compose">compose <i class="fa-solid fa-paper-plane" /></button
         >
       </li>
     </ul>
@@ -103,5 +105,9 @@
   }
   .search-container input {
     padding-left: 30px;
+  }
+  .compose {
+    background-color: var(--orangeAccent);
+    color: var(--pureWhite);
   }
 </style>

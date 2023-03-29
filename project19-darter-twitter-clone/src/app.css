@@ -19,8 +19,3 @@ h1 {
   margin: 0;
   padding: 0;
 }
-
-.compose {
-  background-color: var(--orangeAccent);
-  color: var(--pureWhite);
-}
