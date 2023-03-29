@@ -15,9 +15,12 @@
     <div>trending</div>
   </section>
   <section class="feed">
-    {#each dartFeed as feedItem}
-      <div>{feedItem.text}</div>
-    {/each}
+    <h1 class="feed-title">Darts</h1>
+    <div>
+      {#each dartFeed as feedItem}
+        <div class="feed-card">{feedItem.text}</div>
+      {/each}
+    </div>
   </section>
 </div>
 
@@ -25,6 +28,12 @@
   .home {
     display: flex;
     gap: 10px;
+  }
+
+  .feed-title {
+    color: var(--darkNavy);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--lightGray);
   }
 
   section {
