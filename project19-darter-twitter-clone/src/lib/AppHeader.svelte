@@ -45,7 +45,7 @@
         <button
           class="compose"
           on:click={() => composeDialogStore.openDialog()}
-          title="compose">compose <i class="fa-solid fa-paper-plane" /></button
+          title="compose"><i class="fa-solid fa-paper-plane" /></button
         >
       </li>
     </ul>
@@ -99,14 +99,16 @@
   }
   .search-container i {
     position: absolute;
-    left: 10px;
+    left: 8px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-70%);
   }
   .search-container input {
     padding-left: 30px;
   }
   .compose {
+    height: 30px;
+    width: 40px;
     background-color: var(--orangeAccent);
     color: var(--pureWhite);
   }
