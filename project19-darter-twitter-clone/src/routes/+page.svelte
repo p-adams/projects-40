@@ -1,5 +1,6 @@
 <script lang="ts">
   import FeedList from "$lib/FeedList.svelte";
+  import ProfileCard from "$lib/ProfileCard.svelte";
 </script>
 
 <svelte:head>
@@ -8,7 +9,7 @@
 </svelte:head>
 <div class="home">
   <section class="main side">
-    <div>profile/compose card</div>
+    <div><ProfileCard /></div>
     <div>follow</div>
     <div>trending</div>
   </section>
