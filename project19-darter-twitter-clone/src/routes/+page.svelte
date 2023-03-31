@@ -7,7 +7,7 @@
   <meta name="Description" content="Home" />
 </svelte:head>
 <div class="home">
-  <section class="side">
+  <section class="main side">
     <div>profile/compose card</div>
     <div>follow</div>
     <div>trending</div>

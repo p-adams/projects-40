@@ -5,7 +5,7 @@
   dartStore.subscribe((darts) => (dartFeed = darts));
 </script>
 
-<section class="feed">
+<section class="main feed">
   <h1 class="feed-title">Darts</h1>
   <div>
     {#each dartFeed as feedItem}
@@ -15,9 +15,6 @@
 </section>
 
 <style>
-  section {
-    background-color: var(--pureWhite);
-  }
   .feed {
     flex: 2;
   }

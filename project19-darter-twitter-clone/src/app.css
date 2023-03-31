@@ -19,3 +19,7 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
+section.main {
+  background-color: var(--pureWhite);
+}
