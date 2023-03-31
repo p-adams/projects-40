@@ -1,5 +1,8 @@
 <script lang="ts">
+  import ComposeButton from "./ComposeButton.svelte";
   import composeStore from "./composeStore";
+  let compose = "";
+  let textArea: HTMLTextAreaElement;
 </script>
 
 <section>
@@ -12,7 +15,14 @@
   </div>
   <div>
     <textarea
-      on:change={(e) => composeStore.setContent(e.currentTarget.value)}
+      bind:this={textArea}
+      on:change={(e) => (compose = e.currentTarget.value)}
+    />
+    <ComposeButton
+      on:compose={() => {
+        composeStore.setContent(compose);
+        textArea.value = "";
+      }}
     />
   </div>
 </section>

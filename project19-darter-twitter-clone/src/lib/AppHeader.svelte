@@ -4,6 +4,7 @@
   import logo from "$lib/assets/head.png";
   import composeDialogStore from "$lib/composeDialogStore";
   import { ariaCurrent, sanitizeQueryString } from "./helpers";
+  import ComposeButton from "./ComposeButton.svelte";
   let sStr = "";
   function search(
     e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
@@ -42,11 +43,7 @@
       </li>
       <li><a href="/account">Account</a></li>
       <li>
-        <button
-          class="compose"
-          on:click={() => composeDialogStore.openDialog()}
-          title="compose"><i class="fa-solid fa-paper-plane" /></button
-        >
+        <ComposeButton on:compose={() => composeDialogStore.openDialog()} />
       </li>
     </ul>
   </nav>
@@ -106,10 +103,10 @@
   .search-container input {
     padding-left: 30px;
   }
-  .compose {
+  /*.compose {
     height: 30px;
     width: 40px;
     background-color: var(--orangeAccent);
     color: var(--pureWhite);
-  }
+  }*/
 </style>
