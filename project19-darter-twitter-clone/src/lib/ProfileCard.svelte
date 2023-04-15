@@ -1,8 +1,8 @@
 <script lang="ts">
   import ComposeButton from "./ComposeButton.svelte";
+  import ComposeInput from "./ComposeInput.svelte";
   import composeStore from "./composeStore";
   let compose = "";
-  let textArea: HTMLTextAreaElement;
 </script>
 
 <section>
@@ -14,14 +14,14 @@
     <div>Following</div>
   </div>
   <div>
-    <textarea
-      bind:this={textArea}
-      on:change={(e) => (compose = e.currentTarget.value)}
+    <ComposeInput
+      bind:compose
+      on:composeDart={(e) => (compose = e.detail.dart)}
     />
     <ComposeButton
       on:compose={() => {
         composeStore.setContent(compose);
-        textArea.value = "";
+        compose = "";
       }}
     />
   </div>

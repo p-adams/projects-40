@@ -2,13 +2,13 @@
   import dialogStore from "./composeDialogStore";
   import composeStore from "./composeStore";
   import AppDialog from "$lib/AppDialog.svelte";
+  import ComposeInput from "./ComposeInput.svelte";
   let show: boolean;
   dialogStore.openSubscribe((value) => (show = value));
   let compose = "";
-  let textArea: HTMLTextAreaElement;
   function confirm() {
     composeStore.setContent(compose);
-    textArea.value = "";
+    compose = "";
     dialogStore.closeDialog();
   }
 </script>
@@ -20,9 +20,10 @@
 >
   <div class="content">
     <h2>Compose Dart</h2>
-    <textarea
-      bind:this={textArea}
-      on:change={(e) => (compose = e.currentTarget.value)}
+
+    <ComposeInput
+      bind:compose
+      on:composeDart={(e) => (compose = e.detail.dart)}
     />
   </div>
 </AppDialog>
