@@ -1,8 +1,8 @@
 <script lang="ts">
-  import dialogStore from "./stores/composeDialogStore";
-  import composeStore from "./stores/composeStore";
-  import AppDialog from "$lib/AppDialog.svelte";
-  import ComposeInput from "./ComposeInput.svelte";
+  import dialogStore from "./composeDialogStore";
+  import composeStore from "../compose/composeStore";
+  import AppDialog from "$lib/dialog/AppDialog.svelte";
+  import ComposeInput from "../compose/ComposeInput.svelte";
   let show: boolean;
   dialogStore.openSubscribe((value) => (show = value));
   let compose = "";

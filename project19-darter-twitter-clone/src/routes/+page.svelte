@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FeedList from "$lib/FeedList.svelte";
+  import FeedList from "$lib/feed/FeedList.svelte";
   import ProfileCard from "$lib/ProfileCard.svelte";
 </script>
 

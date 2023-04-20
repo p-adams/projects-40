@@ -1,6 +1,6 @@
 <script lang="ts">
-  import dartStore from "$lib/stores/dartStore";
-  import FeedCard from "$lib/FeedCard.svelte";
+  import dartStore from "$lib/feed/feedStore";
+  import FeedCard from "$lib/feed/FeedCard.svelte";
   let dartFeed: Lib.Dart[] = [];
   dartStore.subscribe((darts) => (dartFeed = darts));
 </script>

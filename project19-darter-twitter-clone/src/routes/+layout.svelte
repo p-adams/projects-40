@@ -1,6 +1,6 @@
 <script lang="ts">
   import AppHeader from "$lib/AppHeader.svelte";
-  import ComposeDialog from "$lib/ComposeDialog.svelte";
+  import ComposeDialog from "$lib/dialog/ComposeDialog.svelte";
 </script>
 
 <AppHeader />

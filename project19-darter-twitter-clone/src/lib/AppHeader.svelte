@@ -2,9 +2,9 @@
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import logo from "$lib/assets/head.png";
-  import composeDialogStore from "$lib/stores/composeDialogStore";
+  import composeDialogStore from "$lib/dialog/composeDialogStore";
   import { ariaCurrent, sanitizeQueryString } from "./helpers";
-  import ComposeButton from "./ComposeButton.svelte";
+  import ComposeButton from "./compose/ComposeButton.svelte";
   let sStr = "";
   function search(
     e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }

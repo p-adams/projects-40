@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ComposeButton from "./ComposeButton.svelte";
-  import ComposeInput from "./ComposeInput.svelte";
-  import composeStore from "./stores/composeStore";
+  import ComposeButton from "./compose/ComposeButton.svelte";
+  import ComposeInput from "./compose/ComposeInput.svelte";
+  import composeStore from "./compose/composeStore";
   let compose = "";
 </script>
 
