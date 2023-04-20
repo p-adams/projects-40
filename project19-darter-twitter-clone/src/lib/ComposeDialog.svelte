@@ -1,6 +1,6 @@
 <script lang="ts">
-  import dialogStore from "./composeDialogStore";
-  import composeStore from "./composeStore";
+  import dialogStore from "./stores/composeDialogStore";
+  import composeStore from "./stores/composeStore";
   import AppDialog from "$lib/AppDialog.svelte";
   import ComposeInput from "./ComposeInput.svelte";
   let show: boolean;

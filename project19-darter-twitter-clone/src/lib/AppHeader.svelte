@@ -2,7 +2,7 @@
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import logo from "$lib/assets/head.png";
-  import composeDialogStore from "$lib/composeDialogStore";
+  import composeDialogStore from "$lib/stores/composeDialogStore";
   import { ariaCurrent, sanitizeQueryString } from "./helpers";
   import ComposeButton from "./ComposeButton.svelte";
   let sStr = "";

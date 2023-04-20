@@ -1,5 +1,5 @@
 <script lang="ts">
-  import dartStore from "$lib/dartStore";
+  import dartStore from "$lib/stores/dartStore";
   import FeedCard from "$lib/FeedCard.svelte";
   let dartFeed: Lib.Dart[] = [];
   dartStore.subscribe((darts) => (dartFeed = darts));
