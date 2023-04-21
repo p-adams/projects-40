@@ -1,14 +1,14 @@
 <script lang="ts">
-  import dartStore from "$lib/feed/feedStore";
+  import feedStore from "$lib/feed/feedStore";
   import FeedCard from "$lib/feed/FeedCard.svelte";
-  let dartFeed: Lib.Dart[] = [];
-  dartStore.subscribe((darts) => (dartFeed = darts));
+  let feeds: Lib.Feeds = {};
+  feedStore.subscribe((f) => (feeds = f));
 </script>
 
 <section class="main feed">
   <h1 class="feed-title">Darts</h1>
   <div>
-    {#each dartFeed as feedItem}
+    {#each feeds?.me as feedItem}
       <FeedCard {feedItem} />
     {/each}
   </div>

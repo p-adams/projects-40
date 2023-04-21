@@ -1,17 +1,21 @@
 import { writable } from "svelte/store";
 
-const darts = writable<Array<Lib.Dart>>([]);
+const feeds = writable<Lib.Feeds>({
+  me: [],
+});
 
+const mockFeedItems: Array<Lib.Dart> = [];
 for (let i = 0; i < 10; i++) {
-  const mockDart: Lib.Dart = {
+  const mockFeedItem: Lib.Dart = {
     username: `User ${i}`,
     text: `This is mock dart number ${i}`,
     date: new Date(),
   };
-
-  darts.update((dart) => [...dart, mockDart]);
+  mockFeedItems.push(mockFeedItem);
 }
 
+feeds.update((feed) => ({ ...feed, ["me"]: mockFeedItems }));
+
 export default {
-  subscribe: darts.subscribe,
+  subscribe: feeds.subscribe,
 };
