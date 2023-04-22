@@ -4,9 +4,9 @@
   import feedStore from "$lib/feed/feedStore";
 
   import { afterUpdate } from "svelte";
-  import { allFeeds } from "$lib/helpers";
+  import { allFeeds, newestToOldest } from "$lib/helpers";
   let feeds: Lib.Feeds = {};
-  $: feed = allFeeds(feeds);
+  $: feed = newestToOldest(allFeeds(feeds));
 
   afterUpdate(() => feedStore.subscribe((f) => (feeds = f)));
 </script>

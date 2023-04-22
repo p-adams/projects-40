@@ -30,3 +30,15 @@ export function normalizeString(str: string) {
   str = str.replace(/\s+/g, "_");
   return str;
 }
+
+export function newestToOldest(arr: Lib.Dart[]) {
+  return arr.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+export function oldestToNewest(arr: Lib.Dart[]) {
+  return arr.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+}

@@ -2,6 +2,7 @@
   import ComposeButton from "./compose/ComposeButton.svelte";
   import ComposeInput from "./compose/ComposeInput.svelte";
   import composeStore from "./compose/composeStore";
+  import feedStore from "./feed/feedStore";
   let compose = "";
 </script>
 
@@ -21,6 +22,11 @@
     <ComposeButton
       on:compose={() => {
         composeStore.setContent(compose);
+        feedStore.addToFeed("me", {
+          username: "me",
+          text: compose,
+          date: new Date(),
+        });
         compose = "";
       }}
     />
