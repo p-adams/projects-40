@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { normalizeString } from "$lib/helpers";
+
   export let feedItem: Lib.Dart;
 </script>
 
@@ -11,7 +13,9 @@
   </div>
   <div class="content">
     <div class="top-content">
-      <a href={`/profile/${feedItem.username}`}>{feedItem.username}</a>
+      <a href={`/profile/${normalizeString(feedItem.username)}`}
+        >{feedItem.username}</a
+      >
       <div>{feedItem.date.toLocaleString()}</div>
     </div>
     <div class="main-content">{feedItem.text}</div>

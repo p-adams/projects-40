@@ -24,3 +24,9 @@ export function allFeeds(feeds: Lib.Feeds): Lib.Dart[] {
 export function myFeed(feeds: Lib.Feeds): Lib.Dart[] {
   return feeds.me;
 }
+
+export function normalizeString(str: string) {
+  str = str.toLowerCase();
+  str = str.replace(/\s+/g, "_");
+  return str;
+}
