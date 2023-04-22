@@ -15,8 +15,8 @@ export function ariaCurrent(page: Page, path: string) {
 }
 
 export function allFeeds(feeds: Lib.Feeds): Lib.Dart[] {
-  return Object.keys(feeds).reduce(
-    (arr: any, feedId: any) => [...arr, ...feeds[feedId]],
+  return Object.keys(feeds).reduce<Lib.Dart[]>(
+    (arr: Lib.Dart[], feedId: string) => [...arr, ...feeds[feedId]],
     []
   );
 }
