@@ -20,3 +20,7 @@ export function allFeeds(feeds: Lib.Feeds): Lib.Dart[] {
     []
   );
 }
+
+export function myFeed(feeds: Lib.Feeds): Lib.Dart[] {
+  return feeds.me;
+}
