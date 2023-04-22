@@ -13,3 +13,10 @@ export function sanitizeQueryString(queryString: string): string {
 export function ariaCurrent(page: Page, path: string) {
   return page.url.pathname === path ? "page" : undefined;
 }
+
+export function allFeeds(feeds: Lib.Feeds): Lib.Dart[] {
+  return Object.keys(feeds).reduce(
+    (arr: any, feedId: any) => [...arr, ...feeds[feedId]],
+    []
+  );
+}
