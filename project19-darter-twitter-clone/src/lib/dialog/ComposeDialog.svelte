@@ -2,11 +2,12 @@
   import dialogStore from "./composeDialogStore";
   import composeStore from "../compose/composeStore";
   import feedStore from "../feed/feedStore";
+  import meStore from "$lib/me/store";
   import AppDialog from "$lib/dialog/AppDialog.svelte";
   import ComposeInput from "../compose/ComposeInput.svelte";
-  let show: boolean;
-  dialogStore.openSubscribe((value) => (show = value));
+
   let compose = "";
+  let feedId = "";
   function confirm() {
     composeStore.setContent(compose);
     feedStore.addToFeed({
@@ -16,20 +17,30 @@
     compose = "";
     dialogStore.closeDialog();
   }
+  function createFeed() {
+    meStore.set(feedId);
+    dialogStore.closeDialog();
+  }
 </script>
 
 <AppDialog
-  {show}
-  on:confirm={(_e) => confirm()}
+  show={$dialogStore?.open}
+  on:confirm={(_e) => {
+    !$meStore?.feedId ? createFeed() : confirm();
+  }}
   on:cancel={(_e) => dialogStore.closeDialog()}
 >
   <div class="content">
-    <h2>Compose Dart</h2>
+    {#if $meStore?.feedId}
+      <h2>Compose Dart</h2>
 
-    <ComposeInput
-      bind:compose
-      on:composeDart={(e) => (compose = e.detail.dart)}
-    />
+      <ComposeInput
+        bind:compose
+        on:composeDart={(e) => (compose = e.detail.dart)}
+      />
+    {:else}
+      <input bind:value={feedId} placeholder="enter feed ID" />
+    {/if}
   </div>
 </AppDialog>
 

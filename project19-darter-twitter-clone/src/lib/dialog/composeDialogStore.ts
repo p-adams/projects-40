@@ -1,16 +1,15 @@
 import { writable } from "svelte/store";
 
-const open = writable(false);
+const store = writable({ open: false });
 
 function openDialog() {
-  open.update((o: boolean) => true);
+  store.update((o) => ({ open: true }));
 }
 function closeDialog() {
-  open.update((o: boolean) => false);
+  store.update((o) => ({ open: false }));
 }
-
 export default {
-  openSubscribe: open.subscribe,
+  subscribe: store.subscribe,
   openDialog,
   closeDialog,
 };
