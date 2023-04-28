@@ -3,6 +3,7 @@
   import ComposeInput from "./compose/ComposeInput.svelte";
   import composeStore from "./compose/composeStore";
   import feedStore from "./feed/feedStore";
+  import meStore from "$lib/me/store";
   let compose = "";
 </script>
 
@@ -14,21 +15,25 @@
     <div>Followers</div>
     <div>Following</div>
   </div>
-  <div>
-    <ComposeInput
-      bind:compose
-      on:composeDart={(e) => (compose = e.detail.dart)}
-    />
-    <ComposeButton
-      on:compose={() => {
-        composeStore.setContent(compose);
-        feedStore.addToFeed("me", {
-          username: "me",
-          text: compose,
-          date: new Date(),
-        });
-        compose = "";
-      }}
-    />
-  </div>
+
+  {#if $meStore?.feedId}
+    <div>
+      <ComposeInput
+        bind:compose
+        on:composeDart={(e) => (compose = e.detail.dart)}
+      />
+      <ComposeButton
+        on:compose={() => {
+          composeStore.setContent(compose);
+          feedStore.addToFeed({
+            text: compose,
+            date: new Date(),
+          });
+          compose = "";
+        }}
+      />
+    </div>
+  {:else}
+    <a href="/account">create feed</a>
+  {/if}
 </section>

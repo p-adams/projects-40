@@ -13,4 +13,8 @@ namespace Lib {
   interface Feeds {
     [feedId: string]: Dart[];
   }
+
+  interface Me {
+    feedId: string;
+  }
 }

@@ -9,8 +9,7 @@
   let compose = "";
   function confirm() {
     composeStore.setContent(compose);
-    feedStore.addToFeed("me", {
-      username: "me",
+    feedStore.addToFeed({
       text: compose,
       date: new Date(),
     });
