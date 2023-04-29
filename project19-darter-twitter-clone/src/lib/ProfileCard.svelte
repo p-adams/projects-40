@@ -9,11 +9,25 @@
 
 <section>
   <div class="profile">
-    <img alt="User profile" />
-    <div>username</div>
-    <div>Darts</div>
-    <div>Followers</div>
-    <div>Following</div>
+    <img
+      class="img"
+      src="https://via.placeholder.com/50"
+      alt={`user-${$meStore?.feedId}`}
+    />
+    <div class="name">username</div>
+    <div class="dart">
+      <div class="count">500</div>
+      <div class="label">Darts</div>
+    </div>
+    <div class="followers">
+      <div class="count">500</div>
+      <div class="label">Followers</div>
+    </div>
+
+    <div class="following">
+      <div class="count">500</div>
+      <div class="label">Following</div>
+    </div>
   </div>
 
   {#if $meStore?.feedId}
@@ -37,3 +51,48 @@
     <a href="/account">create feed</a>
   {/if}
 </section>
+
+<style>
+  .profile {
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr;
+    grid-template-areas:
+      "img name name"
+      "dart followers following";
+    gap: 10px 0px;
+    border: 1px solid var(--lightGray);
+  }
+  .img {
+    grid-area: img;
+  }
+  .name {
+    grid-area: name;
+  }
+  .dart {
+    grid-area: dart;
+  }
+  .followers {
+    grid-area: followers;
+  }
+  .following {
+    grid-area: following;
+  }
+  .count {
+    font-size: larger;
+    font-weight: bold;
+  }
+  .label {
+    font-size: medium;
+    color: gray;
+  }
+  .dart,
+  .following,
+  .followers {
+    padding: 4px;
+    border-top: 1px solid var(--lightGray);
+  }
+  .dart,
+  .followers {
+    border-right: 1px solid var(--lightGray);
+  }
+</style>
