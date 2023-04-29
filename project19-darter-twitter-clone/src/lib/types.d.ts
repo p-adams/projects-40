@@ -5,6 +5,7 @@ namespace Lib {
   }
 
   interface Dart {
+    feedId: string;
     username: string;
     text: string;
     date: Date;

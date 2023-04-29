@@ -1,15 +1,14 @@
 import { writable } from "svelte/store";
 import meStore from "$lib/me/store";
+import { normalizeString } from "$lib/helpers";
 
-const feeds = writable<Lib.Feeds>({
-  john_smith: [],
-});
+const feeds = writable<Lib.Feeds>({ main: [] });
 
-const mockFeedItems: Array<Lib.Dart> = [];
-function createMockFeedItems(limit = 10, key: string) {
+function createMockFeedItems(limit = 10, key: string): Array<Lib.Dart> {
   const mockFeedItems: Array<Lib.Dart> = [];
   for (let i = 0; i < limit; i++) {
     const mockFeedItem: Lib.Dart = {
+      feedId: normalizeString(`User ${i} - ${key}`),
       username: `User ${i} - ${key}`,
       text: `This is mock dart number ${i}`,
       date: new Date(),
@@ -19,6 +18,8 @@ function createMockFeedItems(limit = 10, key: string) {
   return mockFeedItems;
 }
 
+feeds.update((feed) => ({ ...feed, ["main"]: createMockFeedItems(2, "main") }));
+
 function setMyFeed(feedId: string) {
   feeds.update((feed) => ({
     ...feed,
@@ -26,16 +27,14 @@ function setMyFeed(feedId: string) {
   }));
 }
 
-feeds.update((feed) => ({
-  ...feed,
-  ["john_smith"]: createMockFeedItems(2, "john_smith"),
-}));
-
 function addToFeed(dart: Pick<Lib.Dart, "text" | "date">) {
   meStore.subscribe((me) => {
     feeds.update((feed) => ({
       ...feed,
-      [me.feedId]: [...feed[me.feedId], { ...dart, username: me.feedId }],
+      [me.feedId]: [
+        ...feed[me.feedId],
+        { ...dart, username: me.feedId, feedId: me.feedId },
+      ],
     }));
   });
 }
