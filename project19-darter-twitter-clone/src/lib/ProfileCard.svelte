@@ -4,33 +4,38 @@
   import composeStore from "./compose/composeStore";
   import feedStore from "./feed/feedStore";
   import meStore from "$lib/me/store";
+  import { normalizeString } from "./helpers";
   let compose = "";
 </script>
 
 <section>
-  <div class="profile">
-    <img
-      class="img"
-      src="https://via.placeholder.com/50"
-      alt={`user-${$meStore?.feedId}`}
-    />
-    <div class="name">username</div>
-    <div class="dart">
-      <div class="count">500</div>
-      <div class="label">Darts</div>
-    </div>
-    <div class="followers">
-      <div class="count">500</div>
-      <div class="label">Followers</div>
-    </div>
-
-    <div class="following">
-      <div class="count">500</div>
-      <div class="label">Following</div>
-    </div>
-  </div>
-
   {#if $meStore?.feedId}
+    <div class="profile">
+      <img
+        class="img"
+        src="https://via.placeholder.com/50"
+        alt={`user-${$meStore?.feedId}`}
+      />
+      <div class="name">
+        <a href={`/profile/${normalizeString($meStore?.feedId)}`}
+          >{$meStore?.feedId}</a
+        >
+      </div>
+      <div class="dart">
+        <div class="count">500</div>
+        <div class="label">Darts</div>
+      </div>
+      <div class="followers">
+        <div class="count">500</div>
+        <div class="label">Followers</div>
+      </div>
+
+      <div class="following">
+        <div class="count">500</div>
+        <div class="label">Following</div>
+      </div>
+    </div>
+
     <div>
       <ComposeInput
         bind:compose
