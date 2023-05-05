@@ -9,9 +9,10 @@ namespace Lib {
     questionId: QuestionId;
     questionResponse: SurveyQuestionResponse;
   }
-  interface SurveyQuestions {
+  interface SurveyQuestionGroup {
     id: QuestionId;
     name: string;
+    description: string;
     questions: Questions;
   }
   interface SurveyCategory {
@@ -19,6 +20,6 @@ namespace Lib {
     name: string;
     description?: string;
     assets?: Array<string>;
-    surveyQuestions?: Array<SurveyQuestions>;
+    surveyQuestionGroups?: Array<SurveyQuestionGroup>;
   }
 }
