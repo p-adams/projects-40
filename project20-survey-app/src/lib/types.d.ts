@@ -12,8 +12,8 @@ namespace Lib {
   interface SurveyCategory {
     id: string;
     name: string;
-    description: string;
+    description?: string;
     assets?: Array<string>;
-    surveyQuestions: Array<SurveyQuestions>;
+    surveyQuestions?: Array<SurveyQuestions>;
   }
 }
