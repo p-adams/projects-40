@@ -1,9 +1,9 @@
 namespace Lib {
   type QuestionId = string;
-  type Question = { label: string; value: string };
-  type Questions = Array<Questions>;
-  // response can be array of questions when multiple responses are available
-  type SurveyQuestionResponse = Question | Questions;
+  type Option = { label: string; value: string };
+  type Options = Array<Option>;
+  // response can be array of Options when multiple responses are available
+  type SurveyQuestionResponse = Option | Options;
 
   interface SurveyResponse {
     questionId: QuestionId;
@@ -13,7 +13,7 @@ namespace Lib {
     id: QuestionId;
     name: string;
     description: string;
-    questions: Questions;
+    options: Options;
   }
   interface SurveyCategory {
     id: string;
