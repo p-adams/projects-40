@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SurveyGroup from "$lib/SurveyGroup.svelte";
+  import SurveyGroups from "$lib/SurveyGroups.svelte";
   export let data;
 </script>
 
@@ -9,7 +9,7 @@
 </svelte:head>
 <h1>State of Skateboarding 2023</h1>
 {#each data.surveyData as $data}
-  <SurveyGroup data={$data} />
+  <SurveyGroups data={$data} />
 {/each}
 <p>
   Visit <a href="/">kit.svelte.dev</a> for more info

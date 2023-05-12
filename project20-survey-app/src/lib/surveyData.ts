@@ -1,7 +1,5 @@
 import { nanoid } from "nanoid";
 
-function createSurveyCategories() {}
-
 export const data: Array<Lib.SurveyCategory> = [
   {
     id: nanoid(),
