@@ -3,7 +3,15 @@
   import { data } from "../lib/surveyData";
 </script>
 
-<SurveyCategorySidebar {data} />
-<main>
-  <slot />
-</main>
+<div class="page">
+  <SurveyCategorySidebar {data} />
+  <main>
+    <slot />
+  </main>
+</div>
+
+<style>
+  .page {
+    display: flex;
+  }
+</style>

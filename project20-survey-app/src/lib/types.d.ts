@@ -13,6 +13,7 @@ namespace Lib {
     id: QuestionId;
     name: string;
     description: string;
+    allowMultiple?: boolean;
     options: Options;
   }
   interface SurveyCategory {
@@ -20,6 +21,6 @@ namespace Lib {
     name: string;
     description?: string;
     assets?: Array<string>;
-    surveyQuestionGroups?: Array<SurveyQuestionGroup>;
+    surveyQuestionGroups: Array<SurveyQuestionGroup>;
   }
 }

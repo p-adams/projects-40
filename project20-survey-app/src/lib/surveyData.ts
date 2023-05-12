@@ -13,7 +13,11 @@ export const data: Array<Lib.SurveyCategory> = [
         id: `Demographics-gender#${nanoid()}`,
         name: "Gender",
         description: "Choose gender",
-        options: [],
+        options: [
+          { label: "Male", value: "male" },
+          { label: "Female", value: "Female" },
+          { label: "Other", value: "Other" },
+        ],
       },
       {
         id: `Demographics-age#${nanoid()}`,
@@ -25,6 +29,7 @@ export const data: Array<Lib.SurveyCategory> = [
         id: `Demographics-ethnicity#${nanoid()}`,
         name: "Ethnicity",
         description: "Choose Ethnicity",
+        allowMultiple: true,
         options: [],
       },
       {
@@ -54,9 +59,9 @@ export const data: Array<Lib.SurveyCategory> = [
     ],
   },
 
-  { id: nanoid(), name: "Content" },
+  { id: nanoid(), name: "Content", surveyQuestionGroups: [] },
   // example content categories { id: nanoid(), name: "Video" },
   // { id: nanoid(), name: "Photography" },
   // { id: nanoid(), name: "Social Media" },
-  { id: nanoid(), name: "Products" },
+  { id: nanoid(), name: "Products", surveyQuestionGroups: [] },
 ];
