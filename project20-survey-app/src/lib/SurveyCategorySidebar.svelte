@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let data: Array<Lib.SurveyCategory> = [];
+  export let data: Lib.SurveyCategories = [];
 </script>
 
 <div class="sidebar">

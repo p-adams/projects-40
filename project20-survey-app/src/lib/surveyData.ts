@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-export const data: Array<Lib.SurveyCategory> = [
+export const data: Lib.SurveyCategories = [
   {
     id: nanoid(),
     name: "Demographics",
@@ -13,8 +13,8 @@ export const data: Array<Lib.SurveyCategory> = [
         description: "Choose gender",
         options: [
           { label: "Male", value: "male" },
-          { label: "Female", value: "Female" },
-          { label: "Other", value: "Other" },
+          { label: "Female", value: "female" },
+          { label: "Other", value: "other" },
         ],
       },
       {

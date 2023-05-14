@@ -2,13 +2,14 @@ namespace Lib {
   type QuestionId = string;
   type Option = { label: string; value: string };
   type Options = Array<Option>;
-  // response can be array of Options when multiple responses are available
-  type SurveyQuestionResponse = Option | Options;
+
+  // response will be array of one or more Options (more when multiple responses are available)
 
   interface SurveyResponse {
     questionId: QuestionId;
-    questionResponse: SurveyQuestionResponse;
+    questionResponse: Options;
   }
+
   interface SurveyQuestionGroup {
     id: QuestionId;
     name: string;
@@ -23,4 +24,6 @@ namespace Lib {
     assets?: Array<string>;
     surveyQuestionGroups: Array<SurveyQuestionGroup>;
   }
+
+  type SurveyCategories = Array<SurveyCategory>;
 }
