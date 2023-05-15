@@ -8,7 +8,7 @@ export const data: Lib.SurveyCategories = [
       "Gender, age, ethnicity, location, education, maritial status, and stance",
     surveyQuestionGroups: [
       {
-        id: `Demographics-gender#${nanoid()}`,
+        id: "Demographics-gender",
         name: "Gender",
         description: "Choose gender",
         options: [
@@ -18,38 +18,49 @@ export const data: Lib.SurveyCategories = [
         ],
       },
       {
-        id: `Demographics-age#${nanoid()}`,
+        id: "Demographics-age",
         name: "Age",
         description: "Choose age",
-        options: [],
+        options: [
+          { label: "Under 18", value: "under_18" },
+          { label: "18-24 years old", value: "18_24" },
+          { label: "25-34 years old", value: "25_34" },
+          { label: "35-44 years old", value: "35_44" },
+          { label: "45-54 years old", value: "45_54" },
+          { label: "Over 55", value: "over_55" },
+        ],
       },
       {
-        id: `Demographics-ethnicity#${nanoid()}`,
+        id: "Demographics-ethnicity",
         name: "Ethnicity",
         description: "Choose Ethnicity",
         allowMultiple: true,
-        options: [],
+        options: [
+          { label: "White / Caucasian", value: "white_caucasian" },
+          { label: "Hispanic / Latino", value: "hispanic_latino" },
+          {
+            label: "Black / African American",
+            value: "black_african_american",
+          },
+          {
+            label: "Native American / American Indian",
+            value: "native_american_american_indian",
+          },
+          {
+            label: "Asian / Pacific Islander",
+            value: "asian_pacific_islander",
+          },
+          { label: "Other", value: "other" },
+        ],
       },
       {
-        id: `Demographics-location#${nanoid()}`,
+        id: "Demographics-location",
         name: "Location",
         description: "Choose Location",
         options: [],
       },
       {
-        id: `Demographics-education#${nanoid()}`,
-        name: "Education",
-        description: "Choose Education",
-        options: [],
-      },
-      {
-        id: `Demographics-maritial-status#${nanoid()}`,
-        name: "Maritial Status",
-        description: "Choose Maritial Status",
-        options: [],
-      },
-      {
-        id: `Demographics-stance#${nanoid()}`,
+        id: "Demographics-stance",
         name: "Stance",
         description: "Choose Stance",
         options: [],
