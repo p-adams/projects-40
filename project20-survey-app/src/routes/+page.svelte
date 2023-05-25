@@ -1,5 +1,6 @@
 <script lang="ts">
   import SurveyGroups from "$lib/SurveyGroups.svelte";
+  import surveyStore from "$lib/surveyStore.js";
   export let data;
 </script>
 
@@ -11,6 +12,7 @@
 {#each data.surveyData as $data}
   <SurveyGroups data={$data} />
 {/each}
+<button on:click={() => surveyStore.submitSurvey(data.userID)}>Submit</button>
 <p>
   Visit <a href="/">kit.svelte.dev</a> for more info
 </p>
