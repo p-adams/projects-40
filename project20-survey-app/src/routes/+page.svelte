@@ -8,7 +8,7 @@
   <title>Home</title>
   <meta name="Description" content="Home" />
 </svelte:head>
-<h1>State of Skateboarding 2023</h1>
+<h1>TBD</h1>
 {#each data.surveyData as $data}
   <SurveyGroups data={$data} />
 {/each}
