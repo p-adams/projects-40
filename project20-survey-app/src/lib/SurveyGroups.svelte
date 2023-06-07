@@ -20,49 +20,51 @@
     <h4>{data.description ?? ""}</h4>
     {JSON.stringify($surveyStore)}
     {#each data.surveyQuestionGroups as category}
-      <li>
-        <div class="category-name">{category.name}</div>
-        <ul>
-          {#each category.options as subcategory}
-            <li>
-              <div class="category-name sub">
-                {#if category.allowMultiple}
-                  <label for="subcategory">
-                    <input
-                      type="checkbox"
-                      checked={$surveyStore[category.name]?.includes(
-                        subcategory.value
-                      )}
-                      value={subcategory.value}
-                      on:change={(event) =>
-                        handleCheckboxChange(
-                          event,
-                          category.name,
+      {#if category.name}
+        <li>
+          <div class="category-name">{category.name}</div>
+          <ul>
+            {#each category.options as subcategory}
+              <li>
+                <div class="category-name sub">
+                  {#if category.allowMultiple}
+                    <label for="subcategory">
+                      <input
+                        type="checkbox"
+                        checked={$surveyStore[category.name]?.includes(
                           subcategory.value
                         )}
-                    />
-                    {subcategory.label}
-                  </label>
-                {:else}
-                  <label for="subcategory">
-                    <input
-                      type="radio"
-                      bind:group={$surveyStore[category.name]}
-                      value={subcategory.value}
-                      on:change={() =>
-                        surveyStore.updateSurvey(
-                          category.name,
-                          subcategory.value
-                        )}
-                    />
-                    {subcategory.label}
-                  </label>
-                {/if}
-              </div>
-            </li>
-          {/each}
-        </ul>
-      </li>
+                        value={subcategory.value}
+                        on:change={(event) =>
+                          handleCheckboxChange(
+                            event,
+                            category.name,
+                            subcategory.value
+                          )}
+                      />
+                      {subcategory.label}
+                    </label>
+                  {:else}
+                    <label for="subcategory">
+                      <input
+                        type="radio"
+                        bind:group={$surveyStore[category.name]}
+                        value={subcategory.value}
+                        on:change={() =>
+                          surveyStore.updateSurvey(
+                            category.name,
+                            subcategory.value
+                          )}
+                      />
+                      {subcategory.label}
+                    </label>
+                  {/if}
+                </div>
+              </li>
+            {/each}
+          </ul>
+        </li>
+      {/if}
     {/each}
   </div>
 </section>
