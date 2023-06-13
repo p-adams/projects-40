@@ -4,8 +4,7 @@ export const data: Lib.SurveyCategories = [
   {
     id: nanoid(),
     name: "Demographics",
-    description:
-      "Gender, age, ethnicity, location, education, maritial status, and stance",
+    description: "Gender, age, ethnicity, location,  maritial status",
     surveyQuestionGroups: [
       {
         id: "Demographics-gender",
@@ -74,7 +73,41 @@ export const data: Lib.SurveyCategories = [
 
   {
     id: nanoid(),
-    name: "",
+    name: "Lodging",
+    surveyQuestionGroups: [
+      {
+        id: "",
+        name: "",
+        description: "",
+        allowMultiple: true,
+        options: [
+          { label: "", value: "" },
+
+          { label: "Other", value: "other" },
+        ],
+      },
+    ],
+  },
+  {
+    id: nanoid(),
+    name: "Food",
+    surveyQuestionGroups: [
+      {
+        id: "",
+        name: "",
+        description: "",
+        allowMultiple: true,
+        options: [
+          { label: "", value: "" },
+
+          { label: "Other", value: "other" },
+        ],
+      },
+    ],
+  },
+  {
+    id: nanoid(),
+    name: "Attractions",
     surveyQuestionGroups: [
       {
         id: "",
