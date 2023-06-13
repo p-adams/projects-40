@@ -22,7 +22,8 @@
     {#each data.surveyQuestionGroups as category}
       {#if category.name}
         <li>
-          <div class="category-name">{category.name}</div>
+          <h3 class="category-name">{category.name}</h3>
+          <p class="category-description">{category.description}</p>
           <ul>
             {#each category.options as subcategory}
               <li>

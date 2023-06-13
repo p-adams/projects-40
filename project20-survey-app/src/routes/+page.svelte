@@ -11,7 +11,7 @@
 </svelte:head>
 <main>
   <section>
-    <h1>Bedrock Tours</h1>
+    <h1>Stone Age Adventures Extreme Excursion</h1>
     <img src={bedrock} alt="Bedrock town" />
   </section>
 

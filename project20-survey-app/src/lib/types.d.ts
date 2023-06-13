@@ -1,6 +1,6 @@
 namespace Lib {
   type QuestionId = string;
-  type Option = { label: string; value: string };
+  type Option = { label: string; value: string; specifyText?: string };
   type Options = Array<Option>;
 
   // response will be array of one or more Options (more when multiple responses are available)

@@ -70,20 +70,35 @@ export const data: Lib.SurveyCategories = [
       },
     ],
   },
-
   {
     id: nanoid(),
-    name: "Lodging",
+    name: "Accommodations",
     surveyQuestionGroups: [
       {
-        id: "",
-        name: "",
-        description: "",
-        allowMultiple: true,
-        options: [
-          { label: "", value: "" },
+        id: "Accommodations-satisfaction",
+        name: "Satisfaction",
+        description:
+          "How would you rate the accommodations provided by Stone Age Adventures Extreme Excursions?",
 
-          { label: "Other", value: "other" },
+        options: [
+          { label: "Excellent", value: "excellent" },
+          { label: "Good", value: "good" },
+          { label: "Average", value: "average" },
+          { label: "Poor", value: "poor" },
+        ],
+      },
+      {
+        id: "Accommodations-experience",
+        name: "Accommodation and Attractions",
+        description:
+          "Did you find the Stone Age-themed accommodations and attractions to be a fantastically fun and unique experience?",
+
+        options: [
+          { label: "Yes, absolutely!", value: "yes_x" },
+          { label: "Yes, to some extend", value: "yes" },
+          { label: "Neutral", value: "neutral" },
+          { label: "Not really", value: "no" },
+          { label: "No, not at all", value: "no_x" },
         ],
       },
     ],
@@ -93,14 +108,16 @@ export const data: Lib.SurveyCategories = [
     name: "Food",
     surveyQuestionGroups: [
       {
-        id: "",
-        name: "",
-        description: "",
-        allowMultiple: true,
+        id: "Food-satisfaction",
+        name: "Variety and Quality of Food",
+        description:
+          "How satisfied were you with the variety and quality of food options available at Stone Age Adventures Extreme Excursions?",
         options: [
-          { label: "", value: "" },
-
-          { label: "Other", value: "other" },
+          { label: "Very satisfied", value: "very_satisfied" },
+          { label: "Satisfied", value: "satisfied" },
+          { label: "Neutral", value: "neutral" },
+          { label: "Dissatisfied", value: "dissatisfied" },
+          { label: "Very Dissatisfied", value: "very_dissatisfied" },
         ],
       },
     ],
@@ -110,14 +127,57 @@ export const data: Lib.SurveyCategories = [
     name: "Attractions",
     surveyQuestionGroups: [
       {
-        id: "",
-        name: "",
-        description: "",
+        id: "Attractions-general",
+        name: "Stone Age Attractions ",
+        description:
+          "Which wild and wacky Stone Age attraction did you enjoy the most during your visit? (Please select all that apply)",
         allowMultiple: true,
         options: [
-          { label: "", value: "" },
+          { label: "Fred's Dino Safari Expedition", value: "expedition" },
+          {
+            label: "Wilma's Rock 'n' Roll Roller Coaster Chaos",
+            value: "coaster",
+          },
+          { label: "Barney's Prehistoric Bowling Bonanza", value: "bowling" },
+          { label: "Pebbles' Radical Raptor Raceway", value: "race" },
+          { label: "Other", value: "other", specifyText: "" },
+        ],
+      },
+      {
+        id: "Attractions-amenities",
+        name: "Amenities",
+        description:
+          "Which of the following quirky amenities at Stone Age Adventures Extreme Excursions did you find most appealing?",
+        allowMultiple: true,
+        options: [
+          { label: "Caveman-style cave pool", value: "pool" },
+          { label: "Flintstone family-themed treehouses", value: "treehouse" },
+          { label: "T-Rex feeding frenzy exhibit", value: "exhibit" },
+          {
+            label: "Rock 'n' Roll Diner with a prehistoric twist",
+            value: "twist",
+          },
+          { label: "None of the above", value: "other", specifyText: "" },
+        ],
+      },
+    ],
+  },
+  {
+    id: nanoid(),
+    name: "General",
+    surveyQuestionGroups: [
+      {
+        id: "General-recommend",
+        name: "Recommendations",
+        description:
+          "How likely are you to recommend Stone Age Adventures Extreme Excursions to a friend or family member?",
 
-          { label: "Other", value: "other" },
+        options: [
+          { label: "Absolutely, they'd love it!", value: "yes_x" },
+          { label: "Likely", value: "yes" },
+          { label: "Neutral", value: "neutral" },
+          { label: "Unlikely", value: "no" },
+          { label: "No way, it's too wild for them!", value: "no_x" },
         ],
       },
     ],
