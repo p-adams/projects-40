@@ -11,9 +11,13 @@ function updateSurvey(key: string, value: string) {
 }
 
 function submitSurvey(userID: string | undefined) {
-  // TODO: commit to DB
   surveyStore.subscribe((store) => {
     console.log(store, userID);
+    const submission = {
+      userID,
+      ...store,
+    };
+    // TODO: commit to DB
   });
 }
 
