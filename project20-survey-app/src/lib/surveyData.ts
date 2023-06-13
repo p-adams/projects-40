@@ -120,6 +120,19 @@ export const data: Lib.SurveyCategories = [
           { label: "Very Dissatisfied", value: "very_dissatisfied" },
         ],
       },
+      {
+        id: "Food-restaurants",
+        name: "Restaurants",
+        description:
+          "Which Stone Age-themed restaurant or food outlet did you enjoy the most for its unique culinary experience?",
+        options: [
+          { label: "The Bronto Burger Bar", value: "bronto" },
+          { label: "The Caveman's Cave Grill", value: "cave" },
+          { label: "The Pterodactyl Pizza Parlor", value: "pizza" },
+          { label: "The Sabertooth Snack Shack", value: "snack" },
+          { label: "Other", value: "other", specifyText: "" },
+        ],
+      },
     ],
   },
   {
