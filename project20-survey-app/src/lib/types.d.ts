@@ -5,9 +5,9 @@ namespace Lib {
 
   // response will be array of one or more Options (more when multiple responses are available)
 
-  interface SurveyResponse {
-    questionId: QuestionId;
-    questionResponse: Options;
+  interface SurveyResult {
+    totalResponses: number;
+    [key: string]: any;
   }
 
   interface SurveyQuestionGroup {

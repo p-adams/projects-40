@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
-import { MOCK_SURVEY_RESPONSES } from "./surveyData";
+import { MOCK_SURVEY_RESPONSES, data } from "./surveyData";
+import { calculateSurveyResults } from "./calculateSurveyResults";
 
 const surveyStore = writable<{ [key: string]: any }>({});
 
@@ -13,6 +14,7 @@ function updateSurvey(key: string, value: string) {
 
 function submitSurvey(userID: string | undefined) {
   surveyStore.subscribe((store) => {
+    console.log(calculateSurveyResults(MOCK_SURVEY_RESPONSES, data));
     console.log(store, userID);
     const submission = {
       userID,
@@ -20,12 +22,6 @@ function submitSurvey(userID: string | undefined) {
     };
     // TODO: commit to DB
   });
-}
-// TODO: implement function to calculate survey results
-function surveyResults(
-  _surveyResponses: Array<{ [key: string]: string | Array<string> }>
-) {
-  const data = MOCK_SURVEY_RESPONSES.map((response) => {});
 }
 
 export default {

@@ -199,6 +199,7 @@ export const data: Lib.SurveyCategories = [
 
 export const MOCK_SURVEY_RESPONSES = [
   {
+    userId: "0",
     Gender: "male",
     Age: "under_18",
     Ethnicity: ["white_caucasian"],
@@ -212,6 +213,7 @@ export const MOCK_SURVEY_RESPONSES = [
     Recommendations: "yes_x",
   },
   {
+    userId: "1",
     Recommendations: "yes",
     Amenities: ["exhibit", "twist"],
     "Stone Age Attractions ": ["expedition"],
@@ -225,6 +227,7 @@ export const MOCK_SURVEY_RESPONSES = [
     Gender: "male",
   },
   {
+    userId: "2",
     Gender: "female",
     Age: "25_34",
     Ethnicity: ["black_african_american"],
