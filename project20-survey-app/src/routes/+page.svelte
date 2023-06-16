@@ -1,8 +1,15 @@
 <script lang="ts">
   import SurveyGroups from "$lib/SurveyGroups.svelte";
   import surveyStore from "$lib/surveyStore.js";
+  import resultStore from "$lib/resultStore";
+  import { afterUpdate } from "svelte";
   import bedrock from "../assets/bedrock.png";
   export let data;
+  afterUpdate(() => {
+    // TODO: async load responses in submitSurvey
+    resultStore.loadResponses();
+    console.log($resultStore);
+  });
 </script>
 
 <svelte:head>
