@@ -11,7 +11,6 @@
 <main>
   <section>
     <h1>Survey Results</h1>
-    <div>Coming Soon!</div>
     {#each data.surveyData as $data}
       <ResultGroups data={$data} responses={data.responses} />
     {/each}
