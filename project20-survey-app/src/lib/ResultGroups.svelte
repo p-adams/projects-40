@@ -1,6 +1,7 @@
 <script lang="ts">
   export let data: Lib.SurveyCategory;
   export let responses: Lib.SurveyResult;
+  const categoryName = (name: string) => name.replaceAll(/\s/g, "");
 </script>
 
 <section>
@@ -11,11 +12,14 @@
       {#if category.name}
         <li>
           <h3 class="category-name">{category.name}</h3>
-          <p class="category-description">{category.description}</p>
+
           <ul>
             {#each category.options as subcategory}
-              <li>
+              <li class="result-item">
                 <div class="category-name sub">{subcategory.label}</div>
+                <div class="score">
+                  {responses[categoryName(category.name)][subcategory.value]}
+                </div>
               </li>
             {/each}
           </ul>
@@ -24,3 +28,12 @@
     {/each}
   </div>
 </section>
+
+<style>
+  .result-item {
+    display: flex;
+  }
+  .score {
+    margin-left: 10px;
+  }
+</style>
