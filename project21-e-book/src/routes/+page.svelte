@@ -1,11 +1,5 @@
 <script lang="ts">
-  import { afterUpdate } from "svelte";
-
   export let data;
-  afterUpdate(() => {
-    console.log(data);
-  });
-  console.log(import.meta.env.VITE_ENDPOINT);
 </script>
 
 <svelte:head>
@@ -17,12 +11,24 @@
   <h1>E Book</h1>
   <div class="Main-book-list">
     <ul>
-      {#each data.bookData.results as result}
-        <li class="Book-list-item">{result.id} - {result.title}</li>
+      {#each data.results as result}
+        <li class="Item--book-result">
+          <div class="Item--primary">
+            <span class="Item--title">{result.title}</span>
+            <ul class="Item--authors">
+              {#each result.authors as author}
+                <li>{author.name}</li>
+              {/each}
+            </ul>
+          </div>
+        </li>
       {/each}
     </ul>
   </div>
 </section>
 
 <style>
+  .Item--title {
+    font-weight: bold;
+  }
 </style>
