@@ -17,9 +17,23 @@
             <span class="Item--title">{result.title}</span>
             <ul class="Item--authors">
               {#each result.authors as author}
-                <li>{author.name}</li>
+                <li>
+                  {author.name} ({author.birth_year} - {author.death_year}) Age {author.death_year -
+                    author.birth_year}
+                </li>
               {/each}
             </ul>
+          </div>
+          <div class="Item--secondary">
+            <div><img src={result.formats["image/jpeg"]} alt="" /></div>
+            <div>download links table</div>
+          </div>
+          <div class="Item--tertiary">
+            <div>bookshelves</div>
+            <div>languages</div>
+            <div>subjects</div>
+            <div>translators</div>
+            <div>download count</div>
           </div>
         </li>
       {/each}
