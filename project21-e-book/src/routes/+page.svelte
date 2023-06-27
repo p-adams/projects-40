@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Pagination from "$lib/Pagination.svelte";
+
   export let data;
   function formatData(format: any) {
     return Object.keys(format);
@@ -9,6 +11,9 @@
   ): string | undefined {
     return format[key];
   }
+  function handlePageChange(page: number) {
+    console.log(page);
+  }
 </script>
 
 <svelte:head>
@@ -18,6 +23,7 @@
 
 <section>
   <h1>E Book</h1>
+  <Pagination on:onPageChange={(e) => handlePageChange(e.detail.currentPage)} />
   <div class="Main-book-list">
     <ul>
       {#each data.results as result}
