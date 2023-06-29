@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import Pagination from "$lib/Pagination.svelte";
 
   export let data;
+  $: currentPage = 1;
   function formatData(format: any) {
     return Object.keys(format);
   }
@@ -12,7 +15,8 @@
     return format[key];
   }
   function handlePageChange(page: number) {
-    console.log(page);
+    currentPage = page;
+    goto(`?page=${currentPage.toString()}`);
   }
 </script>
 
@@ -23,7 +27,11 @@
 
 <section>
   <h1>E Book</h1>
-  <Pagination on:onPageChange={(e) => handlePageChange(e.detail.currentPage)} />
+  <Pagination
+    {currentPage}
+    totalPages={2218}
+    on:onPageChange={(e) => handlePageChange(e.detail.currentPage)}
+  />
   <div class="Main-book-list">
     <ul>
       {#each data.results as result}

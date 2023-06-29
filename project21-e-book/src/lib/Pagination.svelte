@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  export let currentPage = 1;
-  export let totalPages = 10; // mock default
+  export let currentPage = 0;
+  export let totalPages = 0;
   let inputPage = "1";
 
   function handlePageSubmit(e: { preventDefault: () => void }) {
