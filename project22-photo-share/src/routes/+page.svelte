@@ -1,10 +1,8 @@
 <script lang="ts">
-  import photo from "$lib/assets/photo.png";
-  import { afterUpdate, onMount } from "svelte";
 </script>
 
 <h1>Photo Share</h1>
-<img src={photo} alt="stock" />
+
 <p>
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 </p>
