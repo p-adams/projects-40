@@ -1,6 +1,9 @@
 <script lang="ts">
   import photo from "$lib/assets/photo.png";
-  let pic = null;
+  import { processPhoto } from "$lib/photo";
+  import { afterUpdate, onMount } from "svelte";
+  let pic: HTMLImageElement | null = null;
+  onMount(() => processPhoto(pic));
 </script>
 
 <h1>Photo Share</h1>
