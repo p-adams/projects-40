@@ -9,8 +9,4 @@
 </p>
 
 <style>
-  img {
-    width: 300px;
-    height: 300px;
-  }
 </style>
