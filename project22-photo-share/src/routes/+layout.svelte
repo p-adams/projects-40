@@ -11,3 +11,7 @@
   </main>
   <footer>footer</footer>
 </div>
+
+<style>
+  @import "../app.css";
+</style>

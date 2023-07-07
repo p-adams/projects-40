@@ -1,14 +1,24 @@
 <script lang="ts">
 </script>
 
-<div>
-  <section>
-    <h2>card title</h2>
-    <div class="card-content">
-      <img src="" alt="" />
-      <div class="card-text">
-        <textarea />
-      </div>
+<div class="photo-card">
+  <h2>card title</h2>
+  <div class="card-content">
+    <img src="https://via.placeholder.com/300" alt="Card" />
+    <div class="card-actions">
+      <textarea />
+      <button>Add</button>
     </div>
-  </section>
+  </div>
 </div>
+
+<style>
+  .photo-card {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    outline: 1px solid gray;
+  }
+</style>
