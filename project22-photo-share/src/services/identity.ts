@@ -1,44 +1,5 @@
-class User {
-  #username!: string;
-  #password!: string;
-
-  public set username(v: string) {
-    this.#username = v;
-  }
-
-  public get username(): string {
-    return this.#username;
-  }
-
-  public set password(v: string) {
-    this.#password = v;
-  }
-
-  public get password(): string {
-    return this.#password;
-  }
-}
-
-class UserDatabase {
-  users: User[];
-
-  constructor() {
-    this.users = [];
-  }
-
-  addUser(user: User): void {
-    this.users.push(user);
-  }
-
-  findUserByUsername(username: string): User | null {
-    for (const user of this.users) {
-      if (user.username === username) {
-        return user;
-      }
-    }
-    return null;
-  }
-}
+import { User } from "../data/user";
+import { UserDatabase } from "../data/userDb";
 
 class IdentityService {
   userDatabase: UserDatabase;
