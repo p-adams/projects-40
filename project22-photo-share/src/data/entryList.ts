@@ -15,7 +15,7 @@ export class EntryList {
     this.entries = this.entries.filter((Entry) => Entry.id !== id);
   }
 
-  getentries(): Entry[] {
+  getEntries(): Entry[] {
     return this.entries;
   }
 }
