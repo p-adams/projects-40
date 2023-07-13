@@ -9,6 +9,9 @@ export class UserDatabase {
   addUser(user: User): void {
     this.users.push(user);
   }
+  removeUser(user: User): void {
+    this.users = this.users.filter(($user) => $user.username === user.username);
+  }
 
   findUserByUsername(username: string): User | null {
     for (const user of this.users) {

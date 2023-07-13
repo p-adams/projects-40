@@ -1,7 +1,8 @@
 import { User } from "../data/user";
 import { UserDatabase } from "../data/userDb";
+import { EntryService } from "./entry";
 
-class IdentityService {
+export class IdentityService {
   userDatabase: UserDatabase;
 
   constructor() {
@@ -15,10 +16,12 @@ class IdentityService {
     }
 
     // Create a new User object with the provided username and password
+
+    const entryListService = new EntryService();
     const newUser = new User();
     newUser.username = username;
     newUser.password = password;
-
+    newUser.entryListId = entryListService.createEntryList();
     // Add the new user to the database
     this.userDatabase.addUser(newUser);
 
