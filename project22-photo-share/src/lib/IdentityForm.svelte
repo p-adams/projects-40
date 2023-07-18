@@ -2,11 +2,14 @@
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher<Lib.EventPayload>();
-  let username = "";
-  let password = "";
+  export let username = "";
+  export let password = "";
 </script>
 
-<form>
+<form
+  on:submit|preventDefault={(e) =>
+    dispatch("identitySubmit", { data: { username, password } })}
+>
   <label>
     Name
     <input
@@ -14,7 +17,7 @@
       bind:value={username}
       on:keyup={(e) =>
         dispatch("input", {
-          inputData: { field: e.currentTarget.name, value: username },
+          data: { field: e.currentTarget.name, value: username },
         })}
     />
   </label>
@@ -25,8 +28,9 @@
       bind:value={password}
       on:keyup={(e) =>
         dispatch("input", {
-          inputData: { field: e.currentTarget.name, value: password },
+          data: { field: e.currentTarget.name, value: password },
         })}
     />
   </label>
+  <button type="submit">Submit</button>
 </form>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import IdentityElement from "$lib/IdentityElement.svelte";
+  import IdentityForm from "$lib/IdentityForm.svelte";
   import PhotoCard from "$lib/PhotoCard.svelte";
   export let data;
   const identity: { [key: string]: string } = {
@@ -10,11 +10,17 @@
     const { field, value } = input;
     identity[field] = value;
   }
+  function handleSubmit(data: { username: string; password: string }) {
+    console.log(data);
+  }
 </script>
 
 <h1>Photo Share App</h1>
 <h2>Allowing users to create engaging visual stories</h2>
-<IdentityElement on:input={(e) => handleIdentityInput(e.detail.inputData)} />
+<IdentityForm
+  on:input={(e) => handleIdentityInput(e.detail.data)}
+  on:identitySubmit={(e) => handleSubmit(e.detail.data)}
+/>
 <div class="photo-grid">
   {#each data.stories as story}
     <PhotoCard />
