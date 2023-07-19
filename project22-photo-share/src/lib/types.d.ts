@@ -1,6 +1,12 @@
 declare namespace Lib {
   type EventPayload = {
-    identitySubmit: {
+    register: {
+      data: {
+        username: string;
+        password: string;
+      };
+    };
+    authenticate: {
       data: {
         username: string;
         password: string;

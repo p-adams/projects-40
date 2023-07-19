@@ -7,8 +7,9 @@
 
 <form
   on:submit|preventDefault={(e) =>
-    dispatch("identitySubmit", { data: { username, password } })}
+    dispatch("register", { data: { username, password } })}
 >
+  <h2>Create your account</h2>
   <label>
     Name
     <input

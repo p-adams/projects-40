@@ -1,5 +1,4 @@
 <script lang="ts">
-  import IdentityForm from "$lib/IdentityForm.svelte";
   import PhotoCard from "$lib/PhotoCard.svelte";
   export let data;
   const identity: { [key: string]: string } = {
@@ -15,12 +14,12 @@
   }
 </script>
 
+<!-- landing page -->
 <h1>Photo Share App</h1>
 <h2>Allowing users to create engaging visual stories</h2>
-<IdentityForm
-  on:input={(e) => handleIdentityInput(e.detail.data)}
-  on:identitySubmit={(e) => handleSubmit(e.detail.data)}
-/>
+<div>Already a member? <a href="/u/authenticate">Login</a></div>
+<div>Not a member? <a href="/u/register">Sign up</a></div>
+<!-- move to photo stories page -->
 <div class="photo-grid">
   {#each data.stories as story}
     <PhotoCard />
