@@ -34,3 +34,4 @@
   </label>
   <button type="submit">Submit</button>
 </form>
+<div>Not a member? <a href="/u/register">Register</a></div>

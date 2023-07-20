@@ -34,3 +34,4 @@
   </label>
   <button type="submit">Submit</button>
 </form>
+<div>Already a member? <a href="/u/authenticate">Login</a></div>
