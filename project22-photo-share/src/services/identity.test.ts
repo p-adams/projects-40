@@ -9,7 +9,7 @@ describe("IdentityService", () => {
       "john123",
       "password123"
     );
-    expect(registrationResult).toBe("User registered successfully.");
+    expect(registrationResult.msg).toBe("User registered successfully.");
   });
   it("#test registration failure", () => {
     const registrationResult = identityService.registerUser(
@@ -20,7 +20,7 @@ describe("IdentityService", () => {
       "john123",
       "password123"
     );
-    expect(registrationResult2).toBe("Username already taken.");
+    expect(registrationResult2.msg).toBe("Username already taken.");
   });
 
   it("#test authentication success", () => {
@@ -28,7 +28,7 @@ describe("IdentityService", () => {
       "john123",
       "password123"
     );
-    expect(authenticationResult).toBe("Authentication successful.");
+    expect(authenticationResult.msg).toBe("Authentication successful.");
   });
 
   it("#test authentication failure", () => {
@@ -36,6 +36,6 @@ describe("IdentityService", () => {
       "john1234",
       "password1234"
     );
-    expect(authenticationResult).toBe("Invalid username or password.");
+    expect(authenticationResult.msg).toBe("Invalid username or password.");
   });
 });

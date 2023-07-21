@@ -1,37 +1,33 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher<Lib.EventPayload>();
-  export let username = "";
-  export let password = "";
+  import me from "./stores/me";
+  let username = "";
+  let password = "";
+  let error: string | null = null;
+  function handleRegistration() {
+    const result = $me.registerUser(username, password);
+    username = "";
+    password = "";
+    if (!result.success) {
+      error = result.msg;
+      return;
+    }
+    // TODO: redirect to new user onboarding home
+  }
 </script>
 
-<form
-  on:submit|preventDefault={(e) =>
-    dispatch("register", { data: { username, password } })}
->
+{#if error}
+  <div class="error">{error}</div>
+{/if}
+<form on:submit|preventDefault={() => handleRegistration()}>
   <h2>Create your account</h2>
   <label>
     Name
-    <input
-      name="username"
-      bind:value={username}
-      on:keyup={(e) =>
-        dispatch("input", {
-          data: { field: e.currentTarget.name, value: username },
-        })}
-    />
+    <input name="username" bind:value={username} />
   </label>
   <label>
     Password
-    <input
-      name="password"
-      bind:value={password}
-      on:keyup={(e) =>
-        dispatch("input", {
-          data: { field: e.currentTarget.name, value: password },
-        })}
-    />
+    <input name="password" bind:value={password} />
   </label>
-  <button type="submit">Submit</button>
+  <button type="submit">Register</button>
 </form>
 <div>Already a member? <a href="/u/authenticate">Login</a></div>

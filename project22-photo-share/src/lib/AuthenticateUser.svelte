@@ -1,37 +1,32 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import me from "./stores/me";
   const dispatch = createEventDispatcher<Lib.EventPayload>();
-  export let username = "";
-  export let password = "";
+  let username = "";
+  let password = "";
+  let error: string | null = null;
+  function handleLogin() {
+    const result = $me.authenticateUser(username, password);
+    username = "";
+    password = "";
+    if (!result.success) {
+      error = result.msg;
+      return;
+    }
+    // TODO: redirect to new user onboarding home
+  }
 </script>
 
-<form
-  on:submit|preventDefault={(e) =>
-    dispatch("authenticate", { data: { username, password } })}
->
+<form on:submit|preventDefault={() => handleLogin()}>
   <h2>Welcome back</h2>
   <label>
     Name
-    <input
-      name="username"
-      bind:value={username}
-      on:keyup={(e) =>
-        dispatch("input", {
-          data: { field: e.currentTarget.name, value: username },
-        })}
-    />
+    <input name="username" bind:value={username} />
   </label>
   <label>
     Password
-    <input
-      name="password"
-      bind:value={password}
-      on:keyup={(e) =>
-        dispatch("input", {
-          data: { field: e.currentTarget.name, value: password },
-        })}
-    />
+    <input name="password" bind:value={password} />
   </label>
-  <button type="submit">Submit</button>
+  <button type="submit">Login</button>
 </form>
 <div>Not a member? <a href="/u/register">Register</a></div>
