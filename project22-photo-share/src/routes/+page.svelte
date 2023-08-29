@@ -29,7 +29,18 @@
 <style>
   .photo-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 767px) {
+    .photo-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .photo-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>
