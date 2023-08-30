@@ -22,7 +22,7 @@
 <!-- move to photo stories page -->
 <div class="photo-grid">
   {#each data.stories as story}
-    <PhotoCard />
+    <PhotoCard {story} />
   {/each}
 </div>
 

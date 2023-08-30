@@ -1,8 +1,9 @@
 <script lang="ts">
+  export let story: App.StoryData;
 </script>
 
 <div class="photo-card">
-  <h2>card title</h2>
+  <h2>{story.title}</h2>
   <div class="card-content">
     <img src="https://via.placeholder.com/300" alt="Card" />
     <div class="card-actions">
