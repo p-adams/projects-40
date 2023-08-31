@@ -4,7 +4,6 @@
 
   export let form;
   afterUpdate(() => {
-    console.log("form: ", form);
     if (form?.success) goto("/");
   });
 </script>

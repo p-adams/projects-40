@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { EntryList } from "../data/entryList";
 import { User } from "../data/user";
-import initIdentity from "./initIdentity";
+import { identityServiceInstance } from "./userIdentityService";
 
 export class EntryService {
   #entryLists!: Record<string, EntryList>;
@@ -21,7 +21,7 @@ export class EntryService {
   }
 
   createUserWithEntryList(stories: App.StoryData[]) {
-    const user = initIdentity.getUser();
+    const user = identityServiceInstance.getUser();
 
     if (user?.username) {
       const entryListId = this.createEntryList();

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import initIdentity from "../services/initIdentity";
 </script>
 
 <div>
@@ -9,6 +8,8 @@
         <li><a href="/">home</a></li>
       </ul>
     </nav>
+
+    <a href="/u/logout">Logout</a>
   </header>
   <main>
     <slot />

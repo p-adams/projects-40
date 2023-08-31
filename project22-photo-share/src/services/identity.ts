@@ -4,16 +4,16 @@ import { UserDatabase } from "../data/userDb";
 export class IdentityService {
   #userDatabase: UserDatabase;
   #me: User | null = null; // Initialize me as null to represent no logged-in user
-  static instance = null; // Static property to hold the single instance
+  static instance: IdentityService | null = null;
 
   constructor() {
+    this.#userDatabase = new UserDatabase();
     // Check if an instance already exists; if yes, return it
     if (IdentityService.instance) {
       return IdentityService.instance;
     }
 
     IdentityService.instance = this;
-    this.#userDatabase = new UserDatabase();
   }
 
   registerUser(
@@ -59,8 +59,18 @@ export class IdentityService {
   }
 
   // Method to log out the current user
-  logOut(): void {
-    this.#me = null;
+  logOut(): { success: boolean; msg: string } {
+    try {
+      if (this.#me) {
+        this.#userDatabase.removeUser(this.#me);
+        this.#me = null;
+        return { success: true, msg: "Logout successful." };
+      } else {
+        return { success: false, msg: "Logout unsuccessful." };
+      }
+    } catch (error) {
+      return { success: false, msg: "Logout unsuccessful due to an error." };
+    }
   }
 
   // Getter for the current user
