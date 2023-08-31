@@ -9,6 +9,14 @@
   });
 </script>
 
-<form method="POST">
-  <button>logout</button>
-</form>
+<section>
+  <h1>Are you sure you want to logout?</h1>
+  <div>
+    <form method="POST">
+      <button>Logout</button>
+    </form>
+    <form on:submit|preventDefault={() => goto("/")}>
+      <button type="submit">Cancel</button>
+    </form>
+  </div>
+</section>

@@ -10,8 +10,6 @@
 <!-- landing page -->
 <h1>Photo Share App</h1>
 <h2>Allowing users to create engaging visual stories</h2>
-<div>Already a member? <a href="/u/authenticate">Login</a></div>
-<div>Not a member? <a href="/u/register">Sign up</a></div>
 <!-- move to photo stories page -->
 <div class="photo-grid">
   {#each data?.entryData.stories as story}
