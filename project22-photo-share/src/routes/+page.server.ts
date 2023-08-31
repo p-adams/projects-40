@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { EntryList } from "../data/entryList";
 
 // You can use these objects as mock data for your application.
 
@@ -44,5 +45,9 @@ const STORIES: App.StoryData[] = [
 ];
 
 export function load() {
-  return { stories: STORIES };
+  const stories = new EntryList();
+  for (const story of STORIES) {
+    stories.addEntry(story);
+  }
+  return { stories: stories.getEntries() };
 }

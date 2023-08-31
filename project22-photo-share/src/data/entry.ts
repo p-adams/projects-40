@@ -1,12 +1,26 @@
-export class Entry {
+export interface EntryInterface {
+  id: string;
+  title: string;
+  description?: string;
+  img: string;
+}
+
+export class Entry implements EntryInterface {
   #id: string;
   #title: string;
   #description: string;
+  #img: string;
 
-  constructor(id: string, title: string, description: string = "") {
+  constructor(
+    id: string,
+    title: string,
+    description: string = "",
+    img: string
+  ) {
     this.#id = id;
     this.#title = title;
     this.#description = description;
+    this.#img = img;
   }
 
   get id(): string {
@@ -23,5 +37,13 @@ export class Entry {
 
   set description(value: string) {
     this.#description = value;
+  }
+
+  public get img(): string {
+    return this.#img;
+  }
+
+  public set img(v: string) {
+    this.#img = v;
   }
 }
