@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { IdentityService } from "./identity";
+import { UserDatabase } from "../data/userDb";
 
 describe("IdentityService", () => {
   const identityService = new IdentityService();

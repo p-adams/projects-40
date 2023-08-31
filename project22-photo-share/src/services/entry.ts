@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { EntryList } from "../data/entryList";
 import { User } from "../data/user";
+import type { EntryInterface } from "../data/entry";
 
 export class EntryService {
   #entryLists!: Record<string, EntryList>;

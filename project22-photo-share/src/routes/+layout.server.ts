@@ -1,9 +1,6 @@
-import { nanoid } from "nanoid";
-import { EntryList } from "../data/entryList";
-import initIdentity from "../services/initIdentity";
 import { EntryService } from "../services/entry";
-
-// You can use these objects as mock data for your application.
+import initIdentity from "../services/initIdentity";
+import { nanoid } from "nanoid";
 
 const STORIES: App.StoryData[] = [
   {
@@ -46,7 +43,7 @@ const STORIES: App.StoryData[] = [
   },
 ];
 
-/* export function load() {
+export function load() {
   const storyService = new EntryService();
   const user = initIdentity.getUser();
   let entryList = null;
@@ -57,6 +54,12 @@ const STORIES: App.StoryData[] = [
       entryList?.addEntry(story);
     }
   }
-
-  return { stories: entryList?.getEntries() ?? [] };
-}*/
+  return {
+    entryData: {
+      stories: entryList?.getEntries() ?? [],
+      user: {
+        username: user?.username,
+      },
+    },
+  };
+}

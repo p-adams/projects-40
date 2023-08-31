@@ -1,19 +1,9 @@
 <script lang="ts">
   import PhotoCard from "$lib/PhotoCard.svelte";
   export let data;
-  const identity: { [key: string]: string } = {
-    username: "",
-    password: "",
-  };
-  function handleIdentityInput(input: { field: string; value: string }) {
-    const { field, value } = input;
-    identity[field] = value;
-  }
-  function handleSubmit(data: { username: string; password: string }) {
-    console.log(data);
-  }
 </script>
 
+Hello: {data.entryData.user.username}!
 <!-- landing page -->
 <h1>Photo Share App</h1>
 <h2>Allowing users to create engaging visual stories</h2>
@@ -21,7 +11,7 @@
 <div>Not a member? <a href="/u/register">Sign up</a></div>
 <!-- move to photo stories page -->
 <div class="photo-grid">
-  {#each data.stories as story}
+  {#each data?.entryData.stories as story}
     <PhotoCard {story} />
   {/each}
 </div>

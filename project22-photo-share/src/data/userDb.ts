@@ -10,7 +10,7 @@ export class UserDatabase {
     this.users.push(user);
   }
   removeUser(user: User): void {
-    this.users = this.users.filter(($user) => $user.username === user.username);
+    this.users = this.users.filter(($user) => $user.username !== user.username);
   }
 
   findUserByUsername(username: string): User | null {

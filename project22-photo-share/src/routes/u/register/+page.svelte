@@ -1,5 +1,22 @@
 <script lang="ts">
-  import { IdentityForm } from "$lib/IdentityForm";
+  import { goto } from "$app/navigation";
+  import { afterUpdate } from "svelte";
+
+  export let form;
+  afterUpdate(() => {
+    if (form?.success) goto("/");
+  });
 </script>
 
-<IdentityForm.Register />
+<form method="POST">
+  <label>
+    Email
+    <input name="username" />
+  </label>
+  <label>
+    Password
+    <input name="password" />
+  </label>
+  <button>Register</button>
+</form>
+<div>Already a member? <a href="/u/authenticate">Login</a></div>
