@@ -4,10 +4,11 @@ export class UserDatabase {
 
   constructor() {
     this.users = [];
+    console.log("mount");
   }
 
   addUser(user: User): void {
-    this.users.push(user);
+    this.users = [...this.users, user];
   }
   removeUser(user: User): void {
     this.users = this.users.filter(($user) => $user.username !== user.username);

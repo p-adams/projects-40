@@ -1,8 +1,12 @@
+<script lang="ts">
+  import initIdentity from "../services/initIdentity";
+</script>
+
 <div>
   <header>
     <nav>
       <ul>
-        <li />
+        <li><a href="/">home</a></li>
       </ul>
     </nav>
   </header>

@@ -8,6 +8,6 @@ export const actions = {
     const result = initIdentity.authenticateUser(username, password);
     if (result.success) {
     }
-    console.log("request", result);
+    return result;
   },
 };

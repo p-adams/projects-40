@@ -1,10 +1,11 @@
 import { User } from "../data/user";
 import { UserDatabase } from "../data/userDb";
-import { EntryService } from "./entry";
 
 export class IdentityService {
   #userDatabase: UserDatabase;
-  #me: User;
+  #me: User | null = null; // Initialize me as null to represent no logged-in user
+  static instance = null; // Static property to hold the single instance
+
   constructor() {
     // Check if an instance already exists; if yes, return it
     if (IdentityService.instance) {
@@ -12,7 +13,6 @@ export class IdentityService {
     }
 
     IdentityService.instance = this;
-    this.#me = new User();
     this.#userDatabase = new UserDatabase();
   }
 
@@ -25,13 +25,17 @@ export class IdentityService {
       return { success: false, msg: "Username already taken." };
     }
 
-    // Crate a new User object with the provided username and password
+    // Create a new User object with the provided username and password
+    const newUser = new User();
+    newUser.username = username;
+    newUser.password = password;
+    newUser.entryListId = "";
 
-    this.me!.username = username;
-    this.me!.password = password;
-    this.me!.entryListId = "";
     // Add the new user to the database
-    this.#userDatabase.addUser(this.me!);
+    this.#userDatabase.addUser(newUser);
+
+    // Set the current user after successful registration
+    this.#me = newUser;
 
     return { success: true, msg: "User registered successfully." };
   }
@@ -41,23 +45,26 @@ export class IdentityService {
     username: string,
     password: string
   ): { success: boolean; msg: string } {
-    // Find the user in the database by username
     const user = this.#userDatabase.findUserByUsername(username);
 
     // Check if the user exists and the password matches
     if (user !== null && user.password === password) {
+      // Set the current user after successful authentication
+      this.#me = user;
+
       return { success: true, msg: "Authentication successful." };
     } else {
       return { success: false, msg: "Invalid username or password." };
     }
   }
+
+  // Method to log out the current user
+  logOut(): void {
+    this.#me = null;
+  }
+
+  // Getter for the current user
   getUser(): User | null {
     return this.#me;
-  }
-  get me(): User | null {
-    return this.#me;
-  }
-  set me(v: User) {
-    this.#me = v;
   }
 }
