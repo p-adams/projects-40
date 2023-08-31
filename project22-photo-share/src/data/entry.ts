@@ -1,11 +1,11 @@
-export interface EntryInterface {
+export interface EntryData {
   id: string;
   title: string;
   description?: string;
   img: string;
 }
 
-export class Entry implements EntryInterface {
+export class Entry implements EntryData {
   #id: string;
   #title: string;
   #description: string;

@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 
-import type { Entry, EntryInterface } from "./data/entry";
+import type { Entry, EntryData } from "./data/entry";
 
 // for information about these interfaces
 declare global {
@@ -9,7 +9,7 @@ declare global {
     // interface Locals {}
     // interface PageData {}
     // interface Platform {}
-    interface StoryData extends EntryInterface {
+    interface StoryData extends EntryData {
       id: string;
       title: string;
       img: string;

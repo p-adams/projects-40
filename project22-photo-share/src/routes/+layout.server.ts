@@ -1,5 +1,4 @@
 import { EntryService } from "../services/entry";
-import initIdentity from "../services/initIdentity";
 import { nanoid } from "nanoid";
 
 const STORIES: App.StoryData[] = [
@@ -45,18 +44,13 @@ const STORIES: App.StoryData[] = [
 
 export function load() {
   const storyService = new EntryService();
-  const user = initIdentity.getUser();
-  let entryList = null;
-  if (user?.username) {
-    user!.entryListId = storyService.createEntryList();
-    entryList = storyService.getEntryList(user?.entryListId!);
-    for (const story of STORIES) {
-      entryList?.addEntry(story);
-    }
-  }
+  const user = storyService.createUserWithEntryList(STORIES);
+
   return {
     entryData: {
-      stories: entryList?.getEntries() ?? [],
+      stories: user?.entryListId
+        ? storyService.getEntryList(user.entryListId)?.getEntries() ?? []
+        : [],
       user: {
         username: user?.username,
       },

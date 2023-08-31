@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { EntryList } from "../data/entryList";
 import { User } from "../data/user";
-import type { EntryInterface } from "../data/entry";
+import initIdentity from "./initIdentity";
 
 export class EntryService {
   #entryLists!: Record<string, EntryList>;
@@ -18,6 +18,23 @@ export class EntryService {
   }
   removeEntryList(entryListId: string): void {
     delete this.#entryLists[entryListId];
+  }
+
+  createUserWithEntryList(stories: App.StoryData[]) {
+    const user = initIdentity.getUser();
+
+    if (user?.username) {
+      const entryListId = this.createEntryList();
+      const entryList = this.getEntryList(entryListId);
+
+      for (const story of stories) {
+        entryList?.addEntry(story);
+      }
+
+      user.entryListId = entryListId;
+    }
+
+    return user;
   }
 }
 

@@ -1,13 +1,13 @@
-import type { Entry, EntryInterface } from "./entry";
+import type { Entry, EntryData } from "./entry";
 
 export class EntryList {
-  private entries: EntryInterface[];
+  private entries: EntryData[];
 
   constructor() {
     this.entries = [];
   }
 
-  addEntry(entry: EntryInterface): void {
+  addEntry(entry: EntryData): void {
     this.entries.push(entry);
   }
 
@@ -15,7 +15,7 @@ export class EntryList {
     this.entries = this.entries.filter((Entry) => Entry.id !== id);
   }
 
-  getEntries(): EntryInterface[] {
+  getEntries(): EntryData[] {
     return this.entries;
   }
 }

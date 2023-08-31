@@ -3,7 +3,10 @@
   export let data;
 </script>
 
-Hello: {data.entryData.user.username}!
+{#if data.entryData.user.username}
+  Hello: {data.entryData.user.username}!
+{/if}
+
 <!-- landing page -->
 <h1>Photo Share App</h1>
 <h2>Allowing users to create engaging visual stories</h2>
