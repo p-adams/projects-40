@@ -33,7 +33,10 @@ export class EntryService {
 
       user.entryListId = entryListId;
     }
+  }
 
-    return user;
+  addEntryItem(entryListId: string) {
+    const entryList = this.getEntryList(entryListId);
+    entryList?.addEntry({ id: "1", title: "foo", description: "bar", img: "" });
   }
 }

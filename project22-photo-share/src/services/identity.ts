@@ -1,5 +1,6 @@
 import { User } from "../data/user";
 import { UserDatabase } from "../data/userDb";
+import { STORIES, entryListInstance } from "./entryListInstance";
 
 export class IdentityService {
   #userDatabase: UserDatabase;
@@ -36,7 +37,8 @@ export class IdentityService {
 
     // Set the current user after successful registration
     this.#me = newUser;
-
+    // TODO: clean up how entryList instance is associated w/identityInstance
+    entryListInstance.createUserWithEntryList(STORIES);
     return { success: true, msg: "User registered successfully." };
   }
 

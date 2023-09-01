@@ -4,7 +4,6 @@ export class UserDatabase {
 
   constructor() {
     this.users = [];
-    console.log("mount");
   }
 
   addUser(user: User): void {

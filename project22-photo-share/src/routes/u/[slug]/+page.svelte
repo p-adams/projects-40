@@ -1,9 +1,13 @@
 <script lang="ts">
   import PhotoCard from "$lib/PhotoCard.svelte";
+
   export let data;
 </script>
 
 <section>
+  <form method="POST">
+    <button>add</button>
+  </form>
   <h1>homepage</h1>
   <div class="photo-grid">
     {#each data?.entryData.stories as story}
