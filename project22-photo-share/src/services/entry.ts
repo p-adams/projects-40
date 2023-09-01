@@ -37,11 +37,3 @@ export class EntryService {
     return user;
   }
 }
-
-// example
-const entryListService = new EntryService();
-const user = new User();
-user.username = "john123";
-user.password = "password123";
-user.entryListId = entryListService.createEntryList();
-const userEntryList = entryListService.getEntryList(user.entryListId);
