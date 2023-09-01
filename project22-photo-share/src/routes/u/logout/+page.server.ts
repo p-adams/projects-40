@@ -4,7 +4,6 @@ import { identityServiceInstance } from "../../../services/userIdentityService.j
 
 export const actions = {
   default: async (event) => {
-    console.log("event: ", event);
     const result = identityServiceInstance.logOut();
     return result;
   },
