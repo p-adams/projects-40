@@ -11,6 +11,8 @@ export const actions = {
     const password = data.get("password") as string;
     const result = identityServiceInstance.registerUser(username, password);
     if (result.success) {
+      // initialize entryList
+      entryListInstance.createUserWithEntryList(STORIES);
     }
     return result;
   },
