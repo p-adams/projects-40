@@ -62,7 +62,6 @@ export class IdentityService {
   logOut(): { success: boolean; msg: string } {
     try {
       if (this.#me) {
-        this.#userDatabase.removeUser(this.#me);
         this.#me = null;
         return { success: true, msg: "Logout successful." };
       } else {
