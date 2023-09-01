@@ -17,3 +17,7 @@ h3 {
   margin: 0;
   padding: 0;
 }
+
+.error-message-text {
+  color: red;
+}
