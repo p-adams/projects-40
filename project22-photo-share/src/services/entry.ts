@@ -1,6 +1,5 @@
 import { nanoid } from "nanoid";
 import { EntryList } from "../data/entryList";
-import { User } from "../data/user";
 import { identityServiceInstance } from "./userIdentityService";
 
 export class EntryService {
@@ -35,7 +34,8 @@ export class EntryService {
     }
   }
 
-  addEntryItem(entryListId: string) {
+  addEntryItem() {
+    const entryListId = identityServiceInstance.getUser()!.entryListId;
     const entryList = this.getEntryList(entryListId);
     entryList?.addEntry({ id: "1", title: "foo", description: "bar", img: "" });
   }

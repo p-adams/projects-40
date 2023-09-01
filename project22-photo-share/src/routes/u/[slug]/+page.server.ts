@@ -4,9 +4,7 @@ import { identityServiceInstance } from "../../../services/userIdentityService.j
 /** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ request }) => {
-    const result = entryListInstance.addEntryItem(
-      identityServiceInstance.getUser()!.entryListId
-    );
+    const result = entryListInstance.addEntryItem();
     return result;
   },
 };

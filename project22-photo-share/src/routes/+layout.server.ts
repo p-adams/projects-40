@@ -10,7 +10,6 @@ export function load() {
         : [],
       user: {
         username: user?.username,
-        entryListId: user?.entryListId,
       },
     },
   };
