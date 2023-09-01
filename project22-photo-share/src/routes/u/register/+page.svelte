@@ -3,15 +3,20 @@
   import { afterUpdate } from "svelte";
   export let data;
   export let form;
-  let errorMsg = "";
+  let errorMsg: string = "";
   afterUpdate(() => {
     if (form?.success) {
       goto(`/u/${data.entryData.user.username}`);
-    } else {
-      errorMsg = form!.msg;
+    } else if (form) {
+      errorMsg = form.msg;
     }
   });
 </script>
+
+<svelte:head>
+  <title>EpicSnap Chronicle: Register</title>
+  <meta name="description" content="register" />
+</svelte:head>
 
 <form method="POST">
   <label>

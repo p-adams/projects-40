@@ -9,6 +9,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>EpicSnap Chronicle: Logout</title>
+  <meta name="description" content="logout" />
+</svelte:head>
 <section>
   <h1>Are you sure you want to logout?</h1>
   <div>
