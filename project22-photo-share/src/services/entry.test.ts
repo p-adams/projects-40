@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { EntryService } from "./entry";
 import { User } from "../data/user";
-import { nanoid } from "nanoid";
 
 describe("EntryService", () => {
   it("initializes EntryService and links entryListId to User", () => {
