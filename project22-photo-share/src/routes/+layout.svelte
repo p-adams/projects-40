@@ -1,6 +1,6 @@
 <script lang="ts">
   export let data;
-  $: isLoggedIn = data.entryData.user.username;
+  $: isLoggedIn = data.root.user.username;
 </script>
 
 <div>
@@ -9,7 +9,7 @@
       <ul class="left">
         <li><a href="/">home</a></li>
         {#if isLoggedIn}<li>
-            <a href="/u/{data.entryData.user.username}">stories</a>
+            <a href="/u/{data.root.user.username}">stories</a>
           </li>
         {/if}
       </ul>
@@ -20,7 +20,7 @@
         {#if !isLoggedIn}
           <li>Already a member? <a href="/u/authenticate">Login</a></li>{/if}
         {#if isLoggedIn}<li>
-            Hello: {data.entryData.user.username}!
+            Hello: {data.root.user.username}!
           </li>{/if}
         {#if isLoggedIn}<li>
             <a href="/u/logout">Logout</a>

@@ -6,7 +6,7 @@
   let errorMsg: string = "";
   afterUpdate(() => {
     if (form?.success) {
-      goto(`/u/${data.entryData.user.username}`);
+      goto(`/u/${data.root.user.username}`);
     } else if (form) {
       errorMsg = form.msg;
     }

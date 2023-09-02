@@ -1,16 +1,19 @@
 <script lang="ts">
   import PhotoCard from "$lib/PhotoCard.svelte";
-
   export let data;
+  $: isLoggedInUser = data.root.user.username === data.user;
 </script>
 
 <section>
-  <form method="POST">
-    <button>add</button>
-  </form>
+  {#if isLoggedInUser}
+    <form method="POST">
+      <button>add</button>
+    </form>
+  {/if}
+
   <h1>homepage</h1>
   <div class="photo-grid">
-    {#each data?.entryData.stories as story}
+    {#each data.stories as story}
       <PhotoCard {story} />
     {/each}
   </div>

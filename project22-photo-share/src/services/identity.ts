@@ -75,4 +75,8 @@ export class IdentityService {
   getUser(): User | null {
     return this.#me;
   }
+
+  getUserByName(name: string): User | null {
+    return this.#userDatabase.findUserByUsername(name);
+  }
 }

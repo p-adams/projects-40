@@ -4,7 +4,8 @@ import { identityServiceInstance } from "../services/userIdentityService";
 export function load() {
   const user = identityServiceInstance.getUser();
   return {
-    entryData: {
+    root: {
+      // make user stories available at component root
       stories: user?.entryListId
         ? entryListInstance.getEntryList(user.entryListId)?.getEntries() ?? []
         : [],
