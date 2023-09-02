@@ -10,11 +10,14 @@ export const actions = {
 };
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {
+  // get params.slug stories
   const user = identityServiceInstance.getUserByName(params.slug);
   return {
     stories: user?.entryListId
       ? entryListInstance.getEntryList(user.entryListId)?.getEntries() ?? []
       : [],
-    user: params.slug,
+    user: {
+      username: user?.username,
+    },
   };
 }

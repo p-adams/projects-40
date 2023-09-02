@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import PhotoCard from "$lib/PhotoCard.svelte";
   export let data;
-  $: isLoggedInUser = data.root.user.username === data.user;
+  $: isLoggedInUser = data.root.user.username === $page.params.slug;
 </script>
 
 <section>
@@ -11,7 +12,7 @@
     </form>
   {/if}
 
-  <h1>homepage</h1>
+  <h1>homepage {data.user.username}</h1>
   <div class="photo-grid">
     {#each data.stories as story}
       <PhotoCard {story} />
