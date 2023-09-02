@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import { page } from "$app/stores";
   import PhotoCard from "$lib/PhotoCard.svelte";
   export let data;
@@ -7,8 +8,21 @@
 
 <section>
   {#if isLoggedInUser}
-    <form method="POST">
-      <button>add</button>
+    <!-- show story creator widget -->
+    <form method="POST" use:enhance enctype="multipart/form-data">
+      <input name="title" />
+      <div class="image-upload-widget">
+        <img src={""} alt="story-upload" />
+        <input
+          class="hidden"
+          id="file-to-upload"
+          type="file"
+          accept="image/*"
+          name="img"
+        />
+      </div>
+      <input name="description" />
+      <button>Create</button>
     </form>
   {/if}
 

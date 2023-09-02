@@ -2,21 +2,16 @@ export interface EntryData {
   id: string;
   title: string;
   description?: string;
-  img: string;
+  img: File;
 }
 
 export class Entry implements EntryData {
   #id: string;
   #title: string;
   #description: string;
-  #img: string;
+  #img: File;
 
-  constructor(
-    id: string,
-    title: string,
-    description: string = "",
-    img: string
-  ) {
+  constructor(id: string, title: string, description: string = "", img: File) {
     this.#id = id;
     this.#title = title;
     this.#description = description;
@@ -39,11 +34,11 @@ export class Entry implements EntryData {
     this.#description = value;
   }
 
-  public get img(): string {
+  public get img(): File {
     return this.#img;
   }
 
-  public set img(v: string) {
+  public set img(v: File) {
     this.#img = v;
   }
 }

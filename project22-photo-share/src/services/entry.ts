@@ -1,6 +1,8 @@
+import { writeFileSync } from "fs";
 import { nanoid } from "nanoid";
 import { EntryList } from "../data/entryList";
 import { identityServiceInstance } from "./userIdentityService";
+import type { EntryData } from "../data/entry";
 
 export class EntryService {
   #entryLists!: Record<string, EntryList>;
@@ -19,24 +21,29 @@ export class EntryService {
     delete this.#entryLists[entryListId];
   }
 
-  createUserWithEntryList(stories: App.StoryData[]) {
+  createUserWithEntryList(entryData: EntryData[]) {
     const user = identityServiceInstance.getUser();
 
     if (user?.username) {
       const entryListId = this.createEntryList();
       const entryList = this.getEntryList(entryListId);
 
-      for (const story of stories) {
-        entryList?.addEntry(story);
+      for (const entry of entryData) {
+        entryList?.addEntry(entry);
       }
 
       user.entryListId = entryListId;
     }
   }
 
-  addEntryItem() {
+  async addEntryItem(story: EntryData) {
     const entryListId = identityServiceInstance.getUser()!.entryListId;
     const entryList = this.getEntryList(entryListId);
-    entryList?.addEntry({ id: "1", title: "foo", description: "bar", img: "" });
+    // Write the file to the static folder
+    writeFileSync(
+      `static/images/${story.img.name}`,
+      Buffer.from(await story.img.arrayBuffer())
+    );
+    entryList?.addEntry(story);
   }
 }

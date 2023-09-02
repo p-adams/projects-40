@@ -5,7 +5,7 @@
 <div class="photo-card">
   <h2>{story.title}</h2>
   <div class="card-content">
-    <img src="https://via.placeholder.com/300" alt="Card" />
+    <img src={story.img} alt="Card" />
     <div class="card-actions">
       <textarea />
       <button>Add</button>
@@ -21,5 +21,9 @@
     gap: 10px;
     padding: 10px;
     outline: 1px solid gray;
+  }
+  img {
+    width: 50px;
+    height: 50px;
   }
 </style>
