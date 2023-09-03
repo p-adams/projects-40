@@ -4,16 +4,16 @@ import { identityServiceInstance } from "../../../services/userIdentityService.j
 
 import { nanoid } from "nanoid";
 import { getEntriesWithImages } from "../../../services/utils.js";
+import type { Entry } from "../../../data/entry.js";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-  default: async ({ request }) => {
+  create: async ({ request }) => {
     const formData = Object.fromEntries(await request.formData());
     const title = formData.title as string;
     const imgFile = formData.img as File;
     const description = formData.description as string;
-
-    if (!imgFile.name) {
+    if (!imgFile.name || imgFile.name === "undefined") {
       return fail(400, {
         error: true,
         message: "image upload required",
@@ -26,6 +26,11 @@ export const actions = {
       img: imgFile,
     });
     return result;
+  },
+  delete: async ({ request }) => {
+    const data = Object.fromEntries(await request.formData());
+    const storyId = data.storyId as string;
+    entryListInstance.removeEntryItem(storyId);
   },
 };
 /** @type {import('./$types').PageLoad} */

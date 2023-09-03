@@ -36,14 +36,19 @@ export class EntryService {
     }
   }
 
-  async addEntryItem(story: EntryData) {
+  async addEntryItem(entry: EntryData) {
     const entryListId = identityServiceInstance.getUser()!.entryListId;
     const entryList = this.getEntryList(entryListId);
     // Write the file to the static folder
     writeFileSync(
-      `static/images/${story.img.name}`,
-      Buffer.from(await story.img.arrayBuffer())
+      `static/images/${entry.img.name}`,
+      Buffer.from(await entry.img.arrayBuffer())
     );
-    entryList?.addEntry(story);
+    entryList?.addEntry(entry);
+  }
+  removeEntryItem(storyId: string) {
+    const entryListId = identityServiceInstance.getUser()!.entryListId;
+    const entryList = this.getEntryList(entryListId);
+    entryList?.removeEntryById(storyId);
   }
 }

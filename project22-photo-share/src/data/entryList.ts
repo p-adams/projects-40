@@ -12,7 +12,7 @@ export class EntryList {
   }
 
   removeEntryById(id: string): void {
-    this.entries = this.entries.filter((Entry) => Entry.id !== id);
+    this.entries = this.entries.filter((entry) => entry.id !== id);
   }
 
   getEntries(): EntryData[] {
