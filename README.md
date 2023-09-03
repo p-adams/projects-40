@@ -20,7 +20,7 @@ Sandbox containing 40 web app projects
 16. Meme Generator
 17. Skate Clips
 18. Chat
-19. Darter - Twitter Clone (WIP)
+19. Darter - Twitter Clone
 20. Survey App
 21. E-book
-22. Photo Sharing App (WIP)
+22. Photo Sharing App

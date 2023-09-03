@@ -14,24 +14,25 @@
         {/if}
       </ul>
       <ul class="right">
-        {#if !isLoggedIn}<li>
-            Not a member? <a href="/u/register">Sign up</a>
-          </li>{/if}
-        {#if !isLoggedIn}
-          <li>Already a member? <a href="/u/authenticate">Login</a></li>{/if}
-        {#if isLoggedIn}<li>
+        {#if isLoggedIn}
+          <li>
             Hello: {data.root.user.username}!
-          </li>{/if}
-        {#if isLoggedIn}<li>
+          </li>
+          <li>
             <a href="/u/logout">Logout</a>
-          </li>{/if}
+          </li>
+        {:else}
+          <li>
+            Not a member? <a href="/u/register">Sign up</a>
+          </li>
+          <li>Already a member? <a href="/u/authenticate">Login</a></li>
+        {/if}
       </ul>
     </nav>
   </header>
   <main>
     <slot />
   </main>
-  <footer>footer</footer>
 </div>
 
 <style>
