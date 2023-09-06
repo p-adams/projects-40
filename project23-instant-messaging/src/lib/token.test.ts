@@ -4,13 +4,13 @@ import { tokenManager } from "./token";
 describe("#Token", () => {
   it("should generate and return token", () => {
     const userId = "123";
-    const userToken = tokenManager.generateToken(userId) ?? "";
-    expect(tokenManager.validateToken(userToken)).toBeTruthy();
+    const userToken = tokenManager.generateToken() ?? "";
+    expect(tokenManager.validateToken(userToken)).toBe(true);
   });
 
   it("token is invalid when used again ", () => {
     const userId = "123";
-    const userToken = tokenManager.generateToken(userId) ?? "";
+    const userToken = tokenManager.generateToken() ?? "";
     // init first usage
     tokenManager.validateToken(userToken);
     const secondUsageIsValid = tokenManager.validateToken(userToken);

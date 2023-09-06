@@ -3,11 +3,7 @@ import { nanoid } from "nanoid";
 export const tokenManager = {
   tokens: new Map(),
 
-  generateToken(existingToken?: string) {
-    if (existingToken && this.tokens.has(existingToken)) {
-      return existingToken;
-    }
-
+  generateToken() {
     // Invalid or expired token; generate a new one
     const newToken = nanoid();
     this.tokens.set(newToken, true);
