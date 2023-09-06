@@ -3,13 +3,11 @@ import { tokenManager } from "./token";
 
 describe("#Token", () => {
   it("should generate and return token", () => {
-    const userId = "123";
     const userToken = tokenManager.generateToken() ?? "";
     expect(tokenManager.validateToken(userToken)).toBe(true);
   });
 
   it("token is invalid when used again ", () => {
-    const userId = "123";
     const userToken = tokenManager.generateToken() ?? "";
     // init first usage
     tokenManager.validateToken(userToken);
