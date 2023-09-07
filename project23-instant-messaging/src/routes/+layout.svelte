@@ -16,4 +16,7 @@
 
 <style>
   @import "../app.css";
+  main {
+    height: calc(100vh - 60px);
+  }
 </style>
