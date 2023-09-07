@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { TokenManager } from "./token";
+import { TokenManager } from ".";
 
 describe("#Token", () => {
   it("should generate and return token", () => {
