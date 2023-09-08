@@ -58,13 +58,3 @@ export class TokenService {
     return this.newToken;
   }
 }
-
-// Example usage:
-// const tokenService = new TokenService();
-// const userToken = tokenService.issueToken();
-
-// When the user logs out or quits the session, revoke the token:
-// tokenService.revokeToken(userToken);
-
-// If the user wants to save progress and generate a new token:
-// const newToken = tokenService.generateNewToken(userToken);
