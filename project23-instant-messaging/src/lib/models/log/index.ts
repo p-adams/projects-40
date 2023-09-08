@@ -1,17 +1,9 @@
-interface LogEvent {
-  type: string; // TODO: declare enum unless made dynamic
-  timestamp: string;
-  description: string;
-}
-
-type LogMap = Map<string, LogEvent[]>;
-
 export class LogCoordinator {
-  #log: LogMap;
+  #log: App.LogMap;
   constructor() {
     this.#log = new Map();
   }
-  createLogEvent(logEvent: LogEvent) {
+  createLogEvent(logEvent: App.LogEvent) {
     const logsByType = this.#log.get(logEvent.type);
     if (logsByType) {
       this.#log.set(logEvent.type, [...logsByType, logEvent]);
@@ -20,10 +12,11 @@ export class LogCoordinator {
     this.#log.set(logEvent.type, [logEvent]);
   }
 
-  public get logs(): IterableIterator<[string, LogEvent[]]> {
+  public get logs(): IterableIterator<[string, App.LogEvent[]]> {
     return this.#log.entries();
   }
-  public logsByType(type: string): LogEvent[] {
+
+  public logsByType(type: string): App.LogEvent[] {
     return this.#log.get(type) ?? [];
   }
 }
