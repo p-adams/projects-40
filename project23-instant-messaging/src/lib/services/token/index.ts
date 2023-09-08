@@ -1,19 +1,19 @@
-import { TokenManager } from "$lib/models/token";
+import { TokenCoordinator } from "$lib/models/token";
 
 export class TokenService {
-  private tokenManager: TokenManager;
+  private tokenCoordinator: TokenCoordinator;
   private currentToken: string | null;
   private newToken: string | null;
 
   constructor() {
-    this.tokenManager = new TokenManager();
+    this.tokenCoordinator = new TokenCoordinator();
     this.currentToken = null;
     this.newToken = null;
   }
 
   // Issue a new token to the user
   issueToken(): string {
-    const token = this.tokenManager.generateToken();
+    const token = this.tokenCoordinator.generateToken();
     this.currentToken = token;
     this.newToken = null; // Clear the new token reference
     return token;
@@ -21,7 +21,7 @@ export class TokenService {
 
   // Revoke the current token when the user logs out or quits the session
   revokeToken(token: string): void {
-    this.tokenManager.invalidateToken(token);
+    this.tokenCoordinator.invalidateToken(token);
     if (this.currentToken === token) {
       this.currentToken = null;
     }
@@ -36,8 +36,8 @@ export class TokenService {
       throw new Error("No current token available");
     }
 
-    const newToken = this.tokenManager.generateToken();
-    this.tokenManager.invalidateToken(this.currentToken);
+    const newToken = this.tokenCoordinator.generateToken();
+    this.tokenCoordinator.invalidateToken(this.currentToken);
     this.currentToken = newToken;
     this.newToken = newToken;
     return newToken;
@@ -45,7 +45,7 @@ export class TokenService {
 
   // Validate a token
   validateToken(token: string): boolean {
-    return this.tokenManager.validateToken(token);
+    return this.tokenCoordinator.validateToken(token);
   }
 
   // Get the current token

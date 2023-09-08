@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-export class TokenManager {
+export class TokenCoordinator {
   private tokens: Map<string, boolean>;
 
   constructor() {
@@ -26,5 +26,3 @@ export class TokenManager {
     this.tokens.delete(token);
   }
 }
-
-// export const tokenManager = new TokenManager();

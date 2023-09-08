@@ -1,27 +1,27 @@
 import { describe, it, expect } from "vitest";
-import { TokenManager } from ".";
+import { TokenCoordinator } from ".";
 
 describe("#Token", () => {
   it("should generate and return token", () => {
-    const tokenManager = new TokenManager();
-    const userToken = tokenManager.generateToken() ?? "";
-    expect(tokenManager.validateToken(userToken)).toBe(true);
+    const tokenCoordinator = new TokenCoordinator();
+    const userToken = tokenCoordinator.generateToken() ?? "";
+    expect(tokenCoordinator.validateToken(userToken)).toBe(true);
   });
 
   it("token is invalid when used again ", () => {
-    const tokenManager = new TokenManager();
-    const userToken = tokenManager.generateToken() ?? "";
+    const tokenCoordinator = new TokenCoordinator();
+    const userToken = tokenCoordinator.generateToken() ?? "";
     // init first usage
-    tokenManager.validateToken(userToken);
-    const secondUsageIsValid = tokenManager.validateToken(userToken);
+    tokenCoordinator.validateToken(userToken);
+    const secondUsageIsValid = tokenCoordinator.validateToken(userToken);
     expect(secondUsageIsValid).toBe(false);
   });
 
   it("invalidates token ", () => {
-    const tokenManager = new TokenManager();
-    const userToken = tokenManager.generateToken() ?? "";
+    const tokenCoordinator = new TokenCoordinator();
+    const userToken = tokenCoordinator.generateToken() ?? "";
     const oldToken = userToken;
-    tokenManager.invalidateToken(oldToken);
-    expect(tokenManager.validateToken(userToken)).toBe(false);
+    tokenCoordinator.invalidateToken(oldToken);
+    expect(tokenCoordinator.validateToken(userToken)).toBe(false);
   });
 });

@@ -1,4 +1,4 @@
-import { tokenManager } from "$lib/models/token";
+import { tokenCoordinator } from "$lib/models/token";
 
 export function load() {
   return {
