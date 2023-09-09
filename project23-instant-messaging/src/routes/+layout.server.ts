@@ -1,7 +1,7 @@
-import { tokenCoordinator } from "$lib/models/token";
+import { tokenInstance } from "$lib/services/token/tokenInstance.js";
 
-export function load() {
+export function load({ request }) {
   return {
-    userToken: "",
+    userToken: tokenInstance.getCurrentToken(),
   };
 }
