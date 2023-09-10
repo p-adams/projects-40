@@ -34,12 +34,14 @@
 
 <style>
   @import "../app.css";
+
   main {
     height: calc(100vh - 60px);
   }
   nav {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 16px;
   }
   nav .token-display {
     display: flex;

@@ -7,18 +7,37 @@
   let token = "";
   afterUpdate(() => {
     if (form?.result.success) {
-      goto("/");
+      goto(`/u/${form.result.data}`);
     }
   });
 </script>
 
 <form method="POST" action="?/submit">
-  <label>
+  <label for="token">
     Have an existing token? Paste token here (ex: gd5K8VuFcOGj3Zp4Lalv-)
-    <input name="token" placeholder="enter token..." bind:value={token} />
   </label>
+  <p class="help-text">See <a href="guide">Guide</a>for me information</p>
+  <input name="token" placeholder="enter token..." bind:value={token} />
 
   <button disabled={token !== data.userToken}>Submit</button>
 </form>
 
-<GenerateToken />
+<GenerateToken generateDisabled={!!data.userToken}
+  ><p class="help-text">
+    New to ProfileTalk? Generate token to <a href="/guide">get started</a>now
+  </p></GenerateToken
+>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+  }
+  form button {
+    width: fit-content;
+  }
+  .help-text a::after {
+    content: "\00a0";
+  }
+</style>
