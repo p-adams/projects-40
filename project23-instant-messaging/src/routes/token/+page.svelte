@@ -3,6 +3,7 @@
   import GenerateToken from "$lib/generate-token.svelte";
   import { afterUpdate } from "svelte";
   export let form;
+  export let data;
   let token = "";
   afterUpdate(() => {
     if (form?.result.success) {
@@ -17,7 +18,7 @@
     <input name="token" placeholder="enter token..." bind:value={token} />
   </label>
 
-  <button disabled={!token}>Submit</button>
+  <button disabled={token !== data.userToken}>Submit</button>
 </form>
 
 <GenerateToken />
