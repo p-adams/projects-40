@@ -16,11 +16,15 @@
       <li>ProfileTalk</li>
     </ul>
     <div class="token-display">
-      <input bind:value={tokenVal} readonly disabled />
-      <button on:click={() => navigator.clipboard.writeText(tokenVal)}
-        >copy</button
-      >
-      <a href="/token/?generate">Generate New Token</a>
+      {#if !!tokenVal}<div>
+          <input bind:value={tokenVal} readonly disabled />
+          <button on:click={() => navigator.clipboard.writeText(tokenVal)}
+            >copy</button
+          >
+        </div>
+      {/if}
+
+      <a href="/token/?generate"> Generate Token</a>
     </div>
   </nav>
 </header>
@@ -39,6 +43,8 @@
   }
   nav .token-display {
     display: flex;
+    flex-direction: column;
+    min-width: 250px;
   }
   .token-display {
     width: fit-content;
@@ -47,5 +53,8 @@
   }
   .token-display input {
     font-weight: bolder;
+  }
+  .token-display a {
+    margin-top: auto;
   }
 </style>

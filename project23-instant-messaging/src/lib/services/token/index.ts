@@ -3,19 +3,19 @@ import { TokenCoordinator } from "$lib/models/token";
 export class TokenService {
   private tokenCoordinator: TokenCoordinator;
   private currentToken: string | null;
-  private newToken: string | null;
+  private tokenHistory: string[];
 
   constructor() {
     this.tokenCoordinator = new TokenCoordinator();
     this.currentToken = null;
-    this.newToken = null;
+    this.tokenHistory = [];
   }
 
   // Issue a new token to the user
   issueToken(): string {
     const token = this.tokenCoordinator.generateToken();
     this.currentToken = token;
-    this.newToken = null; // Clear the new token reference
+    this.tokenHistory.push(token);
     return token;
   }
 
@@ -24,9 +24,6 @@ export class TokenService {
     this.tokenCoordinator.invalidateToken(token);
     if (this.currentToken === token) {
       this.currentToken = null;
-    }
-    if (this.newToken === token) {
-      this.newToken = null;
     }
   }
 
@@ -39,7 +36,7 @@ export class TokenService {
     const newToken = this.tokenCoordinator.generateToken();
     this.tokenCoordinator.invalidateToken(this.currentToken);
     this.currentToken = newToken;
-    this.newToken = newToken;
+    this.tokenHistory.push(newToken);
     return newToken;
   }
 
@@ -53,8 +50,8 @@ export class TokenService {
     return this.currentToken;
   }
 
-  // Get the new token
-  getNewToken(): string | null {
-    return this.newToken;
+  // Get all tokens in the history
+  getTokenHistory(): string[] {
+    return this.tokenHistory;
   }
 }
