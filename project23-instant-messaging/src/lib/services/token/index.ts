@@ -1,4 +1,5 @@
 import { TokenCoordinator } from "$lib/models/token";
+import { logInstance } from "../log/logInstance";
 
 export class TokenService {
   private tokenCoordinator: TokenCoordinator;
@@ -16,6 +17,11 @@ export class TokenService {
     const token = this.tokenCoordinator.generateToken();
     this.currentToken = token;
     this.tokenHistory.push(token);
+    logInstance.create({
+      type: "ISSUE_TOKEN",
+      description: "Issue a new token to the user",
+      timestamp: new Date().toLocaleDateString(),
+    });
     return token;
   }
 
@@ -37,6 +43,11 @@ export class TokenService {
     this.tokenCoordinator.invalidateToken(this.currentToken);
     this.currentToken = newToken;
     this.tokenHistory.push(newToken);
+    logInstance.create({
+      type: "GENERATE_TOKEN",
+      description: "Generate a new token and swap it with the old token",
+      timestamp: new Date().toLocaleDateString(),
+    });
     return newToken;
   }
 
