@@ -24,7 +24,7 @@
         </div>
       {/if}
 
-      <a href="/token/?generate"> Generate Token</a>
+      <a href="/token/?generate"> Generate Next Token</a>
     </div>
   </nav>
 </header>

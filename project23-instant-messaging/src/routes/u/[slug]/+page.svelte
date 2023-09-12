@@ -1,9 +1,19 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
+  import { error } from "@sveltejs/kit";
+
+  import { afterUpdate } from "svelte";
+  export let data;
+  afterUpdate(() => {
+    // handle redirect
+    if (data.success) {
+      goto(`/u/${data.userToken}`);
+    }
+  });
 </script>
 
 <div class="Profile--outer">
-  <div>profile info: {$page.params.slug ?? "N/A"}</div>
+  <div>profile info: {data.userToken ?? "N/A"}</div>
   <div>timeline</div>
   <aside>messaging</aside>
 </div>

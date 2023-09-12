@@ -15,3 +15,26 @@ h3 {
   margin: 0;
   padding: 0;
 }
+
+main {
+  height: 100%;
+  padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  outline: 1px solid lightgray;
+  padding: 10px;
+}
+form:not(:last-child) {
+  margin-bottom: 16px;
+}
+.help-text a::after {
+  content: "\00a0";
+}
+
+form button {
+  width: fit-content;
+}
