@@ -7,6 +7,10 @@
     Email
     <input type="email" name="email" />
   </label>
+  <label>
+    Password
+    <input type="password" name="password" />
+  </label>
   <div class="Create--outer">
     <button>Create</button>
   </div>

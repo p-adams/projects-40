@@ -3,6 +3,7 @@ export const actions = {
     const data = Object.fromEntries(await request.formData());
     const username = data.username;
     const email = data.email;
+    const password = data.password;
     return {
       result: "SUCCESS",
     };

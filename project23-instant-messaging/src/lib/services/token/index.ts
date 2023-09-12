@@ -36,6 +36,11 @@ export class TokenService {
   // Generate a new token and swap it with the old token
   generateNewToken(): string {
     if (!this.currentToken) {
+      logInstance.create({
+        type: "GENERATE_TOKEN",
+        description: "No current token available",
+        timestamp: new Date().toLocaleDateString(),
+      });
       throw new Error("No current token available");
     }
 

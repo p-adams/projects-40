@@ -19,7 +19,7 @@
       {#if !!tokenVal}<div>
           <input bind:value={tokenVal} readonly disabled />
           <button on:click={() => navigator.clipboard.writeText(tokenVal)}
-            >copy</button
+            ><i class="fas fa-clipboard" /></button
           >
         </div>
       {/if}
