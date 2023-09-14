@@ -14,10 +14,22 @@ declare global {
 
     type LogMap = Map<string, LogEvent[]>;
 
+    interface About {
+      name: string;
+      image: File;
+      location: string;
+      contact: {
+        email?: string;
+        phone?: string;
+        website?: string;
+      };
+    }
+
     interface Profile {
       id: string;
-      name: string;
       token: string; // TBD
+      image?: File;
+      about?: About;
       timeline?: any; // TBD
       messages?: Array<{ name: string; message: string; timestamp: string }>;
     }
