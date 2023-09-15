@@ -16,7 +16,6 @@ declare global {
 
     interface About {
       name: string;
-      image: File;
       location: string;
       contact?: {
         email?: string;
