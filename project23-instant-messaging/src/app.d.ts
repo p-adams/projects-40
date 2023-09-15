@@ -18,10 +18,16 @@ declare global {
       name: string;
       image: File;
       location: string;
-      contact: {
+      contact?: {
         email?: string;
         phone?: string;
         website?: string;
+      };
+      address?: {
+        street: string;
+        state: string;
+        country: string;
+        zip: number;
       };
     }
 
