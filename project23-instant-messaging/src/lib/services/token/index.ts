@@ -1,5 +1,7 @@
+import { flintstonesCharacter } from "$lib/models/profile/MOCK_DATA";
 import { TokenCoordinator } from "$lib/models/token";
 import { logInstance } from "../log/logInstance";
+import { profileInstance } from "../profile/profileInstance";
 
 export class TokenService {
   private tokenCoordinator: TokenCoordinator;
@@ -22,6 +24,7 @@ export class TokenService {
       description: "Issue a new token to the user",
       timestamp: new Date().toLocaleDateString(),
     });
+
     return token;
   }
 
@@ -53,6 +56,7 @@ export class TokenService {
       description: "Generate a new token and swap it with the old token",
       timestamp: new Date().toLocaleDateString(),
     });
+    //
     return newToken;
   }
 

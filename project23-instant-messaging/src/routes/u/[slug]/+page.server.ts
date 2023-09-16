@@ -1,17 +1,29 @@
+import { flintstonesCharacter } from "$lib/models/profile/MOCK_DATA.js";
+import type { Profile } from "$lib/models/profile/index.js";
 import { TokenCoordinator } from "$lib/models/token";
+import { profileInstance } from "$lib/services/profile/profileInstance.js";
 import { tokenInstance } from "$lib/services/token/tokenInstance.js";
 import { error, fail, redirect } from "@sveltejs/kit";
 
 export function load({ params }) {
-  const token = params.slug as string;
-  if (!tokenInstance.validateToken(token)) {
-    if (tokenInstance.getCurrentToken()) {
-      return {
-        success: true,
-      };
-    } else {
-      throw error(404);
-    }
+  const _token = params.slug as string;
+
+  if (tokenInstance.getCurrentToken()) {
+    const $profile: Profile | undefined = profileInstance.getProfileById(
+      "fred_flintstone#1yCCsBqwn2xaJqsXZrfki"
+    );
+    return {
+      success: true,
+      profile: {
+        id: $profile?.id,
+        about: $profile?.about,
+        image: $profile?.image,
+        timeline: $profile?.timeline,
+        messages: $profile?.messages,
+      } as Profile,
+    };
+  } else {
+    throw error(404);
   }
 }
 

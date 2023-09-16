@@ -6,8 +6,8 @@ export class Profile implements App.Profile {
   #timeline?: any; // TBD
   #messages?: Array<{ name: string; message: string; timestamp: string }>;
 
-  constructor(token: string, profileData: App.Profile) {
-    this.#id = `${profileData?.id}#${profileData.token}`;
+  constructor(token: string, profileData?: App.Profile) {
+    this.#id = `${profileData?.id}#${profileData?.token}`;
     this.#token = token;
 
     if (profileData) {

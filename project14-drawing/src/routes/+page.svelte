@@ -22,7 +22,6 @@
     coords = { x, y };
   }
   function end() {
-    console.log("end");
     isDrawing = false;
   }
   function draw(offsets: offsets) {

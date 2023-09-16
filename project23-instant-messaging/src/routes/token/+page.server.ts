@@ -1,3 +1,5 @@
+import { flintstonesCharacter } from "$lib/models/profile/MOCK_DATA.js";
+import { profileInstance } from "$lib/services/profile/profileInstance.js";
 import { tokenInstance } from "$lib/services/token/tokenInstance.js";
 
 export const actions = {
@@ -17,6 +19,8 @@ export const actions = {
     const token = tokenInstance.getTokenHistory().length
       ? tokenInstance.generateNewToken()
       : tokenInstance.issueToken();
+
+    profileInstance.createProfile(token, flintstonesCharacter);
     return {
       result: {
         success: true,
