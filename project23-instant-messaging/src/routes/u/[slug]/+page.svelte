@@ -7,6 +7,7 @@
   export let data;
   let profile = data.profile as Profile;
   afterUpdate(() => {
+    console.log("PROFILE: ", profile);
     // handle redirect
     if (data.success) {
       goto(`/u/${data.userToken}`);

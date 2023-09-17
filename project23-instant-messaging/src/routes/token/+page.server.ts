@@ -7,6 +7,7 @@ export const actions = {
     const data = Object.fromEntries(await request.formData());
     const token = data.token as string;
     const tokenData = tokenInstance.generateNewToken();
+    profileInstance.createProfile(tokenData, flintstonesCharacter);
     return {
       result: {
         success: true,

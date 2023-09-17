@@ -4,9 +4,9 @@ export class ProfileService {
   private profiles: Map<string, Profile> = new Map();
 
   // Create a new user profile
-  public createProfile(token: string, profileData: App.Profile): void {
-    const profile = new Profile(token, profileData);
-    this.profiles.set(profile.id, profile);
+  public createProfile(profileId: string, profileData: App.Profile): void {
+    const profile = new Profile(profileId, profileData);
+    this.profiles.set(profileId, profile);
   }
 
   // Get a user's profile by ID

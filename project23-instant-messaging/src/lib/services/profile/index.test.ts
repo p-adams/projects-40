@@ -12,8 +12,7 @@ describe("#ProfileService", () => {
 
   it("creates initial profile", () => {
     expect(
-      profileService.getProfileById("fred_flintstone#1yCCsBqwn2xaJqsXZrfki")
-        ?.about?.name
+      profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki")?.about?.name
     ).toBe("Fred Flintstone");
   });
 
@@ -25,17 +24,15 @@ describe("#ProfileService", () => {
         name: "Fred W Flintstone",
       } as App.About,
     };
-    const userProfile = profileService.getProfileById(
-      "fred_flintstone#1yCCsBqwn2xaJqsXZrfki"
-    );
+    const userProfile = profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki");
     userProfile?.updateProfileData(updatedProfileData);
     expect(userProfile?.about?.name).toBe("Fred W Flintstone");
   });
 
   it("Deletes profile", () => {
-    profileService.deleteProfile("fred_flintstone#1yCCsBqwn2xaJqsXZrfki");
-    expect(
-      profileService.getProfileById("fred_flintstone#1yCCsBqwn2xaJqsXZrfki")
-    ).toBe(undefined);
+    profileService.deleteProfile("1yCCsBqwn2xaJqsXZrfki");
+    expect(profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki")).toBe(
+      undefined
+    );
   });
 });

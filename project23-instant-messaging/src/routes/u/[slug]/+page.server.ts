@@ -10,7 +10,7 @@ export function load({ params }) {
 
   if (tokenInstance.getCurrentToken()) {
     const $profile: Profile | undefined = profileInstance.getProfileById(
-      "fred_flintstone#1yCCsBqwn2xaJqsXZrfki"
+      tokenInstance.getCurrentToken()!
     );
     return {
       success: true,
