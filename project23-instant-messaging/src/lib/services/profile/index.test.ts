@@ -4,16 +4,16 @@ import { flintstonesCharacter } from "$lib/models/profile/MOCK_DATA";
 
 describe("#ProfileService", () => {
   let profileService: ProfileService;
-
+  let profileId = "profileId";
   beforeEach(() => {
     profileService = new ProfileService();
-    profileService.createProfile("1yCCsBqwn2xaJqsXZrfki", flintstonesCharacter);
+    profileService.createProfile(profileId, flintstonesCharacter);
   });
 
   it("creates initial profile", () => {
-    expect(
-      profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki")?.about?.name
-    ).toBe("Fred Flintstone");
+    expect(profileService.getProfileById(profileId)?.about?.name).toBe(
+      "Fred Flintstone"
+    );
   });
 
   it("updates existing profile", () => {
@@ -24,15 +24,13 @@ describe("#ProfileService", () => {
         name: "Fred W Flintstone",
       } as App.About,
     };
-    const userProfile = profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki");
+    const userProfile = profileService.getProfileById(profileId);
     userProfile?.updateProfileData(updatedProfileData);
     expect(userProfile?.about?.name).toBe("Fred W Flintstone");
   });
 
   it("Deletes profile", () => {
-    profileService.deleteProfile("1yCCsBqwn2xaJqsXZrfki");
-    expect(profileService.getProfileById("1yCCsBqwn2xaJqsXZrfki")).toBe(
-      undefined
-    );
+    profileService.deleteProfile(profileId);
+    expect(profileService.getProfileById(profileId)).toBe(undefined);
   });
 });

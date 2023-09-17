@@ -36,7 +36,9 @@ declare global {
       image?: File;
       about?: About;
       timeline?: any; // TBD
-      messages?: Array<{ name: string; message: string; timestamp: string }>;
+      messages:
+        | Array<{ name: string; message: string; timestamp: string }>
+        | [];
     }
   }
 }
