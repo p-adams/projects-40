@@ -1,10 +1,13 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import type { Profile } from "$lib/models/profile/index.js";
+  import { compareByTimestampDescending } from "$lib/utils/index.js";
 
   import { afterUpdate } from "svelte";
   export let data;
   let { messages, id, timeline } = data.profile as Profile;
+
+  let profileTimeline = timeline.sort(compareByTimestampDescending);
 
   afterUpdate(() => {
     // handle redirect
@@ -29,7 +32,7 @@
     <section>
       <h2>timeline</h2>
       <div class="Timeline--inner">
-        {#each timeline as data}
+        {#each profileTimeline as data}
           <div class="Timeline--item">
             <p>{data.timestamp}</p>
             <p>{data.content.text}</p>
