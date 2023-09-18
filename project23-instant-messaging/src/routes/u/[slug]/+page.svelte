@@ -4,8 +4,8 @@
 
   import { afterUpdate } from "svelte";
   export let data;
-  let profile = data.profile as Profile;
-  let messages = profile.messages;
+  let { messages, id, timeline } = data.profile as Profile;
+
   afterUpdate(() => {
     // handle redirect
     if (data.success) {
@@ -18,7 +18,7 @@
 <div class="Profile--wrapper">
   <div class="Profile--outer">
     <section>
-      <h2>{profile.id}</h2>
+      <h2>{id}</h2>
       <div class="Profile-card">
         <p>profile info: {data.userToken ?? "N/A"}</p>
       </div>
@@ -26,7 +26,17 @@
   </div>
 
   <div class="Timeline--outer">
-    <section><h2>timeline</h2></section>
+    <section>
+      <h2>timeline</h2>
+      <div class="Timeline--inner">
+        {#each timeline as data}
+          <div class="Timeline--item">
+            <p>{data.timestamp}</p>
+            <p>{data.content.text}</p>
+          </div>
+        {/each}
+      </div>
+    </section>
   </div>
   <aside class="Message--outer">
     <section>

@@ -24,12 +24,16 @@ export const flintstonesCharacter: App.Profile = {
   },
   timeline: [
     {
-      event: "Married Wilma",
-      date: "October 5, 1957",
+      content: {
+        text: "Married Wilma",
+      },
+      timestamp: "October 5, 1957",
     },
     {
-      event: "Became a father to Pebbles",
-      date: "February 22, 1963",
+      content: {
+        text: "Became a father to Pebbles",
+      },
+      timestamp: "February 22, 1963",
     },
   ],
   messages: [

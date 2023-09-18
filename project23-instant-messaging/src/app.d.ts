@@ -30,12 +30,28 @@ declare global {
       };
     }
 
+    interface TimelineItem {
+      profile?: Pick<Profile, "id" | "image">;
+      content: {
+        text: string;
+        media?: File;
+      };
+      timestamp: string;
+      interactions?: any; // TBD: count of likes/comments/shares/re-shares
+      engagement_options?: any; // TBD: actons to likes/comments/shares/re-shares/bookmark/flag/report
+      target?: {
+        visibility: any; // public/private
+        location: string; // where post is made
+        tags: Pick<Profile, "id" | "image">[]; // profiles mentioned/included in post
+      };
+    }
+
     interface Profile {
       id: string;
-      token: string; // TBD
+      token: string;
       image?: File;
       about?: About;
-      timeline?: any; // TBD
+      timeline: TimelineItem[];
       messages:
         | Array<{ name: string; message: string; timestamp: string }>
         | [];

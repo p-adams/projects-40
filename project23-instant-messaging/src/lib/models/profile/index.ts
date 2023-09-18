@@ -3,7 +3,7 @@ export class Profile implements App.Profile {
   #token: string;
   #image?: File;
   #about?: App.About;
-  #timeline?: any; // TBD
+  #timeline: App.TimelineItem[] = [];
   #messages: Array<{ name: string; message: string; timestamp: string }> = [];
 
   constructor(token: string, profileData?: App.Profile) {
@@ -34,7 +34,7 @@ export class Profile implements App.Profile {
     return this.#about;
   }
 
-  public get timeline(): any | undefined {
+  public get timeline(): App.TimelineItem[] | [] {
     return this.#timeline;
   }
 
