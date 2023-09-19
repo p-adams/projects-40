@@ -24,4 +24,5 @@ Sandbox containing 40 web app projects
 20. Survey App
 21. E-book
 22. Photo Sharing App
-23. Instant Messaging App (WIP)
+23. Instant Messaging App
+24. NetGiggle- Netflix Clone
