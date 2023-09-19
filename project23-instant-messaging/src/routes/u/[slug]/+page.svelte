@@ -4,8 +4,9 @@
   import { compareByTimestampDescending } from "$lib/utils/index.js";
 
   import { afterUpdate } from "svelte";
+  import ProfilePic from "../../../assets/fred.jpg";
   export let data;
-  let { messages, id, timeline } = data.profile as Profile;
+  let { about, messages, id, timeline } = data.profile as Profile;
 
   let profileTimeline = timeline.sort(compareByTimestampDescending);
 
@@ -23,7 +24,26 @@
     <section>
       <h2>{id}</h2>
       <div class="Profile-card">
-        <p>profile info: {data.userToken ?? "N/A"}</p>
+        <img src={ProfilePic} alt="Profile" />
+        <p>Token: {data.userToken ?? "N/A"}</p>
+        <p>Name: {about?.name}</p>
+        <p>Location: {about?.location}</p>
+        <div>
+          <h4>Contact</h4>
+          <p>Email: {about?.contact?.email}</p>
+          <p>Phone: {about?.contact?.phone}</p>
+          <p>Website: {about?.contact?.website}</p>
+        </div>
+        <div>
+          <h4>Address</h4>
+          <p>{about?.address?.street}</p>
+
+          <p>
+            {about?.address?.state}, {about?.address?.state}
+            {about?.address?.zip}
+            {about?.address?.country}
+          </p>
+        </div>
       </div>
     </section>
   </div>
@@ -76,5 +96,9 @@
   .Message--name {
     display: flex;
     justify-content: space-between;
+  }
+  section > h2 {
+    font-size: medium;
+    text-transform: uppercase;
   }
 </style>
