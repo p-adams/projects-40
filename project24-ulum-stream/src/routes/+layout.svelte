@@ -11,7 +11,7 @@
   </main>
 
   <footer>
-    <p>FriscoStream</p>
+    <p>UlumStream</p>
   </footer>
 </div>
 

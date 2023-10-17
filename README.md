@@ -25,4 +25,4 @@ Sandbox containing 40 web app projects
 21. E-book
 22. Photo Sharing App
 23. Instant Messaging App
-24. FriscoStream - Netflix Clone (WIP)
+24. UlumStream - Netflix Clone (WIP)

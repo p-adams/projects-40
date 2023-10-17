@@ -6,11 +6,11 @@
 
 <svelte:head>
   <title>Home</title>
-  <meta name="description" content="FriscoStream" />
+  <meta name="description" content="UlumStream" />
 </svelte:head>
 
 <section>
-  <h1>FriscoStream</h1>
+  <h1>UlumStream</h1>
   <div>
     <div class="hero-banner">
       <picture>
