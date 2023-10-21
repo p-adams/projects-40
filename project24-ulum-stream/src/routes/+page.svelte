@@ -1,7 +1,8 @@
 <script>
-  import Counter from "./Counter.svelte";
   import welcome from "$lib/images/svelte-welcome.webp";
   import welcome_fallback from "$lib/images/svelte-welcome.png";
+  import ContentCard from "$lib/components/ContentCard.svelte";
+  export let data;
 </script>
 
 <svelte:head>
@@ -11,14 +12,18 @@
 
 <section>
   <h1>UlumStream</h1>
-  <div>
-    <div class="hero-banner">
-      <picture>
-        <!-- replace with FS GG Bridge hero image -->
-        <source srcset={welcome} type="image/webp" />
-        <img src={welcome_fallback} alt="Welcome" />
-      </picture>
-    </div>
+
+  <div class="hero-banner">
+    <picture>
+      <!-- replace with hero image -->
+      <source srcset={welcome} type="image/webp" />
+      <img src={welcome_fallback} alt="Welcome" />
+    </picture>
+  </div>
+  <div class="content">
+    {#each data.titles as titleObj}
+      <ContentCard title={titleObj.title} />
+    {/each}
   </div>
 </section>
 
