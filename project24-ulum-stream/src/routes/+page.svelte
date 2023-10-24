@@ -22,7 +22,7 @@
   </div>
   <div class="content">
     {#each data.titles as titleObj}
-      <ContentCard title={titleObj.title} />
+      <ContentCard title={titleObj.name} />
     {/each}
   </div>
 </section>
